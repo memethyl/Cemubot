@@ -21,6 +21,14 @@ def configure():
         config["parsing_channels"] = list(map(lambda x: int(x.replace(' ','')), channels.split(',')))
     except ValueError:
         config["parsing_channels"] = []
+    config["compatibility_colors"] = {
+        "perfect": 0x3380CC,
+        "playable": 0x16A689,
+        "runs": 0xD9D936,
+        "loads": 0xDF8D12,
+        "unplayable": 0xBF3E32,
+        "unknown": 0x858585
+    }
     print(f"Your config file now looks like this:\n{json.dumps(config, indent=2)}")
     if input("Is this correct? (y/n) ").lower() == 'n':
         f.close()

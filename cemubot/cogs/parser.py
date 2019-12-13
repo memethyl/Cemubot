@@ -2,7 +2,10 @@ import datetime
 from discord.ext import commands
 import discord
 import re
+import requests
 import time
+
+from cogs import config
 
 class Parser():
 	def __init__(self):
@@ -45,6 +48,36 @@ class Parser():
 		self.embed["game_info"]["title_id"] = re.findall(r"TitleId: (.*?)$", self.file, re.M)[0].upper()
 		self.embed["game_info"]["title_version"] = re.findall(r"TitleVersion: v([0-9]+)", self.file, re.M)[0]
 
+		self.embed["game_info"]["wiki_page"] = ""
+		if self.title_ids[self.embed["game_info"]["title_id"]]["wiki_has_game_id_redirect"]:
+			self.embed["game_info"]["wiki_page"] = f"http://wiki.cemu.info/wiki/{self.title_ids[self.embed['game_info']['title_id']]['game_id']}"
+		else:
+			# todo: use a cache of the cemu wiki instead of making a request on each parse
+			title = self.title_ids[self.embed['game_info']['title_id']]['game_title']
+			title = re.sub(r'[^\x00-\x7f]', r'', title)
+			title = title.replace(' ', '_')
+			self.embed["game_info"]["wiki_page"] = f"http://wiki.cemu.info/wiki/{title}"
+
+		# experimental, probably buggy
+		self.embed["game_info"]["compatibility"] = {
+			"rating": "Unknown",
+			"version": "N/A"
+		}
+		if self.embed["game_info"]["wiki_page"]:
+			compat = requests.get(self.embed["game_info"]["wiki_page"])
+			if compat.status_code == 200:
+				try:
+					# pArSiNg hTmL wItH rEgEx iS a bAd iDeA
+					compat = re.findall(r"<tr style=\"vertical-align:middle;\">.*?</tr>", compat.text, re.M|re.S)[-1]
+					self.embed["game_info"]["compatibility"] = {
+						"rating": re.findall(r"<a href=\"/wiki/Category:.*?_\(Rating\)\" title=\"Category:.*? \(Rating\)\">(.*?)</a>", compat)[0],
+						"version": re.findall(r"<a href=\"(?:/wiki/|/index\.php\?title=)Release.*? title=\".*?\">(.*?)</a>", compat)[0]
+					}
+				except IndexError:
+					pass
+			else:
+				self.embed["game_info"]["wiki_page"] = ""
+
 	def detect_specs(self):
 		self.embed["specs"]["cpu"] = re.findall(r"CPU: (.*?) *$", self.file, re.M)[0]
 		self.embed["specs"]["ram"] = re.findall(r"RAM: ([0-9]+)MB", self.file, re.M)[0]
@@ -85,14 +118,26 @@ class Parser():
 			self.embed["relevant_info"] += [f"🤔 Console region set to {self.embed['settings']['console_region']}"]
 		if self.embed["settings"]["thread_quantum"]:
 			self.embed["relevant_info"] += [f"🤔 Thread quantum set to {self.embed['settings']['thread_quantum']} (non-default value)"]
+		if "Radeon" in self.embed["specs"]["gpu"] and self.embed["settings"]["backend"] == "OpenGL":
+			self.embed["relevant_info"] += ["⚠️ AMD GPUs and OpenGL go together like oil and water; use Vulkan if possible"]
 		
 	def create_embed(self):
+		game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
+		if self.embed["game_info"]["compatibility"]["rating"] != "Unknown":
+			description = f"**{self.embed['game_info']['compatibility']['rating']}** since {self.embed['game_info']['compatibility']['version']}"
+		else:
+			description = "Unknown compatibility rating"
+		# i saw a couple of tests where the rating wasn't one of the standard five,
+		# so i'm putting this in a try-except block just in case
 		try:
-			game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
+			colour = config.cfg["compatibility_colors"][self.embed["game_info"]["compatibility"]["rating"].lower()]
 		except KeyError:
-			pass
-		embed = discord.Embed(colour=discord.Colour(0x35D835), 
-							  title=self.embed["game_info"]["title_id"]+(" ("+game_title+")" if game_title else " (Unknown title)"), 
+			colour = config.cfg["compatibility_colors"]["unknown"]
+			
+		embed = discord.Embed(colour=discord.Colour(colour), 
+							  title=self.embed["game_info"]["title_id"]+(" ("+game_title+")" if game_title else " (Unknown title)"),
+							  url=(self.embed["game_info"]["wiki_page"] or None),
+							  description=description,
 							  timestamp=datetime.datetime.utcfromtimestamp(time.time()))
 		game_emu_info = f"""
 Cemu {self.embed['emu_info']['cemu_version']}
