@@ -3,9 +3,10 @@ from discord.ext import commands
 import json
 import traceback
 
+from cogs import config
+
 try:
-	with open("misc/config.cfg", "r", encoding="utf-8") as f:
-		config = json.load(f)
+	config.init()
 except FileNotFoundError:
 	print("Error: config.cfg not found; run setup.py and try again!")
 	exit()
@@ -16,7 +17,7 @@ parse_log = Parser().parse_log
 
 # if you want to add any cogs, put them here
 # example: ["cogs.foo", "cogs.bar", ...]
-startup_extensions = []
+startup_extensions = ["cogs.utility"]
 
 class Cemubot(commands.Bot):
 	def __init__(self, *args, **kwargs):
@@ -44,7 +45,7 @@ f"""
 +==============================================+
 """)
 	async def on_message(self, message):
-		if 'message.channel.id in config["parsing_channels"]' and message.attachments:
+		if 'message.channel.id in config.cfg["parsing_channels"]' and message.attachments:
 			for attachment in message.attachments:
 				if attachment.filename.endswith(".txt"):
 					reply_msg = await message.channel.send("Log detected, parsing...")
@@ -57,5 +58,5 @@ f"""
 			
 		await self.process_commands(message)
 
-bot = Cemubot(command_prefix=config["command_prefix"])
-bot.run(config["bot_token"])
+bot = Cemubot(command_prefix=config.cfg["command_prefix"])
+bot.run(config.cfg["bot_token"])
