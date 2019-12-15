@@ -25,10 +25,10 @@ class Parser():
 			"settings": {},
 			"relevant_info": []
 		}
-		if not re.findall(r"------- Init Cemu .*? -------", self.file, re.M):
+		if not re.search(r"------- Init Cemu .*? -------", self.file, re.M):
 			await self.reply_msg.edit("Error: This is not a Cemu log file.")
 			return
-		elif not re.findall(r"------- Loaded title -------", self.file, re.M):
+		elif not re.search(r"------- Loaded title -------", self.file, re.M):
 			await self.reply_msg.edit("Error: No game detected. Run Cemu again and play a game.")
 			return
 		
@@ -40,13 +40,13 @@ class Parser():
 		await self.reply_msg.edit(content=None, embed=self.create_embed())
 
 	def detect_emu_info(self):
-		self.embed["emu_info"]["cemu_version"] = re.findall(r"------- Init Cemu (.*?) -------", self.file, re.M)[0]
+		self.embed["emu_info"]["cemu_version"] = re.search(r"------- Init Cemu (.*?) -------", self.file, re.M).group(1)
 		try:
-			self.embed["emu_info"]["cemuhook_version"] = re.findall(r"Cemuhook version: (.*?)$", self.file, re.M)[0]
+			self.embed["emu_info"]["cemuhook_version"] = re.search(r"Cemuhook version: (.*?)$", self.file, re.M).group(1)
 		except IndexError:
 			self.embed["emu_info"]["cemuhook_version"] = "N/A"
-		self.embed["game_info"]["title_id"] = re.findall(r"TitleId: (.*?)$", self.file, re.M)[0].upper()
-		self.embed["game_info"]["title_version"] = re.findall(r"TitleVersion: v([0-9]+)", self.file, re.M)[0]
+		self.embed["game_info"]["title_id"] = re.search(r"TitleId: (.*?)$", self.file, re.M).group(1).upper()
+		self.embed["game_info"]["title_version"] = re.search(r"TitleVersion: v([0-9]+)", self.file, re.M).group(1)
 
 		self.embed["game_info"]["wiki_page"] = ""
 		if self.title_ids[self.embed["game_info"]["title_id"]]["wiki_has_game_id_redirect"]:
@@ -70,8 +70,8 @@ class Parser():
 					# pArSiNg hTmL wItH rEgEx iS a bAd iDeA
 					compat = re.findall(r"<tr style=\"vertical-align:middle;\">.*?</tr>", compat.text, re.M|re.S)[-1]
 					self.embed["game_info"]["compatibility"] = {
-						"rating": re.findall(r"<a href=\"/wiki/Category:.*?_\(Rating\)\" title=\"Category:.*? \(Rating\)\">(.*?)</a>", compat)[0],
-						"version": re.findall(r"<a href=\"(?:/wiki/|/index\.php\?title=)Release.*? title=\".*?\">(.*?)</a>", compat)[0]
+						"rating": re.search(r"<a href=\"/wiki/Category:.*?_\(Rating\)\" title=\"Category:.*? \(Rating\)\">(.*?)</a>", compat).group(1),
+						"version": re.search(r"<a href=\"(?:/wiki/|/index\.php\?title=)Release.*? title=\".*?\">(.*?)</a>", compat).group(1)
 					}
 				except IndexError:
 					pass
@@ -79,17 +79,17 @@ class Parser():
 				self.embed["game_info"]["wiki_page"] = ""
 
 	def detect_specs(self):
-		self.embed["specs"]["cpu"] = re.findall(r"CPU: (.*?) *$", self.file, re.M)[0]
-		self.embed["specs"]["ram"] = re.findall(r"RAM: ([0-9]+)MB", self.file, re.M)[0]
-		self.embed["specs"]["gpu"] = re.findall(r"(?:GL_RENDERER: |Using GPU: )(.*?)$", self.file, re.M)[0]
+		self.embed["specs"]["cpu"] = re.search(r"CPU: (.*?) *$", self.file, re.M).group(1)
+		self.embed["specs"]["ram"] = re.search(r"RAM: ([0-9]+)MB", self.file, re.M).group(1)
+		self.embed["specs"]["gpu"] = re.search(r"(?:GL_RENDERER: |Using GPU: )(.*?)$", self.file, re.M).group(1)
 		try:
-			self.embed["specs"]["gpu_driver"] = re.findall(r"GL_VERSION: (.*?)$", self.file, re.M)[0]
-		except IndexError:
+			self.embed["specs"]["gpu_driver"] = re.search(r"GL_VERSION: (.*?)$", self.file, re.M).group(1)
+		except AttributeError:
 			self.embed["specs"]["gpu_driver"] = "Unknown"
 	
 	def detect_settings(self):
-		self.embed["settings"]["cpu_mode"] = re.findall(r"CPU-Mode: (.*?)$", self.file, re.M)[0]
-		self.embed["settings"]["cpu_extensions"] = re.findall(r"Recompiler initialized. CPU extensions: (.*?)$", self.file, re.M)[0]
+		self.embed["settings"]["cpu_mode"] = re.search(r"CPU-Mode: (.*?)$", self.file, re.M).group(1)
+		self.embed["settings"]["cpu_extensions"] = re.search(r"Recompiler initialized. CPU extensions: (.*?)$", self.file, re.M).group(1)
 		enabled_cpu_extensions = ' '.join(re.findall(r"CPU extensions that will actually be used by recompiler: (.*?)$", self.file, re.M))
 		self.embed["settings"]["disabled_cpu_extensions"] = set()
 		if enabled_cpu_extensions:
@@ -97,9 +97,9 @@ class Parser():
 															- {x for x in re.findall(r"(\b\w*\b)", enabled_cpu_extensions, re.M) if x}
 		self.embed["settings"]["backend"] = ("OpenGL" if "OpenGL" in self.file else "Vulkan")
 		self.embed["settings"]["gx2drawdone"] = ("Enabled" if "Full sync at GX2DrawDone: true" in self.file else "Disabled")
-		self.embed["settings"]["console_region"] = re.findall(r"Console region: (.*?)$", self.file, re.M)[0]
-		self.embed["settings"]["thread_quantum"] = (None if "Thread quantum set to " not in self.file else re.findall(r'Thread quantum set to (.*?)$', self.file, re.M)[0])
-		self.embed["settings"]["custom_timer_mode"] = re.findall(r"Custom timer mode: (.*?)$", self.file, re.M)[0]
+		self.embed["settings"]["console_region"] = re.search(r"Console region: (.*?)$", self.file, re.M).group(1)
+		self.embed["settings"]["thread_quantum"] = (None if "Thread quantum set to " not in self.file else re.search(r'Thread quantum set to (.*?)$', self.file, re.M).group(1))
+		self.embed["settings"]["custom_timer_mode"] = re.search(r"Custom timer mode: (.*?)$", self.file, re.M).group(1)
 		if self.embed["settings"]["custom_timer_mode"] == "none":
 			self.embed["settings"]["custom_timer_mode"] = "Default"
 	
