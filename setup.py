@@ -13,14 +13,11 @@ def configure():
     if not config["command_prefix"]:
         print("No prefix provided; defaulting to ^.")
         config["command_prefix"] = "^"
-    config["parsing_channels"] = []
-    print("Please provide a comma-separated list of channel IDs of channels you want the bot to parse logs in.")
+    print("Please provide the channel ID of the channel(s) you want the bot to parse logs in.")
     print("NOTE: A channel ID is something like 123456789123456789, not #channel-name.")
-    channels = input("List goes here: ")
-    try:
-        config["parsing_channels"] = list(map(lambda x: int(x.replace(' ','')), channels.split(',')))
-    except ValueError:
-        config["parsing_channels"] = []
+    config["parsing_channel"] = {}
+    config["parsing_channel"]["preferred"] = int(input("Preferred channel ID goes here (0 to parse in all channels): "))
+    config["parsing_channel"]["alternates"] = list(map(int, input("Comma-separated list of IDs goes here (leave blank to skip): ").split(',')))
     config["compatibility_colors"] = {
         "perfect": 0x3380CC,
         "playable": 0x16A689,
