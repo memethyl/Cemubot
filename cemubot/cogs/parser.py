@@ -26,10 +26,10 @@ class Parser():
 			"relevant_info": []
 		}
 		if not re.search(r"------- Init Cemu .*? -------", self.file, re.M):
-			await self.reply_msg.edit("Error: This is not a Cemu log file.")
+			await self.reply_msg.edit(content="Error: This is not a Cemu log file.")
 			return
 		elif not re.search(r"------- Loaded title -------", self.file, re.M):
-			await self.reply_msg.edit("Error: No game detected. Run Cemu again and play a game.")
+			await self.reply_msg.edit(content="Error: No game detected. Run Cemu again and play a game.")
 			return
 		
 		self.detect_emu_info()
