@@ -59,7 +59,7 @@ f"""
 							await reply_msg.edit(content=f"Error: Couldn't parse log; parser threw {type(e).__name__} exception")
 							traceback.print_exc()
 					else:
-						await message.channel.send(f"Log detected, please post logs in <#{config.cfg['parsing_channel']}>.")
+						await message.channel.send(f"Log detected, please post logs in <#{config.cfg['parsing_channel']['preferred']}>.")
 			
 		await self.process_commands(message)
 
