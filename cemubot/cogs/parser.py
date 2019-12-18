@@ -43,7 +43,7 @@ class Parser():
 		self.embed["emu_info"]["cemu_version"] = re.search(r"------- Init Cemu (.*?) -------", self.file, re.M).group(1)
 		try:
 			self.embed["emu_info"]["cemuhook_version"] = re.search(r"Cemuhook version: (.*?)$", self.file, re.M).group(1)
-		except IndexError:
+		except AttributeError:
 			self.embed["emu_info"]["cemuhook_version"] = "N/A"
 		self.embed["game_info"]["title_id"] = re.search(r"TitleId: (.*?)$", self.file, re.M).group(1).upper()
 		self.embed["game_info"]["title_version"] = re.search(r"TitleVersion: v([0-9]+)", self.file, re.M).group(1)
@@ -73,7 +73,7 @@ class Parser():
 						"rating": re.search(r"<a href=\"/wiki/Category:.*?_\(Rating\)\" title=\"Category:.*? \(Rating\)\">(.*?)</a>", compat).group(1),
 						"version": re.search(r"<a href=\"(?:/wiki/|/index\.php\?title=)Release.*? title=\".*?\">(.*?)</a>", compat).group(1)
 					}
-				except IndexError:
+				except (IndexError, AttributeError):
 					pass
 			else:
 				self.embed["game_info"]["wiki_page"] = ""
