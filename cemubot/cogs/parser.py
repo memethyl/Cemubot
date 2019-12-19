@@ -19,10 +19,35 @@ class Parser():
 		self.reply_msg = reply_msg
 		self.title_ids = title_ids
 		self.embed = {
-			"emu_info": {},
-			"game_info": {},
-			"specs": {},
-			"settings": {},
+			"emu_info": {
+				"cemu_version": "Unknown",
+				"cemuhook_version": "Unknown"
+			},
+			"game_info": {
+				"title_id": "Unknown",
+				"title_version": "Unknown",
+				"wiki_page": "Unknown",
+				"compatibility": {
+					"rating": "Unknown",
+					"version": "N/A"
+				}
+			},
+			"specs": {
+				"cpu": "Unknown",
+				"ram": "Unknown",
+				"gpu": "Unknown",
+				"gpu_driver": "Unknown"
+			},
+			"settings": {
+				"cpu_mode": "Unknown",
+				"cpu_extensions": "Unknown",
+				"disabled_cpu_extensions": "",
+				"backend": "Unknown",
+				"gx2drawdone": "Unknown",
+				"console_region": "Auto",
+				"thread_quantum": "",
+				"custom_timer_mode": "Unknown"
+			},
 			"relevant_info": []
 		}
 		if not re.search(r"------- Init Cemu .*? -------", self.file, re.M):
@@ -34,7 +59,10 @@ class Parser():
 		
 		self.detect_emu_info()
 		self.detect_specs()
-		self.detect_settings()
+		try:
+			self.detect_settings()
+		except AttributeError:
+			self.embed["relevant_info"] += ["ℹ Incomplete log; some information was not found"]
 		self.get_relevant_info()
 		
 		await self.reply_msg.edit(content=None, embed=self.create_embed())
@@ -59,10 +87,6 @@ class Parser():
 			self.embed["game_info"]["wiki_page"] = f"http://wiki.cemu.info/wiki/{title}"
 
 		# experimental, probably buggy
-		self.embed["game_info"]["compatibility"] = {
-			"rating": "Unknown",
-			"version": "N/A"
-		}
 		if self.embed["game_info"]["wiki_page"]:
 			compat = requests.get(self.embed["game_info"]["wiki_page"])
 			if compat.status_code == 200:
