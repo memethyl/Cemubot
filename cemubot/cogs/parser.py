@@ -30,7 +30,9 @@ class Parser():
 				"compatibility": {
 					"rating": "Unknown",
 					"version": "N/A"
-				}
+				},
+				"rpx_hash": "Unknown",
+				"shadercache_name": "Unknown"
 			},
 			"specs": {
 				"cpu": "Unknown",
@@ -85,7 +87,6 @@ class Parser():
 			title = re.sub(r'[^\x00-\x7f]', r'', title)
 			title = title.replace(' ', '_')
 			self.embed["game_info"]["wiki_page"] = f"http://wiki.cemu.info/wiki/{title}"
-
 		# experimental, probably buggy
 		if self.embed["game_info"]["wiki_page"]:
 			compat = requests.get(self.embed["game_info"]["wiki_page"])
@@ -101,6 +102,9 @@ class Parser():
 					pass
 			else:
 				self.embed["game_info"]["wiki_page"] = ""
+		
+		self.embed["game_info"]["rpx_hash"] = re.search(r"RPX hash: (.*?)$", self.file, re.M).group(1)
+		self.embed["game_info"]["shadercache_name"] = re.search(r"shaderCache name: (.*?)$", self.file, re.M).group(1)
 
 	def detect_specs(self):
 		self.embed["specs"]["cpu"] = re.search(r"CPU: (.*?) *$", self.file, re.M).group(1)
@@ -147,6 +151,7 @@ class Parser():
 			self.embed["relevant_info"] += [f"🤔 Thread quantum set to {self.embed['settings']['thread_quantum']} (non-default value)"]
 		if "Radeon" in self.embed["specs"]["gpu"] and self.embed["settings"]["backend"] == "OpenGL":
 			self.embed["relevant_info"] += ["⚠️ AMD GPUs and OpenGL go together like oil and water; use Vulkan if possible"]
+		self.embed["relevant_info"] += [f"ℹ RPX hash: `{self.embed['game_info']['rpx_hash']}` ║ Shader cache name: `{self.embed['game_info']['shadercache_name']}`"]
 		
 	def create_embed(self):
 		game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
