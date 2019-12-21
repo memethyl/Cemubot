@@ -14,7 +14,11 @@ class Parser():
 		self.embed = None
 
 	async def parse_log(self, file, channel, reply_msg, title_ids):
-		self.file = file.decode('utf-8').replace('\r', '')
+		try:
+			self.file = file.decode('utf-8').replace('\r', '')
+		except UnicodeDecodeError:
+			# brazilian portugese was causing problems
+			self.file = file.decode('latin-1').replace('\r', '')
 		self.channel = channel
 		self.reply_msg = reply_msg
 		self.title_ids = title_ids
