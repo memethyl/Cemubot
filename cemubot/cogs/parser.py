@@ -60,7 +60,7 @@ class Parser():
 			await self.reply_msg.edit(content="Error: This is not a Cemu log file.")
 			return
 		elif not re.search(r"------- Loaded title -------", self.file, re.M):
-			await self.reply_msg.edit(content="Error: No game detected. Run Cemu again and play a game.")
+			await self.reply_msg.edit(content="Error: No game detected. Submit a log during or after emulating a game. Reopening Cemu clears the log.")
 			return
 		
 		self.detect_emu_info()
