@@ -160,7 +160,7 @@ class Parser():
 	def create_embed(self):
 		game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
 		if self.embed["game_info"]["compatibility"]["rating"] != "Unknown":
-			description = f"**{self.embed['game_info']['compatibility']['rating']}** since {self.embed['game_info']['compatibility']['version']}"
+			description = f"Tested as **{self.embed['game_info']['compatibility']['rating']}** on {self.embed['game_info']['compatibility']['version']}"
 		else:
 			description = "Unknown compatibility rating"
 		# i saw a couple of tests where the rating wasn't one of the standard five,
