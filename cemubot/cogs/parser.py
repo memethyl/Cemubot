@@ -111,7 +111,7 @@ class Parser():
 		self.embed["game_info"]["shadercache_name"] = re.search(r"shaderCache name: (.*?)$", self.file, re.M).group(1)
 
 	def detect_specs(self):
-		self.embed["specs"]["cpu"] = re.search(r"CPU: (.*?) *$", self.file, re.M).group(1)
+		self.embed["specs"]["cpu"] = re.search(r"(?<!CPU[0-9] )CPU: (.*?) *$", self.file, re.M).group(1)
 		self.embed["specs"]["ram"] = re.search(r"RAM: ([0-9]+)MB", self.file, re.M).group(1)
 		self.embed["specs"]["gpu"] = re.search(r"(?:GL_RENDERER: |Using GPU: )(.*?)$", self.file, re.M).group(1)
 		try:
