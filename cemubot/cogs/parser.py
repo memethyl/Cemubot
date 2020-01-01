@@ -156,6 +156,9 @@ class Parser():
 		if "Radeon" in self.embed["specs"]["gpu"] and self.embed["settings"]["backend"] == "OpenGL":
 			self.embed["relevant_info"] += ["⚠️ AMD GPUs and OpenGL go together like oil and water; use Vulkan if possible"]
 		self.embed["relevant_info"] += [f"ℹ RPX hash: `{self.embed['game_info']['rpx_hash']}` ║ Shader cache name: `{self.embed['game_info']['shadercache_name']}`"]
+		if re.search(r"GLDEBUG|GX2Init\(\)|[KV]PAD|AX(User|[GS]et)|FS(Read|[GS]et|Open|Close)|MEMAlloc|Validation layer is enabled|OSFastMutex|[nh]to[hn][ls]|H264D[eE][cC]",
+					 self.file, re.M):
+			self.embed["relevant_info"] += ["⚠️ Debug logging may affect performance and should remain disabled"]
 		
 	def create_embed(self):
 		game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
