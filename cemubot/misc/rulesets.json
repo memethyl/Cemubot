@@ -1,0 +1,140 @@
+{
+    "any": [
+        [
+            "any",
+            {
+                "property": "emu_info.cemuhook_version",
+                "type": "str_eq",
+                "value": "N/A"
+            },
+            "❓ Cemuhook is not installed"
+        ],
+        [
+            "any",
+            {
+                "property": "specs.ram",
+                "type": "int_lt",
+                "value": 8000
+            },
+            "⚠️ Less than 8 GB of RAM"
+        ],
+        [
+            "any",
+            {
+                "property": "settings.cpu_mode",
+                "type": "str_contains",
+                "value": "Single-core interpreter"
+            },
+            "⚠️ CPU mode is set to Single-core interpreter"
+        ],
+        [
+            "all",
+            {
+                "property": "settings.disabled_cpu_extensions",
+                "type": "str_ne",
+                "value": ""
+            },
+            {
+                "property": "emu_info.cemuhook_version",
+                "type": "str_ne",
+                "value": "N/A"
+            },
+            "❓ These CPU extensions are disabled: `{settings[disabled_cpu_extensions]}`"
+        ],
+        [
+            "any",
+            {
+                "property": "specs.gpu",
+                "type": "str_contains",
+                "value": "Intel"
+            },
+            "⚠️ Intel GPUs are not officially supported due to poor performance"
+        ],
+        [
+            "any",
+            {
+                "property": "settings.console_region",
+                "type": "str_ne",
+                "value": "Auto"
+            },
+            "🤔 Console region set to {settings[console_region]}"
+        ],
+        [
+            "any",
+            {
+                "property": "settings.thread_quantum",
+                "type": "str_eq",
+                "value": "any"
+            },
+            "🤔 Thread quantum set to {settings[thread_quantum]} (non-default value)"
+        ],
+        [
+            "all",
+            {
+                "property": "specs.gpu",
+                "type": "str_contains",
+                "value": "Radeon"
+            },
+            {
+                "property": "settings.backend",
+                "type": "str_eq",
+                "value": "OpenGL"
+            },
+            "⚠️ AMD GPUs and OpenGL go together like oil and water; use Vulkan if possible"
+        ],
+        [
+            "any",
+            {
+                "property": "log",
+                "type": "rgx_matches",
+                "value": "GLDEBUG|GX2Init|[KV]PAD|AX(User|[GS]et)|FS(Read|[GS]et|Open|Close)|MEMAlloc|Validation layer is enabled|OSFastMutex|[nh]to[hn][ls]|H264D[eE][cC]"
+            },
+            "⚠️ Debug logging may affect performance and should remain disabled"
+        ]
+    ],
+    "00050000-10116100": "00050000-101C4D00",
+    "00050000-101C4C00": "00050000-101C4D00",
+    "00050000-101C4D00": [
+        [
+            "all",
+            {
+                "property": "settings.backend",
+                "type": "str_eq",
+                "value": "Vulkan"
+            },
+            {
+                "property": "emu_info.cemu_version",
+                "type": "str_eq",
+                "value": "1.16.1"
+            },
+            "⚠️ This game does not work with Vulkan on 1.16.1"
+        ]
+    ],
+    "00050000-1010ED00": "00050000-1010EC00",
+    "00050000-1010EB00": "00050000-1010EC00",
+    "00050000-1010EC00": [
+        [
+            "any",
+            {
+                "property": "settings.cpu_mode",
+                "type": "str_not_contains",
+                "value": "Single-core"
+            },
+            "⚠️ Using a multi-core recompiler will cause crashes after/while racing"
+        ],
+        [
+            "all",
+            {
+                "property": "settings.backend",
+                "type": "str_eq",
+                "value": "OpenGL"
+            },
+            {
+                "property": "settings.gx2drawdone",
+                "type": "str_eq",
+                "value": "Disabled"
+            },
+            "⚠️ This title requires `Full sync at GX2DrawDone` to be enabled to avoid random crashes"
+        ]
+    ]
+}

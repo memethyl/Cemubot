@@ -1,6 +1,7 @@
 import datetime
 from discord.ext import commands
 import discord
+import json
 import re
 import requests
 import time
@@ -123,10 +124,10 @@ class Parser():
 		self.embed["settings"]["cpu_mode"] = re.search(r"CPU-Mode: (.*?)$", self.file, re.M).group(1)
 		self.embed["settings"]["cpu_extensions"] = re.search(r"Recompiler initialized. CPU extensions: (.*?)$", self.file, re.M).group(1)
 		enabled_cpu_extensions = ' '.join(re.findall(r"CPU extensions that will actually be used by recompiler: (.*?)$", self.file, re.M))
-		self.embed["settings"]["disabled_cpu_extensions"] = set()
 		if enabled_cpu_extensions:
 			self.embed["settings"]["disabled_cpu_extensions"] = {x for x in re.findall(r"(\b\w*\b)", self.embed["settings"]["cpu_extensions"], re.M)} \
 															- {x for x in re.findall(r"(\b\w*\b)", enabled_cpu_extensions, re.M) if x}
+			self.embed["settings"]["disabled_cpu_extensions"] = ', '.join([x for x in self.embed['settings']['disabled_cpu_extensions'] if x])
 		self.embed["settings"]["backend"] = ("OpenGL" if "OpenGL" in self.file else "Vulkan")
 		self.embed["settings"]["gx2drawdone"] = ("Enabled" if "Full sync at GX2DrawDone: true" in self.file else "Disabled")
 		self.embed["settings"]["console_region"] = re.search(r"Console region: (.*?)$", self.file, re.M).group(1)
@@ -139,26 +140,8 @@ class Parser():
 			self.embed["settings"]["custom_timer_mode"] = "Default"
 	
 	def get_relevant_info(self):
-		if self.embed["emu_info"]["cemuhook_version"] == "N/A":
-			self.embed["relevant_info"] += ["❓ Cemuhook is not installed"]
-		if int(self.embed["specs"]["ram"])-8000 < 0:
-			self.embed["relevant_info"] += ["⚠️ Less than 8 GB of RAM"]
-		if self.embed["settings"]["cpu_mode"] == "Single-core interpreter":
-			self.embed["relevant_info"] += ["⚠️ CPU mode is set to Single-core interpreter"]
-		if self.embed["settings"]["disabled_cpu_extensions"] and self.embed["emu_info"]["cemuhook_version"] != "N/A":
-			self.embed["relevant_info"] += [f"❓ These CPU extensions are disabled: `{', '.join([x for x in self.embed['settings']['disabled_cpu_extensions'] if x])}`"]
-		if "Intel" in self.embed["specs"]["gpu"]:
-			self.embed["relevant_info"] += ["⚠️ Intel GPUs are not officially supported due to poor performance"]
-		if self.embed["settings"]["console_region"] != "Auto":
-			self.embed["relevant_info"] += [f"🤔 Console region set to {self.embed['settings']['console_region']}"]
-		if self.embed["settings"]["thread_quantum"]:
-			self.embed["relevant_info"] += [f"🤔 Thread quantum set to {self.embed['settings']['thread_quantum']} (non-default value)"]
-		if "Radeon" in self.embed["specs"]["gpu"] and self.embed["settings"]["backend"] == "OpenGL":
-			self.embed["relevant_info"] += ["⚠️ AMD GPUs and OpenGL go together like oil and water; use Vulkan if possible"]
+		self.embed["relevant_info"].extend(RulesetParser(self.file, self.embed, "misc/rulesets.json").parse())
 		self.embed["relevant_info"] += [f"ℹ RPX hash: `{self.embed['game_info']['rpx_hash']}` ║ Shader cache name: `{self.embed['game_info']['shadercache_name']}`"]
-		if re.search(r"GLDEBUG|GX2Init\(\)|[KV]PAD|AX(User|[GS]et)|FS(Read|[GS]et|Open|Close)|MEMAlloc|Validation layer is enabled|OSFastMutex|[nh]to[hn][ls]|H264D[eE][cC]",
-					 self.file, re.M):
-			self.embed["relevant_info"] += ["⚠️ Debug logging may affect performance and should remain disabled"]
 		
 	def create_embed(self):
 		game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
@@ -202,3 +185,66 @@ Cemuhook {self.embed['emu_info']['cemuhook_version']}
 		embed.add_field(name="Settings", value=settings, inline=False)
 		embed.add_field(name="Relevant Info", value='\n'.join(self.embed["relevant_info"]), inline=False)
 		return embed
+
+
+class RulesetParser():
+	def __init__(self, log_file, properties, ruleset_file_dir):
+		self.log_file = log_file
+		self.properties = properties
+		with open(ruleset_file_dir, 'r', encoding='utf-8') as f:
+			self.ruleset_file = json.load(f)
+
+	def parse(self):
+		relevant_info = []
+		relevant_info.extend(self.parse_ruleset(self.ruleset_file["any"]))
+		try:
+			ruleset = self.ruleset_file[self.properties["game_info"]["title_id"]]
+			# to avoid duplicate rulesets, 
+			# one title ID (usually USA) holds the game's ruleset,
+			# and the other regions simply redirect to it
+			if type(ruleset) == str:
+				ruleset = self.ruleset_file[ruleset]
+			relevant_info.extend(self.parse_ruleset(ruleset))
+		except KeyError:
+			pass
+		return relevant_info
+	
+	def parse_ruleset(self, ruleset):
+		messages = []
+		for rule in ruleset:
+			match_type = rule.pop(0)
+			message = rule.pop(-1)
+			test_results = []
+			for test in rule:
+				if test["property"] == "log":
+					prop = self.log_file
+				else:
+					prop = self.get_property(test["property"])
+				rule_type = test["type"]
+				value = test["value"]
+				if \
+				(rule_type == "str_eq" and prop == value) or \
+				(rule_type == "str_ne" and prop != value) or \
+				(rule_type == "str_contains" and value in prop) or \
+				(rule_type == "str_not_contains" and value not in prop) or \
+				(rule_type == "int_lt" and int(prop) < value) or \
+				(rule_type == "int_eq" and int(prop) == value) or \
+				(rule_type == "int_gt" and int(prop) > value) or \
+				(rule_type == "rgx_matches" and re.search(value, prop, re.M)):
+					test_results.append(True)
+				else:
+					test_results.append(False)
+			if (any(test_results) if match_type == "any" else all(test_results)):
+				messages.append(message.format(**self.properties))
+		return messages
+		
+	def get_property(self, key):
+		d = self.properties
+		key = key.split('.')
+		while key:
+			d = d[key[0]]
+			if type(d) == dict:
+				key.pop(0)
+				continue
+			else:
+				return d
