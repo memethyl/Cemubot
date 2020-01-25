@@ -112,7 +112,10 @@ class Parser():
 				self.embed["game_info"]["wiki_page"] = ""
 		
 		self.embed["game_info"]["rpx_hash"] = re.search(r"RPX hash: (.*?)$", self.file, re.M).group(1)
-		self.embed["game_info"]["shadercache_name"] = re.search(r"shaderCache name: (.*?)$", self.file, re.M).group(1)
+		if "shaderCache name: " in self.file:
+			self.embed["game_info"]["shadercache_name"] = re.search(r"shaderCache name: (.*?)$", self.file, re.M).group(1)
+		else:
+			self.embed["game_info"]["shadercache_name"] = re.search(r"Shader cache file: shaderCache\\.*?\\(.*?)$", self.file, re.M).group(1)
 
 	def detect_specs(self):
 		self.embed["specs"]["cpu"] = re.search(r"(?<!CPU[0-9] )CPU: (.*?) *$", self.file, re.M).group(1)
