@@ -90,6 +90,20 @@
                 "value": "GLDEBUG|GX2Init|[KV]PAD|AX(User|[GS]et)|FS(Read|[GS]et|Open|Close)|MEMAlloc|Validation layer is enabled|OSFastMutex|[nh]to[hn][ls]|H264D[eE][cC]"
             },
             "⚠️ Debug logging may affect performance and should remain disabled"
+        ],
+        [
+            "all",
+            {
+                "property": "specs.opengl",
+                "type": "str_ne",
+                "value": "Unknown"
+            },
+            {
+                "property": "specs.opengl",
+                "type": "int_lt",
+                "value": 4.1
+            },
+            "⚠️ This GPU does not support OpenGL 4.1"
         ]
     ],
     "00050000-10116100": "00050000-101C4D00",

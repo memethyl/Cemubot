@@ -1,4 +1,5 @@
 import datetime
+from difflib import get_close_matches
 from discord.ext import commands
 import discord
 import json
@@ -43,7 +44,10 @@ class Parser():
 				"cpu": "Unknown",
 				"ram": "Unknown",
 				"gpu": "Unknown",
-				"gpu_driver": "Unknown"
+				"gpu_driver": "Unknown",
+				"gpu_specs_url": "",
+				"opengl": "Unknown",
+				"vulkan": "Unknown"
 			},
 			"settings": {
 				"cpu_mode": "Unknown",
@@ -92,7 +96,6 @@ class Parser():
 			title = re.sub(r'[^\x00-\x7f]', r'', title)
 			title = title.replace(' ', '_')
 			self.embed["game_info"]["wiki_page"] = f"http://wiki.cemu.info/wiki/{title}"
-		# experimental, probably buggy
 		if self.embed["game_info"]["wiki_page"]:
 			compat = requests.get(self.embed["game_info"]["wiki_page"])
 			if compat.status_code == 200:
@@ -119,6 +122,10 @@ class Parser():
 			self.embed["specs"]["gpu_driver"] = re.search(r"GL_VERSION: (.*?)$", self.file, re.M).group(1)
 		except AttributeError:
 			self.embed["specs"]["gpu_driver"] = "Unknown"
+		gpu_support = self.get_gpu_support(self.embed["specs"]["gpu"])
+		self.embed["specs"]["gpu_specs_url"] = gpu_support["url"]
+		self.embed["specs"]["opengl"] = gpu_support["OpenGL"]
+		self.embed["specs"]["vulkan"] = gpu_support["Vulkan"]
 	
 	def detect_settings(self):
 		self.embed["settings"]["cpu_mode"] = re.search(r"CPU-Mode: (.*?)$", self.file, re.M).group(1)
@@ -161,23 +168,25 @@ class Parser():
 							  url=(self.embed["game_info"]["wiki_page"] or None),
 							  description=description,
 							  timestamp=datetime.datetime.utcfromtimestamp(time.time()))
-		game_emu_info = f"""
-Cemu {self.embed['emu_info']['cemu_version']}
-Cemuhook {self.embed['emu_info']['cemuhook_version']}
-**Title version:** v{self.embed['game_info']['title_version']}
-"""
-		specs = f"""
-**CPU:** {self.embed['specs']['cpu']}
-**RAM:** {self.embed['specs']['ram']}MB
-**GPU:** {self.embed['specs']['gpu']}
-**GPU driver:** {self.embed['specs']['gpu_driver']}
-"""
-		settings = f"""
-**CPU mode:** {self.embed['settings']['cpu_mode']}
-**Graphics backend:** {self.embed['settings']['backend']}
-**Full sync at GX2DrawDone:** {self.embed['settings']['gx2drawdone']}
-**Custom timer mode:** {self.embed["settings"]["custom_timer_mode"]}
-"""
+		# todo: omit unknown info?
+		game_emu_info = '\n'.join((
+f"Cemu {self.embed['emu_info']['cemu_version']}",
+f"Cemuhook {self.embed['emu_info']['cemuhook_version']}",
+f"**Title version:** v{self.embed['game_info']['title_version']}"
+))
+		specs = '\n'.join((
+f"**CPU:** {self.embed['specs']['cpu']}",
+f"**RAM:** {self.embed['specs']['ram']}MB",
+f"**GPU:** [{self.embed['specs']['gpu']}]({self.embed['specs']['gpu_specs_url']})",
+f"**GPU driver:** {self.embed['specs']['gpu_driver']}",
+f"**OpenGL:** {self.embed['specs']['opengl']} ║ **Vulkan:** {self.embed['specs']['vulkan']}"
+))
+		settings = '\n'.join((
+f"**CPU mode:** {self.embed['settings']['cpu_mode']}",
+f"**Graphics backend:** {self.embed['settings']['backend']}",
+f"**Full sync at GX2DrawDone:** {self.embed['settings']['gx2drawdone']}",
+f"**Custom timer mode:** {self.embed['settings']['custom_timer_mode']}"
+))
 		if not self.embed["relevant_info"]:
 			self.embed["relevant_info"] = ["N/A"]
 		embed.add_field(name="Game/Emulator Info", value=game_emu_info, inline=True)
@@ -185,6 +194,35 @@ Cemuhook {self.embed['emu_info']['cemuhook_version']}
 		embed.add_field(name="Settings", value=settings, inline=False)
 		embed.add_field(name="Relevant Info", value='\n'.join(self.embed["relevant_info"]), inline=False)
 		return embed
+	
+	# experimental, may have weird edge cases
+	def get_gpu_support(self, query):
+		support = {
+			"url": "",
+			"OpenGL": "Unknown",
+			"Vulkan": "Unknown"
+		}
+		revised_query = re.sub(r"(?:[0-9]GB|)/?(?:PCIe|)/?SSE2|\(TM\)| Graphics$|GB$","",query)
+		req = requests.get(f'https://www.techpowerup.com/gpu-specs/?ajaxsrch={revised_query}')
+		req = req.text
+		if 'Nothing found.' in req:
+			return support
+		req = req.replace('\n','')
+		req = req.replace('\t','')
+		results = re.findall(r"<tr><td.+?><a href=\"(/gpu-specs/.*?)\">(.*?)</a>", req)
+		results = [list(reversed(x)) for x in results]
+		results = dict(results)
+		try:
+			support["url"] = f'https://www.techpowerup.com{results[get_close_matches(query, results.keys())[0]]}'
+			req = requests.get(support["url"])
+		except KeyError:
+			return support
+		req = req.text
+		req = req.replace('\n','')
+		req = req.replace('\t','')
+		support["OpenGL"] = re.search(r"<dt>OpenGL</dt><dd>(.*?)</dd>", req).group(1)
+		support["Vulkan"] = re.search(r"<dt>Vulkan</dt><dd>(.*?)</dd>", req).group(1)
+		return support
 
 
 class RulesetParser():
@@ -214,27 +252,27 @@ class RulesetParser():
 		for rule in ruleset:
 			match_type = rule.pop(0)
 			message = rule.pop(-1)
-			test_results = []
+			test_result = None
 			for test in rule:
+				test_result = True
 				if test["property"] == "log":
 					prop = self.log_file
 				else:
 					prop = self.get_property(test["property"])
 				rule_type = test["type"]
 				value = test["value"]
-				if \
+				if not \
 				(rule_type == "str_eq" and prop == value) or \
 				(rule_type == "str_ne" and prop != value) or \
 				(rule_type == "str_contains" and value in prop) or \
 				(rule_type == "str_not_contains" and value not in prop) or \
-				(rule_type == "int_lt" and int(prop) < value) or \
-				(rule_type == "int_eq" and int(prop) == value) or \
-				(rule_type == "int_gt" and int(prop) > value) or \
+				(rule_type == "int_lt" and float(prop) < value) or \
+				(rule_type == "int_eq" and float(prop) == value) or \
+				(rule_type == "int_gt" and float(prop) > value) or \
 				(rule_type == "rgx_matches" and re.search(value, prop, re.M)):
-					test_results.append(True)
-				else:
-					test_results.append(False)
-			if (any(test_results) if match_type == "any" else all(test_results)):
+					test_result = False
+					break
+			if test_result:
 				messages.append(message.format(**self.properties))
 		return messages
 		
