@@ -205,7 +205,7 @@ f"**Custom timer mode:** {self.embed['settings']['custom_timer_mode']}"
 			"OpenGL": "Unknown",
 			"Vulkan": "Unknown"
 		}
-		revised_query = re.sub(r"(?:[0-9]GB|)/?(?:PCIe|)/?SSE2|\(TM\)| Graphics$|GB$","",query)
+		revised_query = re.sub(r"(?:[0-9]GB|)/?(?:PCIe|)/?SSE2|\(TM\)|\(R\)| Graphics$|GB$| Series$","",query)
 		req = requests.get(f'https://www.techpowerup.com/gpu-specs/?ajaxsrch={revised_query}')
 		req = req.text
 		if 'Nothing found.' in req:
@@ -216,7 +216,8 @@ f"**Custom timer mode:** {self.embed['settings']['custom_timer_mode']}"
 		results = [list(reversed(x)) for x in results]
 		results = dict(results)
 		try:
-			support["url"] = f'https://www.techpowerup.com{results[get_close_matches(query, results.keys())[0]]}'
+			matches = [x for x in get_close_matches(query, results.keys()) if not re.search(r"mobile|max-q", x, re.I)]
+			support["url"] = f'https://www.techpowerup.com{results[matches[0]]}'
 			req = requests.get(support["url"])
 		except KeyError:
 			return support
@@ -264,7 +265,7 @@ class RulesetParser():
 					prop = self.get_property(test["property"])
 				rule_type = test["type"]
 				value = test["value"]
-				if not \
+				if not (\
 				(rule_type == "str_eq" and prop == value) or \
 				(rule_type == "str_ne" and prop != value) or \
 				(rule_type == "str_contains" and value in prop) or \
@@ -272,7 +273,7 @@ class RulesetParser():
 				(rule_type == "int_lt" and float(prop) < value) or \
 				(rule_type == "int_eq" and float(prop) == value) or \
 				(rule_type == "int_gt" and float(prop) > value) or \
-				(rule_type == "rgx_matches" and re.search(value, prop, re.M)):
+				(rule_type == "rgx_matches" and re.search(value, prop, re.M))):
 					test_result = False
 					break
 			if test_result:
