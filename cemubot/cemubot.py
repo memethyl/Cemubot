@@ -47,12 +47,12 @@ f"""
 	async def on_message(self, message):
 		if message.attachments:
 			for attachment in message.attachments:
-				if attachment.filename.endswith(".txt"):
+				log_data = await attachment.read()
+				if attachment.filename.endswith(".txt") and b"Init Cemu" in log_data:
 					if message.channel.id == config.cfg["parsing_channel"]["preferred"] \
 					or message.channel.id in config.cfg["parsing_channel"]["alternates"] \
 					or not config.cfg["parsing_channel"]["preferred"]:
 						reply_msg = await message.channel.send("Log detected, parsing...")
-						log_data = await attachment.read()
 						try:
 							await parse_log(log_data, message.channel, reply_msg, self.title_ids)
 						except Exception as e:
