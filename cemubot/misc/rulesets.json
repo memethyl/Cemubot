@@ -118,7 +118,7 @@
             },
             {
                 "property": "emu_info.cemu_version",
-                "type": "str_eq",
+                "type": "ver_eq",
                 "value": "1.16.1"
             },
             "⚠️ This game does not work with Vulkan on 1.16.1"
@@ -128,13 +128,18 @@
     "00050000-1010EB00": "00050000-1010EC00",
     "00050000-1010EC00": [
         [
-            "any",
+            "all",
             {
                 "property": "settings.cpu_mode",
                 "type": "str_not_contains",
                 "value": "Single-core"
             },
-            "⚠️ Using a multi-core recompiler will cause crashes after/while racing"
+            {
+                "property": "emu_info.cemu_version",
+                "type": "ver_lt",
+                "value": "1.17.2"
+            },
+            "⚠️ Using a multi-core recompiler will cause crashes after/while racing; use 1.17.2 or higher to avoid this"
         ],
         [
             "all",
