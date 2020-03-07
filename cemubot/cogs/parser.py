@@ -37,7 +37,10 @@ class Parser():
 					"rating": "Unknown",
 					"version": "N/A"
 				},
-				"rpx_hash": "Unknown",
+				"rpx_hash": {
+					"base": "N/A",
+					"updated": "Unknown"
+				},
 				"shadercache_name": "Unknown"
 			},
 			"specs": {
@@ -108,7 +111,12 @@ class Parser():
 			else:
 				self.embed["game_info"]["wiki_page"] = ""
 		
-		self.embed["game_info"]["rpx_hash"] = re.search(r"RPX hash: (.*?)$", self.file, re.M).group(1)
+		if "RPX hash (updated): " in self.file:
+			self.embed["game_info"]["rpx_hash"]["updated"] = re.search(r"RPX hash \(updated\): (.*?)$", self.file, re.M).group(1)
+			self.embed["game_info"]["rpx_hash"]["base"] = re.search(r"RPX hash \(base\): (.*?)$", self.file, re.M).group(1)
+		else:
+			self.embed["game_info"]["rpx_hash"]["updated"] = re.search(r"RPX hash: (.*?)$", self.file, re.M).group(1)
+		
 		if "shaderCache name: " in self.file:
 			self.embed["game_info"]["shadercache_name"] = re.search(r"shaderCache name: (.*?)$", self.file, re.M).group(1)
 		else:
@@ -148,7 +156,7 @@ class Parser():
 	
 	def get_relevant_info(self):
 		self.embed["relevant_info"].extend(RulesetParser(self.file, self.embed, "misc/rulesets.json").parse())
-		self.embed["relevant_info"] += [f"ℹ RPX hash: `{self.embed['game_info']['rpx_hash']}` ║ Shader cache name: `{self.embed['game_info']['shadercache_name']}`"]
+		self.embed["relevant_info"] += [f"ℹ RPX hash (updated): `{self.embed['game_info']['rpx_hash']['updated']}` ║ RPX hash (base): `{self.embed['game_info']['rpx_hash']['base']}`"]
 		
 	def create_embed(self):
 		game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
