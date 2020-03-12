@@ -53,6 +53,7 @@ class Parser():
 				"vulkan": "Unknown"
 			},
 			"settings": {
+				"cpu_affinity": "All cores",
 				"cpu_mode": "Unknown",
 				"cpu_extensions": "Unknown",
 				"disabled_cpu_extensions": "",
@@ -136,6 +137,15 @@ class Parser():
 		self.embed["specs"]["vulkan"] = gpu_support["Vulkan"]
 	
 	def detect_settings(self):
+		# todo: detect odd/even affinity
+		if "Set process CPU affinity to" in self.file:
+			self.embed["settings"]["cpu_affinity"] = re.findall(r"Set process CPU affinity to (.*?)$", self.file, re.M)[-1]
+			# cemu has a bug where it logs CPUs 0-9 with numbers, and 10+ with characters
+			for match in re.findall(r"CPU(.(?:\d?)+) ?", self.embed["settings"]["cpu_affinity"]):
+				try:
+					int(match)
+				except ValueError:
+					self.embed["settings"]["cpu_affinity"] = self.embed["settings"]["cpu_affinity"].replace(match, str(ord(match)-48))
 		self.embed["settings"]["cpu_mode"] = re.search(r"CPU-Mode: (.*?)$", self.file, re.M).group(1)
 		self.embed["settings"]["cpu_extensions"] = re.search(r"Recompiler initialized. CPU extensions: (.*?)$", self.file, re.M).group(1)
 		enabled_cpu_extensions = ' '.join(re.findall(r"CPU extensions that will actually be used by recompiler: (.*?)$", self.file, re.M))
@@ -191,6 +201,7 @@ f"**OpenGL:** {self.embed['specs']['opengl']} ║ **Vulkan:** {self.embed['specs
 ))
 		settings = '\n'.join((
 f"**CPU mode:** {self.embed['settings']['cpu_mode']}",
+f"**CPU affinity:** `{self.embed['settings']['cpu_affinity']}`",
 f"**Graphics backend:** {self.embed['settings']['backend']}",
 f"**Full sync at GX2DrawDone:** {self.embed['settings']['gx2drawdone']}",
 f"**Custom timer mode:** {self.embed['settings']['custom_timer_mode']}"
