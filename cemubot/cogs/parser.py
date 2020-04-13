@@ -12,10 +12,11 @@ from cogs import config
 class Parser():
 	def __init__(self):
 		self.file = None
+		self.log_url = None
 		self.channel = None
 		self.embed = None
 
-	async def parse_log(self, file, channel, reply_msg, title_ids):
+	async def parse_log(self, log_url, file, channel, reply_msg, title_ids):
 		try:
 			self.file = file.decode('utf-8').replace('\r', '')
 		except UnicodeDecodeError:
@@ -24,6 +25,7 @@ class Parser():
 		self.channel = channel
 		self.reply_msg = reply_msg
 		self.title_ids = title_ids
+		self.log_url = log_url
 		self.embed = {
 			"emu_info": {
 				"cemu_version": "Unknown",
@@ -66,7 +68,13 @@ class Parser():
 			"relevant_info": []
 		}
 		if not re.search(r"------- Loaded title -------", self.file, re.M):
-			await self.reply_msg.edit(content="Error: No game detected. Submit a log during or after emulating a game. Reopening Cemu clears the log.")
+			if re.search(r"Stack trace", self.file, re.M):
+				if re.search(r"\+0x001d9be4", self.file, re.M): # Check for known giveaway caused by acquiring a game copy via a specific tool.
+					await self.reply_msg.edit(content="Error: Cemu crashed before loading the game. This was caused by bad game files.")
+				else:
+					await self.reply_msg.edit(content="Error: Cemu crashed before loading the game. Try making sure that you're using the latest GPU drivers.")
+			else:
+				await self.reply_msg.edit(content="Error: No game detected. Submit a log during or after emulating a game. Reopening Cemu clears the log.")
 			return
 		
 		self.detect_emu_info()
@@ -173,7 +181,7 @@ class Parser():
 		if self.embed["game_info"]["compatibility"]["rating"] != "Unknown":
 			description = f"Tested as **{self.embed['game_info']['compatibility']['rating']}** on {self.embed['game_info']['compatibility']['version']}"
 		else:
-			description = "Unknown compatibility rating"
+			description = "No known compatibility rating yet"
 		# i saw a couple of tests where the rating wasn't one of the standard five,
 		# so i'm putting this in a try-except block just in case
 		try:
@@ -181,16 +189,17 @@ class Parser():
 		except KeyError:
 			colour = config.cfg["compatibility_colors"]["unknown"]
 			
-		embed = discord.Embed(colour=discord.Colour(colour), 
+		embed = discord.Embed(colour=discord.Colour(colour),
 							  title=self.embed["game_info"]["title_id"]+(" ("+game_title+")" if game_title else " (Unknown title)"),
-							  url=(self.embed["game_info"]["wiki_page"] or None),
+							  url=(self.embed["game_info"]["wiki_page"] or self.log_url),
 							  description=description,
 							  timestamp=datetime.datetime.utcfromtimestamp(time.time()))
 		# todo: omit unknown info?
 		game_emu_info = '\n'.join((
-f"Cemu {self.embed['emu_info']['cemu_version']}",
-f"Cemuhook {self.embed['emu_info']['cemuhook_version']}",
-f"**Title version:** v{self.embed['game_info']['title_version']}"
+f"**Cemu:** {self.embed['emu_info']['cemu_version']}",
+f"**Cemuhook:** {self.embed['emu_info']['cemuhook_version']}",
+f"**Title version:** v{self.embed['game_info']['title_version']}",
+f"[View full log](https://docs.google.com/a/cdn.discordapp.com/viewer?url={self.log_url})"
 ))
 		specs = '\n'.join((
 f"**CPU:** {self.embed['specs']['cpu']}",

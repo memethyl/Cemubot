@@ -54,7 +54,7 @@ f"""
 					or not config.cfg["parsing_channel"]["preferred"]:
 						reply_msg = await message.channel.send("Log detected, parsing...")
 						try:
-							await parse_log(log_data, message.channel, reply_msg, self.title_ids)
+							await parse_log(attachment.url, log_data, message.channel, reply_msg, self.title_ids)
 						except Exception as e:
 							await reply_msg.edit(content=f"Error: Couldn't parse log; parser threw {type(e).__name__} exception")
 							traceback.print_exc()
