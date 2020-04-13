@@ -178,9 +178,10 @@ class Parser():
 		
 	def create_embed(self):
 		game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
-		description = f"[View full log](https://docs.google.com/a/cdn.discordapp.com/viewer?url={self.log_url})"
 		if self.embed["game_info"]["compatibility"]["rating"] != "Unknown":
-			description += f"\n\nTested as **{self.embed['game_info']['compatibility']['rating']}** on {self.embed['game_info']['compatibility']['version']}"
+			description = f"Tested as **{self.embed['game_info']['compatibility']['rating']}** on {self.embed['game_info']['compatibility']['version']}"
+		else:
+			description = "No known compatibility rating yet"
 		# i saw a couple of tests where the rating wasn't one of the standard five,
 		# so i'm putting this in a try-except block just in case
 		try:
@@ -197,7 +198,8 @@ class Parser():
 		game_emu_info = '\n'.join((
 f"**Cemu:** {self.embed['emu_info']['cemu_version']}",
 f"**Cemuhook:** {self.embed['emu_info']['cemuhook_version']}",
-f"**Title version:** v{self.embed['game_info']['title_version']}"
+f"**Title version:** v{self.embed['game_info']['title_version']}",
+f"[View full log](https://google.com)"
 ))
 		specs = '\n'.join((
 f"**CPU:** {self.embed['specs']['cpu']}",

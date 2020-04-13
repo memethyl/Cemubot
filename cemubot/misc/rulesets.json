@@ -10,7 +10,7 @@
             {
                 "property": "emu_info.cemu_version",
                 "type": "ver_lt",
-                "value": "1.18.1"
+                "value": "1.18.0"
             },
             "❓ Cemuhook is not installed"
         ],
