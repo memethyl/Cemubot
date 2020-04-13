@@ -199,7 +199,7 @@ class Parser():
 f"**Cemu:** {self.embed['emu_info']['cemu_version']}",
 f"**Cemuhook:** {self.embed['emu_info']['cemuhook_version']}",
 f"**Title version:** v{self.embed['game_info']['title_version']}",
-f"[View full log](https://google.com)"
+f"[View full log](https://docs.google.com/a/cdn.discordapp.com/viewer?url={self.log_url})"
 ))
 		specs = '\n'.join((
 f"**CPU:** {self.embed['specs']['cpu']}",
