@@ -10,6 +10,7 @@ class Utility(commands.Cog):
 		self.bot = bot
 
 	@commands.command(description="Updates the bot's title ID database.")
+	@commands.has_guild_permissions(manage_roles=True)
 	async def update_db(self, ctx):
 		reply_msg = await ctx.channel.send("Updating title ID database...")
 		try:
