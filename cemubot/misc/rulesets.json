@@ -129,6 +129,38 @@
             "⚠️ This game does not work with Vulkan on 1.16.1"
         ]
     ],
+    "00050000-101C9300": "00050000-101C9400",
+    "00050000-101C9500": "00050000-101C9400",
+    "00050000-101C9400": [
+        [
+            "all",
+            {
+                "property": "log",
+                "type": "str_not_contains",
+                "value": "checksum 0x6267bfd0"
+            },
+            {
+                "property": "log",
+                "type": "str_contains",
+                "value": "The Legend of Zelda: Breath of the Wild/Mods/FPS++/"
+            },
+            "⚠️ FPS++ and static FPS aren't compatible with your outdated game version causing it to run at slow-motion. Update your game to the latest version."
+        ],
+        [
+            "all",
+            {
+                "property": "log",
+                "type": "str_contains",
+                "value": "The Legend of Zelda: Breath of the Wild/Mods/FPS++"
+            },
+            {
+                "property": "log",
+                "type": "str_contains",
+                "value": "The Legend of Zelda: Breath of the Wild/Mods/Static FPS"
+            },
+            "⚠️ Don't use FPS++ and Static FPS at the same time!"
+        ]
+    ],
     "00050000-1010ED00": "00050000-1010EC00",
     "00050000-1010EB00": "00050000-1010EC00",
     "00050000-1010EC00": [
