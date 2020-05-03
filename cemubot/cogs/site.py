@@ -31,11 +31,11 @@ class Site(commands.Cog):
                 version = matches.group(1)
         if version:
             if version in self.version_list:
-                await ctx.send(content=f"The download link for Cemu {version} is <http://cemu.info/releases/cemu_{version.replace('.', '_')}.zip>")
+                await ctx.send(content=f"The download link for Cemu {version} is <http://cemu.info/releases/cemu_{version}.zip>")
             else:
                 corrected_versions = [ver for ver in self.version_list if ver.startswith(version.rsplit(".", 1)[0])]
                 if len(corrected_versions) > 1:
-                    await ctx.send(content=f"That version never existed, but did you mean Cemu {corrected_versions[0]}? The download link is <http://cemu.info/releases/cemu_{corrected_versions[0].replace('.', '_')}.zip>")
+                    await ctx.send(content=f"That version never existed, but did you mean Cemu {corrected_versions[0]}? The download link is <http://cemu.info/releases/cemu_{corrected_versions[0]}.zip>")
                 else:
                     await ctx.send(content="Are you from the future, or does this version just not exist yet!")
     
