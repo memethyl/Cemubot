@@ -230,7 +230,7 @@ f"**Custom timer mode:** {self.embed['settings']['custom_timer_mode']}"
 			"OpenGL": "Unknown",
 			"Vulkan": "Unknown"
 		}
-		revised_query = re.sub(r"(?:[0-9]GB|)/?(?:PCIe|)/?SSE2|\(TM\)|\(R\)| Graphics$|GB$| Series$","",query)
+		revised_query = re.sub(r"(?:[0-9]GB|)/?(?:PCIe|)/?SSE2|\(TM\)|\(R\)| Graphics$|GB$| Series$|(?<=Mobile )Graphics$","",query)
 		req = requests.get(f'https://www.techpowerup.com/gpu-specs/?ajaxsrch={revised_query}')
 		req = req.text
 		if 'Nothing found.' in req:
@@ -241,10 +241,10 @@ f"**Custom timer mode:** {self.embed['settings']['custom_timer_mode']}"
 		results = [list(reversed(x)) for x in results]
 		results = dict(results)
 		try:
-			matches = [x for x in get_close_matches(query, results.keys()) if not re.search(r"mobile|max-q", x, re.I)]
+			matches = [x for x in get_close_matches(query, results.keys()) if not (bool(re.search(r"mobile|max-q", query, re.I)) ^ bool(re.search(r"mobile|max-q", x, re.I)))]
 			support["url"] = f'https://www.techpowerup.com{results[matches[0]]}'
 			req = requests.get(support["url"])
-		except KeyError:
+		except (KeyError, IndexError):
 			return support
 		req = req.text
 		req = req.replace('\n','')
