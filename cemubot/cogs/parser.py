@@ -314,10 +314,10 @@ class RulesetParser():
 				(rule_type == "int_eq" and float(prop) == value) or \
 				(rule_type == "int_gt" and float(prop) > value) or \
 				(rule_type == "rgx_matches" and re.search(value, prop, re.M)) or \
-				(rule_type == "ver_lt" and self.version_check(prop, "lt")) or \
-				(rule_type == "ver_eq" and self.version_check(prop, "eq")) or \
-				(rule_type == "ver_ne" and self.version_check(prop, "ne")) or \
-				(rule_type == "ver_gt" and self.version_check(prop, "gt"))):
+				(rule_type == "ver_lt" and self.version_check(value, "lt")) or \
+				(rule_type == "ver_eq" and self.version_check(value, "eq")) or \
+				(rule_type == "ver_ne" and self.version_check(value, "ne")) or \
+				(rule_type == "ver_gt" and self.version_check(value, "gt"))):
 					test_result = False
 					break
 			if test_result:
