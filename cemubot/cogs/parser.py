@@ -261,18 +261,22 @@ class RulesetParser():
 		with open(ruleset_file_dir, 'r', encoding='utf-8') as f:
 			self.ruleset_file = json.load(f)
 	
-	# determines if cemu_version <=> ver
-	def version_check(self, ver, operation):
-		ver1 = self.properties["emu_info"]["cemu_version"].split('.')
-		ver2 = ver.split('.')
+	# determines if ver1 <=> ver2
+	def version_check(self, ver1, ver2, operation):
+		ver1 = ver1.replace(" (Patreon release)", "").split('.')
+		ver2 = ver2.replace(" (Patreon release)", "").split('.')
 		if operation == "lt":
-			return any([x[0] < x[1] for x in zip(ver1, ver2)])
+			return (ver1[0] < ver2[0]) \
+			    or (ver1[0] == ver2[0] and ver1[1] < ver2[1]) \
+			    or (ver1[0] == ver2[0] and ver1[1] == ver2[1] and ver1[2] < ver2[2])
 		elif operation == "eq":
-			return all([x[0] == x[1] for x in zip(ver1, ver2)])
+			return ver1 == ver2
 		elif operation == "ne":
-			return any([x[0] != x[1] for x in zip(ver1, ver2)])
+			return ver1 != ver2
 		elif operation == "gt":
-			return any([x[0] > x[1] for x in zip(ver1, ver2)])
+			return (ver1[0] > ver2[0]) \
+			    or (ver1[0] == ver2[0] and ver1[1] > ver2[1]) \
+			    or (ver1[0] == ver2[0] and ver1[1] == ver2[1] and ver1[2] > ver2[2])
 		else:
 			raise ValueError("Invalid operation; must be lt, eq, ne, or gt")
 
@@ -314,10 +318,10 @@ class RulesetParser():
 				(rule_type == "int_eq" and float(prop) == value) or \
 				(rule_type == "int_gt" and float(prop) > value) or \
 				(rule_type == "rgx_matches" and re.search(value, prop, re.M)) or \
-				(rule_type == "ver_lt" and self.version_check(value, "lt")) or \
-				(rule_type == "ver_eq" and self.version_check(value, "eq")) or \
-				(rule_type == "ver_ne" and self.version_check(value, "ne")) or \
-				(rule_type == "ver_gt" and self.version_check(value, "gt"))):
+				(rule_type == "ver_lt" and self.version_check(prop, value, "lt")) or \
+				(rule_type == "ver_eq" and self.version_check(prop, value, "eq")) or \
+				(rule_type == "ver_ne" and self.version_check(prop, value, "ne")) or \
+				(rule_type == "ver_gt" and self.version_check(prop, value, "gt"))):
 					test_result = False
 					break
 			if test_result:
