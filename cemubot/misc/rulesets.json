@@ -109,6 +109,15 @@
                 "value": 4.1
             },
             "⚠️ This GPU does not support OpenGL 4.1"
+        ],
+        [
+            "any",
+            {
+                "property": "game_info.title_id",
+                "type": "rgx_matches",
+                "value": "FFFFFFFF-.{8}"
+            },
+            "⚠️ `meta.xml` is missing"
         ]
     ],
     "00050000-10116100": "00050000-101C4D00",
