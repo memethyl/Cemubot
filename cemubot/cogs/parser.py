@@ -97,14 +97,18 @@ class Parser():
 		self.embed["game_info"]["title_version"] = re.search(r"TitleVersion: v([0-9]+)", self.file, re.M).group(1)
 
 		self.embed["game_info"]["wiki_page"] = ""
-		if self.title_ids[self.embed["game_info"]["title_id"]]["wiki_has_game_id_redirect"]:
-			self.embed["game_info"]["wiki_page"] = f"http://wiki.cemu.info/wiki/{self.title_ids[self.embed['game_info']['title_id']]['game_id']}"
-		else:
-			# todo: use a cache of the cemu wiki instead of making a request on each parse
-			title = self.title_ids[self.embed['game_info']['title_id']]['game_title']
-			title = re.sub(r'[^\x00-\x7f]', r'', title)
-			title = title.replace(' ', '_')
-			self.embed["game_info"]["wiki_page"] = f"http://wiki.cemu.info/wiki/{title}"
+		try:
+			if self.title_ids[self.embed["game_info"]["title_id"]]["wiki_has_game_id_redirect"]:
+				self.embed["game_info"]["wiki_page"] = f"http://wiki.cemu.info/wiki/{self.title_ids[self.embed['game_info']['title_id']]['game_id']}"
+			else:
+				# todo: use a cache of the cemu wiki instead of making a request on each parse
+				title = self.title_ids[self.embed['game_info']['title_id']]['game_title']
+				title = re.sub(r'[^\x00-\x7f]', r'', title)
+				title = title.replace(' ', '_')
+				self.embed["game_info"]["wiki_page"] = f"http://wiki.cemu.info/wiki/{title}"
+		except KeyError:
+			# this usually triggers when the title ID isn't in the database (mostly system titles)
+			pass
 		if self.embed["game_info"]["wiki_page"]:
 			compat = requests.get(self.embed["game_info"]["wiki_page"])
 			if compat.status_code == 200:
@@ -177,7 +181,10 @@ class Parser():
 		self.embed["relevant_info"] += [f"ℹ RPX hash (updated): `{self.embed['game_info']['rpx_hash']['updated']}` ║ RPX hash (base): `{self.embed['game_info']['rpx_hash']['base']}`"]
 		
 	def create_embed(self):
-		game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
+		try:
+			game_title = self.title_ids[self.embed["game_info"]["title_id"]]["game_title"]
+		except KeyError:
+			game_title = None
 		if self.embed["game_info"]["compatibility"]["rating"] != "Unknown":
 			description = f"Tested as **{self.embed['game_info']['compatibility']['rating']}** on {self.embed['game_info']['compatibility']['version']}"
 		else:
@@ -190,7 +197,7 @@ class Parser():
 			colour = config.cfg["compatibility_colors"]["unknown"]
 			
 		embed = discord.Embed(colour=discord.Colour(colour),
-							  title=self.embed["game_info"]["title_id"]+(" ("+game_title+")" if game_title else " (Unknown title)"),
+							  title=self.embed["game_info"]["title_id"]+(" ("+game_title+")" if game_title else ""),
 							  url=(self.embed["game_info"]["wiki_page"] or self.log_url),
 							  description=description,
 							  timestamp=datetime.datetime.utcfromtimestamp(time.time()))
