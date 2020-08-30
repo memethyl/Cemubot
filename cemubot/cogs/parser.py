@@ -153,11 +153,8 @@ class Parser():
 		if "Set process CPU affinity to" in self.file:
 			self.embed["settings"]["cpu_affinity"] = re.findall(r"Set process CPU affinity to (.*?)$", self.file, re.M)[-1]
 			# cemu has a bug where it logs CPUs 0-9 with numbers, and 10+ with characters
-			for match in re.findall(r"CPU(.(?:\d?)+) ?", self.embed["settings"]["cpu_affinity"]):
-				try:
-					int(match)
-				except ValueError:
-					self.embed["settings"]["cpu_affinity"] = self.embed["settings"]["cpu_affinity"].replace(match, str(ord(match)-48))
+			for match in re.findall(r"CPU[^\d]", self.embed["settings"]["cpu_affinity"]):
+				self.embed["settings"]["cpu_affinity"] = self.embed["settings"]["cpu_affinity"].replace(match, f"CPU{ord(match[3])-48}")
 		self.embed["settings"]["cpu_mode"] = re.search(r"CPU-Mode: (.*?)$", self.file, re.M).group(1)
 		self.embed["settings"]["cpu_extensions"] = re.search(r"Recompiler initialized. CPU extensions: (.*?)$", self.file, re.M).group(1)
 		enabled_cpu_extensions = ' '.join(re.findall(r"CPU extensions that will actually be used by recompiler: (.*?)$", self.file, re.M))
