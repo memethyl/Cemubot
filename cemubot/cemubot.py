@@ -64,5 +64,8 @@ f"""
 			
 		await self.process_commands(message)
 
-bot = Cemubot(command_prefix=config.cfg["command_prefix"])
+intents = discord.Intents.none()
+intents.guilds = True
+intents.messages = True
+bot = Cemubot(command_prefix=config.cfg["command_prefix"], intents=intents)
 bot.run(config.cfg["bot_token"])

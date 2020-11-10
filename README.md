@@ -3,7 +3,7 @@ A custom bot for the [Cemu Discord server.](https://discord.gg/5psYsup)
 
 # Dependencies
 - Python 3.8 recommended (3.6.0 minimum)
-- [discord.py](https://github.com/Rapptz/discord.py) 1.1.0+ (I used 1.2.5)
+- [discord.py](https://github.com/Rapptz/discord.py) 1.5.0+
 - [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy)
 
 # Installation
