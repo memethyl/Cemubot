@@ -48,7 +48,7 @@ f"""
 """)
 	async def on_message(self, message):
 		for embed in message.embeds:
-			if '://pastebin.com/' in embed.url and 'Init Cemu' in embed.title:
+			if '://pastebin.com/' in embed.url and ('Init Cemu' in embed.title or 'Outdated graphic pack' in embed.title):
 				if message.channel.id == config.cfg["parsing_channel"]["preferred"] \
 				or message.channel.id in config.cfg["parsing_channel"]["alternates"] \
 				or not config.cfg["parsing_channel"]["preferred"]:
