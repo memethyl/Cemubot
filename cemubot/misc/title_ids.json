@@ -31307,13 +31307,35 @@
     },
     "00050000-1021AA00": {
         "game_title": "Shakedown: Hawaii\u2122",
-        "game_id": "",
-        "product_code": "",
-        "company_code": "",
+        "game_id": "WTBEEY",
+        "product_code": "WUP-P-WTBE",
+        "company_code": "00EY",
         "notes": "",
-        "versions": "",
+        "versions": "v2",
         "region": "USA",
         "cdn_available": "Yes",
+        "wiki_has_game_id_redirect": false
+    },
+    "00050000-1021AB00": {
+        "game_title": "Shmup Collection",
+        "game_id": "AE9P26",
+        "product_code": "WUP-P-AE9P",
+        "company_code": "0326",
+        "notes": "",
+        "versions": "v0",
+        "region": "EUR",
+        "cdn_available": "No TMD",
+        "wiki_has_game_id_redirect": false
+    },
+    "00050000-1021AC00": {
+        "game_title": "Finding Teddy 2 Definitive Edition",
+        "game_id": "HEHP26",
+        "product_code": "WUP-P-HEHP",
+        "company_code": "0326",
+        "notes": "",
+        "versions": "v0",
+        "region": "EUR",
+        "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
     },
     "00050000-1F600600": {
