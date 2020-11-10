@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import json
+import requests
 import traceback
 
 from cogs import config
@@ -46,21 +47,33 @@ f"""
 +==============================================+
 """)
 	async def on_message(self, message):
-		if message.attachments:
-			for attachment in message.attachments:
-				log_data = await attachment.read()
-				if attachment.filename.endswith(".txt") and b"Init Cemu" in log_data:
-					if message.channel.id == config.cfg["parsing_channel"]["preferred"] \
-					or message.channel.id in config.cfg["parsing_channel"]["alternates"] \
-					or not config.cfg["parsing_channel"]["preferred"]:
-						reply_msg = await message.channel.send("Log detected, parsing...")
-						try:
-							await parse_log(attachment.url, log_data, message.channel, reply_msg, self.title_ids)
-						except Exception as e:
-							await reply_msg.edit(content=f"Error: Couldn't parse log; parser threw {type(e).__name__} exception")
-							traceback.print_exc()
-					else:
-						await message.channel.send(f"Log detected, please post logs in <#{config.cfg['parsing_channel']['preferred']}>.")
+		for embed in message.embeds:
+			if '://pastebin.com/' in embed.url and 'Init Cemu' in embed.title:
+				if message.channel.id == config.cfg["parsing_channel"]["preferred"] \
+				or message.channel.id in config.cfg["parsing_channel"]["alternates"] \
+				or not config.cfg["parsing_channel"]["preferred"]:
+					embed.url = embed.url.replace(".com/", ".com/raw/")
+					log_data = requests.get(embed.url).content
+					reply_msg = await message.channel.send("Log detected, parsing...")
+					try:
+						await parse_log(embed.url, log_data, message.channel, reply_msg, self.title_ids)
+					except Exception as e:
+						await reply_msg.edit(content=f"Error: Couldn't parse log; parser threw {type(e).__name__} exception")
+						traceback.print_exc()
+		for attachment in message.attachments:
+			log_data = await attachment.read()
+			if attachment.filename.endswith(".txt") and b"Init Cemu" in log_data:
+				if message.channel.id == config.cfg["parsing_channel"]["preferred"] \
+				or message.channel.id in config.cfg["parsing_channel"]["alternates"] \
+				or not config.cfg["parsing_channel"]["preferred"]:
+					reply_msg = await message.channel.send("Log detected, parsing...")
+					try:
+						await parse_log(attachment.url, log_data, message.channel, reply_msg, self.title_ids)
+					except Exception as e:
+						await reply_msg.edit(content=f"Error: Couldn't parse log; parser threw {type(e).__name__} exception")
+						traceback.print_exc()
+				else:
+					await message.channel.send(f"Log detected, please post logs in <#{config.cfg['parsing_channel']['preferred']}>.")
 			
 		await self.process_commands(message)
 
