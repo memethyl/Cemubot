@@ -68,8 +68,8 @@
             "any",
             {
                 "property": "settings.thread_quantum",
-                "type": "str_eq",
-                "value": "any"
+                "type": "str_ne",
+                "value": "Unknown"
             },
             "🤔 Thread quantum set to {settings[thread_quantum]} (non-default value)"
         ],
