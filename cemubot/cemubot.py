@@ -47,7 +47,11 @@ f"""
 +==============================================+
 """)
 	async def on_message(self, message):
+		if message.author.id == self.user.id:
+			return
 		for embed in message.embeds:
+			if not embed.url or not embed.title:
+				continue
 			if '://pastebin.com/' in embed.url and ('Init Cemu' in embed.title or 'Outdated graphic pack' in embed.title):
 				if message.channel.id == config.cfg["parsing_channel"]["preferred"] \
 				or message.channel.id in config.cfg["parsing_channel"]["alternates"] \
