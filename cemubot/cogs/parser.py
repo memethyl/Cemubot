@@ -313,20 +313,22 @@ class RulesetParser():
 					prop = self.get_property(test["property"])
 				rule_type = test["type"]
 				value = test["value"]
-				if not (\
-				(rule_type == "str_eq" and prop == value) or \
-				(rule_type == "str_ne" and prop != value) or \
-				(rule_type == "str_contains" and value in prop) or \
-				(rule_type == "str_not_contains" and value not in prop) or \
-				(rule_type == "int_lt" and float(prop) < value) or \
-				(rule_type == "int_eq" and float(prop) == value) or \
-				(rule_type == "int_gt" and float(prop) > value) or \
-				(rule_type == "rgx_matches" and re.search(value, prop, re.M)) or \
-				(rule_type == "ver_lt" and self.version_check(prop, value, "lt")) or \
-				(rule_type == "ver_eq" and self.version_check(prop, value, "eq")) or \
-				(rule_type == "ver_ne" and self.version_check(prop, value, "ne")) or \
-				(rule_type == "ver_gt" and self.version_check(prop, value, "gt"))):
-					test_result = False
+				test_result = (\
+					(rule_type == "str_eq" and prop == value) or \
+					(rule_type == "str_ne" and prop != value) or \
+					(rule_type == "str_contains" and value in prop) or \
+					(rule_type == "str_not_contains" and value not in prop) or \
+					(rule_type == "int_lt" and float(prop) < value) or \
+					(rule_type == "int_eq" and float(prop) == value) or \
+					(rule_type == "int_gt" and float(prop) > value) or \
+					(rule_type == "rgx_matches" and re.search(value, prop, re.M)) or \
+					(rule_type == "ver_lt" and self.version_check(prop, value, "lt")) or \
+					(rule_type == "ver_eq" and self.version_check(prop, value, "eq")) or \
+					(rule_type == "ver_ne" and self.version_check(prop, value, "ne")) or \
+					(rule_type == "ver_gt" and self.version_check(prop, value, "gt"))
+				)
+				if ((not test_result) and (match_type == "all")) \
+				or (( 	 test_result) and (match_type == "any")):
 					break
 			if test_result:
 				messages.append(message.format(**self.properties))
