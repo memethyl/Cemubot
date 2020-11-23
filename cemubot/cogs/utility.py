@@ -9,7 +9,7 @@ class Utility(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
-	@commands.command(help="Updates the bot's title ID database. Can only be ran if you've got the manage roles permission.")
+	@commands.command(help="Updates the bot's title ID database. You must have the \"Manage Roles\" permission to run this command.")
 	@commands.has_guild_permissions(manage_roles=True)
 	async def update_db(self, ctx):
 		reply_msg = await ctx.channel.send("Updating title ID database...")
@@ -25,8 +25,7 @@ class Utility(commands.Cog):
 
 		def validate_req(req):
 			if req.status_code != 200:
-				print(f"Error: request to {req.url} returned {req.status_code}")
-				exit()
+				raise requests.HTTPError(f"Error: request to {req.url} returned {req.status_code}")
 
 		# continue_key is the API argument that allows you to continue from a certain point in the search
 		# `&list=categorymembers` has `cmcontinue`, `&generator=allredirects` has `garcontinue`, etc.
