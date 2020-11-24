@@ -168,6 +168,15 @@
                 "value": "The Legend of Zelda: Breath of the Wild/Mods/Static FPS"
             },
             "⚠️ Don't use FPS++ and Static FPS at the same time!"
+        ],
+        [
+            "all",
+            {
+                "property": "game_info.title_version",
+                "type": "str_eq",
+                "value": "v0"
+            },
+            "⚠️ This game will not run without updates"
         ]
     ],
     "00050000-1010ED00": "00050000-1010EC00",
