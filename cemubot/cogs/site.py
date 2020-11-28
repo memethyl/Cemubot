@@ -44,7 +44,6 @@ class Site(commands.Cog):
         if len(self.version_list) == 0:
             return
 
-        print(self.version_list[0], self.patreon_release, datetime.utcnow() < self.public_release_date)
         if self.version_list[0] is not self.patreon_release and datetime.utcnow() < self.public_release_date:
             new_activity = f"Public release {self.release_dates[(self.public_release_date-datetime.utcnow()).days+1]}"
         else:
