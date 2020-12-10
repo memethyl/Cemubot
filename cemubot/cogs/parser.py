@@ -94,7 +94,7 @@ class Parser():
 		except AttributeError:
 			self.embed["emu_info"]["cemuhook_version"] = "N/A"
 		self.embed["game_info"]["title_id"] = re.search(r"TitleId: (.*?)$", self.file, re.M).group(1).upper()
-		self.embed["game_info"]["title_version"] = re.search(r"TitleVersion: v([0-9]+)", self.file, re.M).group(1)
+		self.embed["game_info"]["title_version"] = re.search(r"TitleVersion: (v[0-9]+)", self.file, re.M).group(1)
 
 		self.embed["game_info"]["wiki_page"] = ""
 		try:
@@ -205,7 +205,7 @@ class Parser():
 		game_emu_info = '\n'.join((
 f"**Cemu:** {self.embed['emu_info']['cemu_version']}",
 f"**Cemuhook:** {self.embed['emu_info']['cemuhook_version']}",
-f"**Title version:** v{self.embed['game_info']['title_version']}",
+f"**Title version:** {self.embed['game_info']['title_version']}",
 f"[View full log](https://docs.google.com/a/cdn.discordapp.com/viewer?url={self.log_url})"
 ))
 		specs = '\n'.join((
