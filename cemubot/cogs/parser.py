@@ -164,7 +164,11 @@ class Parser():
 			self.embed["settings"]["disabled_cpu_extensions"] = ', '.join([x for x in self.embed['settings']['disabled_cpu_extensions'] if x])
 		self.embed["settings"]["backend"] = ("OpenGL" if "OpenGL" in self.file else "Vulkan")
 		self.embed["settings"]["gx2drawdone"] = ("Enabled" if "Full sync at GX2DrawDone: true" in self.file else "Disabled")
-		self.embed["settings"]["console_region"] = re.search(r"Console region: (.*?)$", self.file, re.M).group(1)
+		try:
+			self.embed["settings"]["console_region"] = re.search(r"Console region: (.*?)$", self.file, re.M).group(1)
+		except AttributeError:
+			# this option was removed in cemu 1.22.1
+			self.embed["settings"]["console_region"] = "Auto"
 		try:
 			self.embed["settings"]["thread_quantum"] = re.search(r"Thread quantum set to (.*?)$", self.file, re.M).group(1)
 		except AttributeError:
