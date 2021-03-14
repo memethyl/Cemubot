@@ -242,7 +242,10 @@ f"**Custom timer mode:** {self.embed['settings']['custom_timer_mode']}"
 			"Vulkan": "Unknown"
 		}
 		revised_query = re.sub(r"(?:[0-9]GB|)/?(?:PCIe|)/?SSE2|\(TM\)|\(R\)| Graphics$|GB$| Series$|(?<=Mobile )Graphics$","",query)
-		req = requests.get(f'https://www.techpowerup.com/gpu-specs/?ajaxsrch={revised_query}')
+		try:
+			req = requests.get(f'https://www.techpowerup.com/gpu-specs/?ajaxsrch={revised_query}')
+		except requests.exceptions.RequestException:
+			return support
 		req = req.text
 		if 'Nothing found.' in req:
 			return support
@@ -255,7 +258,7 @@ f"**Custom timer mode:** {self.embed['settings']['custom_timer_mode']}"
 			matches = [x for x in get_close_matches(query, results.keys()) if not (bool(re.search(r"mobile|max-q", query, re.I)) ^ bool(re.search(r"mobile|max-q", x, re.I)))]
 			support["url"] = f'https://www.techpowerup.com{results[matches[0]]}'
 			req = requests.get(support["url"])
-		except (KeyError, IndexError):
+		except (KeyError, IndexError, requests.exceptions.RequestException):
 			return support
 		req = req.text
 		req = req.replace('\n','')
