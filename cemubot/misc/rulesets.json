@@ -118,6 +118,15 @@
                 "value": "FFFFFFFF-.{8}"
             },
             "⚠️ `meta.xml` is missing"
+        ],
+        [
+            "any",
+            {
+                "property": "settings.vulkan_async",
+                "type": "str_eq",
+                "value": "Disabled"
+            },
+            "❓ Async compile is disabled"
         ]
     ],
     "00050000-10116100": "00050000-101C4D00",

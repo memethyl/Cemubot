@@ -60,6 +60,7 @@ class Parser():
 				"cpu_extensions": "Unknown",
 				"disabled_cpu_extensions": "",
 				"backend": "Unknown",
+				"vulkan_async": "N/A",
 				"gx2drawdone": "Unknown",
 				"console_region": "Auto",
 				"thread_quantum": "Unknown",
@@ -163,6 +164,8 @@ class Parser():
 															- {x for x in re.findall(r"(\b\w*\b)", enabled_cpu_extensions, re.M) if x}
 			self.embed["settings"]["disabled_cpu_extensions"] = ', '.join([x for x in self.embed['settings']['disabled_cpu_extensions'] if x])
 		self.embed["settings"]["backend"] = ("OpenGL" if "OpenGL" in self.file else "Vulkan")
+		if self.embed["settings"]["backend"] == "Vulkan":
+			self.embed["settings"]["vulkan_async"] = "Enabled" if "Async compile: true" in self.file else "Disabled"
 		self.embed["settings"]["gx2drawdone"] = ("Enabled" if "Full sync at GX2DrawDone: true" in self.file else "Disabled")
 		try:
 			self.embed["settings"]["console_region"] = re.search(r"Console region: (.*?)$", self.file, re.M).group(1)
@@ -206,24 +209,25 @@ class Parser():
 							  description=description,
 							  timestamp=datetime.datetime.utcfromtimestamp(time.time()))
 		# todo: omit unknown info?
-		game_emu_info = '\n'.join((
-f"**Cemu:** {self.embed['emu_info']['cemu_version']}",
-f"**Cemuhook:** {self.embed['emu_info']['cemuhook_version']}",
-f"**Title version:** {self.embed['game_info']['title_version']}",
+		game_emu_info = ''.join((
+f"**Cemu:** {self.embed['emu_info']['cemu_version']}\n",
+f"**Cemuhook:** {self.embed['emu_info']['cemuhook_version']}\n",
+f"**Title version:** {self.embed['game_info']['title_version']}\n",
 f"[View full log](https://docs.google.com/a/cdn.discordapp.com/viewer?url={self.log_url})"
 ))
-		specs = '\n'.join((
-f"**CPU:** {self.embed['specs']['cpu']}",
-f"**RAM:** {self.embed['specs']['ram']}MB",
-f"**GPU:** [{self.embed['specs']['gpu']}]({self.embed['specs']['gpu_specs_url']})",
-f"**GPU driver:** {self.embed['specs']['gpu_driver']}",
+		specs = ''.join((
+f"**CPU:** {self.embed['specs']['cpu']}\n",
+f"**RAM:** {self.embed['specs']['ram']}MB\n",
+f"**GPU:** [{self.embed['specs']['gpu']}]({self.embed['specs']['gpu_specs_url']})\n",
+f"**GPU driver:** {self.embed['specs']['gpu_driver']}\n",
 f"**OpenGL:** {self.embed['specs']['opengl']} ║ **Vulkan:** {self.embed['specs']['vulkan']}"
 ))
-		settings = '\n'.join((
-f"**CPU mode:** {self.embed['settings']['cpu_mode']}",
-f"**CPU affinity:** `{self.embed['settings']['cpu_affinity']}`",
-f"**Graphics backend:** {self.embed['settings']['backend']}",
-f"**Full sync at GX2DrawDone:** {self.embed['settings']['gx2drawdone']}",
+		settings = ''.join((
+f"**CPU mode:** {self.embed['settings']['cpu_mode']}\n",
+f"**CPU affinity:** `{self.embed['settings']['cpu_affinity']}`\n",
+f"**Graphics backend:** {self.embed['settings']['backend']}\n",
+f"{('**Async compile:** '+self.embed['settings']['vulkan_async']+chr(10)) if self.embed['settings']['vulkan_async'] != 'N/A' else ''}",
+f"**Full sync at GX2DrawDone:** {self.embed['settings']['gx2drawdone']}\n",
 f"**Custom timer mode:** {self.embed['settings']['custom_timer_mode']}"
 ))
 		if not self.embed["relevant_info"]:
