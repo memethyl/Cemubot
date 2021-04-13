@@ -281,20 +281,32 @@ class RulesetParser():
 	
 	# determines if ver1 <=> ver2
 	def version_check(self, ver1, ver2, operation):
-		ver1 = ver1.replace(" (Patreon release)", "").split('.')
-		ver2 = ver2.replace(" (Patreon release)", "").split('.')
+		ver1 = ver1.replace(" (Patreon release)", "")
+		ver2 = ver2.replace(" (Patreon release)", "")
+		ver1 = re.findall(r"(\d)\.(\d+)\.(\d+)([a-z]|$)", ver1, re.I)[0]
+		ver2 = re.findall(r"(\d)\.(\d+)\.(\d+)([a-z]|$)", ver2, re.I)[0]
+		ver1 = (int(ver1[0]), int(ver1[1]), int(ver1[2]), ver1[3])
+		ver2 = (int(ver2[0]), int(ver2[1]), int(ver2[2]), ver2[3])
+		# hotfixes should be ignored if ver2 doesn't specify a hotfix letter
+		if ver2[3] == '':
+			ver1 = ver1[:-1]
+			ver2 = ver2[:-1]
 		if operation == "lt":
-			return (ver1[0] < ver2[0]) \
-			    or (ver1[0] == ver2[0] and ver1[1] < ver2[1]) \
-			    or (ver1[0] == ver2[0] and ver1[1] == ver2[1] and ver1[2] < ver2[2])
+			for (n1, n2) in zip(ver1, ver2):
+				if n1 == n2:
+					continue
+				else:
+					return n1 < n2
 		elif operation == "eq":
 			return ver1 == ver2
 		elif operation == "ne":
 			return ver1 != ver2
 		elif operation == "gt":
-			return (ver1[0] > ver2[0]) \
-			    or (ver1[0] == ver2[0] and ver1[1] > ver2[1]) \
-			    or (ver1[0] == ver2[0] and ver1[1] == ver2[1] and ver1[2] > ver2[2])
+			for (n1, n2) in zip(ver1, ver2):
+				if n1 == n2:
+					continue
+				else:
+					return n1 > n2
 		else:
 			raise ValueError("Invalid operation; must be lt, eq, ne, or gt")
 
