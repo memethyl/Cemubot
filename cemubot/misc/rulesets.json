@@ -219,5 +219,17 @@
             },
             "⚠️ This title requires `Full sync at GX2DrawDone` to be enabled to avoid random crashes"
         ]
+    ],
+    "00050000-1F600B00": "00050000-1F600A00",
+    "00050000-1F600A00": [
+        [
+            "all",
+            {
+                "property": "emu_info.cemu_version",
+                "type": "ver_gt",
+                "value": "1.22.7"
+            },
+            "⚠️ This game will sometimes crash in loading zones on 1.22.8 or higher; use 1.22.7 to avoid this"
+        ]
     ]
 }
