@@ -143,7 +143,10 @@ class Parser():
 		try:
 			self.embed["specs"]["gpu_driver"] = re.search(r"GL_VERSION: (.*?)$", self.file, re.M).group(1)
 		except AttributeError:
-			self.embed["specs"]["gpu_driver"] = "Unknown"
+			try:
+				self.embed["specs"]["gpu_driver"] = re.search(r"Driver version: (.*?)$", self.file, re.M).group(1)
+			except AttributeError:
+				pass
 		gpu_support = self.get_gpu_support(self.embed["specs"]["gpu"])
 		self.embed["specs"]["gpu_specs_url"] = gpu_support["url"]
 		self.embed["specs"]["opengl"] = gpu_support["OpenGL"]
