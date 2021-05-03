@@ -169,7 +169,9 @@ class Parser():
 		self.embed["settings"]["backend"] = ("OpenGL" if "OpenGL" in self.file else "Vulkan")
 		if self.embed["settings"]["backend"] == "Vulkan":
 			self.embed["settings"]["vulkan_async"] = "Enabled" if "Async compile: true" in self.file else "Disabled"
-		self.embed["settings"]["gx2drawdone"] = ("Enabled" if "Full sync at GX2DrawDone: true" in self.file else "Disabled")
+			self.embed["settings"]["gx2drawdone"] = "N/A"
+		else:
+			self.embed["settings"]["gx2drawdone"] = ("Enabled" if "Full sync at GX2DrawDone: true" in self.file else "Disabled")
 		try:
 			self.embed["settings"]["console_region"] = re.search(r"Console region: (.*?)$", self.file, re.M).group(1)
 		except AttributeError:
