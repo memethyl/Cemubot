@@ -81,15 +81,15 @@ f"""
 						traceback.print_exc()
 				else:
 					await message.channel.send(f"Log detected, please post logs in <#{config.cfg['parsing_channel']['preferred']}>.")
-			
+
 		await self.process_commands(message)
 
-intents = discord.Intents.none()
-intents.guilds = True
-intents.messages = True
-intents.dm_messages = True
-
 if __name__ == '__main__':
+	intents = discord.Intents.none()
+	intents.guilds = True
+	intents.messages = True
+	intents.dm_messages = True
+
 	bot = Cemubot(command_prefix=config.cfg["command_prefix"], intents=intents)
 	config.set_bot_instance(bot)
 	bot.slash = SlashCommand(client=bot, sync_commands=True, sync_on_cog_reload=True, override_type=True)
