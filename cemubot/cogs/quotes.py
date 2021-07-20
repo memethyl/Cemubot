@@ -85,7 +85,7 @@ class Quotes(commands.Cog):
         # Make list of roles for each guild that should be able to manage quotes
         guild_ids = []
         permissions_per_guild = {}
-        async for guild in config.bot.fetch_guilds():
+        async for guild in self.bot.fetch_guilds():
             guild_ids.append(guild.id)
             permissions_per_guild[guild.id] = []
             for guild_role in await guild.fetch_roles():
