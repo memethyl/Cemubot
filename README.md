@@ -11,5 +11,4 @@ A custom bot for the [Cemu Discord server.](https://discord.gg/5psYsup)
 # Installation
 1. Download this repository
 2. Run setup.py and follow the instructions
-3. (Optional) Make quote functionality operational by modifying the `guild_ids` and `base_permissions` variables in the `@cog_ext` sections of the quotes.py file
-4. Run cemubot/cemubot.py
+3. Run cemubot/cemubot.py

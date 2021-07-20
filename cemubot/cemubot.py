@@ -91,6 +91,7 @@ intents.dm_messages = True
 
 if __name__ == '__main__':
 	bot = Cemubot(command_prefix=config.cfg["command_prefix"], intents=intents)
+	config.set_bot_instance(bot)
 	bot.slash = SlashCommand(client=bot, sync_commands=True, sync_on_cog_reload=True, override_type=True)
 	bot.load_cogs()
 	bot.run(config.cfg["bot_token"])

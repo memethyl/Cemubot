@@ -56,11 +56,20 @@ class Quote:
         self.slash_command
         del self.slash_command
         # Manual requests are required to remove the synced commands
-        syncedCommands = await get_all_commands(bot.user.id, config.cfg["bot_token"], slash.guild.id)
+        syncedCommands = await get_all_commands(bot.user.id, config.bot, slash.guild.id)
         for command in syncedCommands:
             if command["name"] == self.command:
                 await remove_slash_command(bot.user.id, config.cfg["bot_token"], slash.guild.id, command["id"])
-            
+
+def generate_guild_ids():
+    return [x.id for x in config.bot.guilds]
+
+def generate_permissions():
+    permissions_per_guild = {}
+    for guild in config.bot.guilds:
+        for guild_role in guild.roles:
+            if guild_role.permissions.manage_roles:
+                permissions_per_guild[guild.id] = create_permission(guild_role.id, 1, True)
 
 class Quotes(commands.Cog):
     quotes : Dict[str, Quote] = {}
@@ -88,7 +97,7 @@ class Quotes(commands.Cog):
                 storeCommands.append(quote.save())
             json.dump(storeCommands, f, indent="\t")
     
-    @cog_ext.cog_subcommand(guild_ids=[286429969104764928], base="quote", base_desc="Manages the quotes on this server.", base_default_permission=False, base_permissions={286429969104764928: [create_permission(291168448950566922, 1, True)]},
+    @cog_ext.cog_subcommand(guild_ids=generate_guild_ids(), base="quote", base_desc="Manages the quotes on this server.", base_default_permission=False, base_permissions=generate_permissions(),
     name="list", description="Lists all the existing quotes.")
     async def quote_list(self, ctx: SlashContext):
         listResponse = "Listing all commands:\n"
@@ -99,7 +108,7 @@ class Quotes(commands.Cog):
             listResponse += "\n"
         await ctx.send(content=listResponse)
 
-    @cog_ext.cog_subcommand(guild_ids=[286429969104764928], base="quote", base_desc="Manages the quotes on this server.", base_default_permission=False, base_permissions={286429969104764928: [create_permission(291168448950566922, 1, True)]},
+    @cog_ext.cog_subcommand(guild_ids=generate_guild_ids(), base="quote", base_desc="Manages the quotes on this server.", base_default_permission=False, base_permissions=generate_permissions(),
     name="add", description="Adds a new quote command.", options=[
         create_option(name="name", description="Name of the new command that you want to add. Can't include any spaces!", option_type=3, required=True),
         create_option(name="title", description="Title of the quote. Use \"None\" if you want to have no title.", option_type=3, required=True),
@@ -118,7 +127,7 @@ class Quotes(commands.Cog):
         self.save_quotes_to_file()
         await self.bot.slash.sync_all_commands()
 
-    @cog_ext.cog_subcommand(guild_ids=[286429969104764928], base="quote", base_desc="Manages the quotes on this server.", base_default_permission=False, base_permissions={286429969104764928: [create_permission(291168448950566922, 1, True)]},
+    @cog_ext.cog_subcommand(guild_ids=generate_guild_ids(), base="quote", base_desc="Manages the quotes on this server.", base_default_permission=False, base_permissions=generate_permissions(),
     name="delete", description="Deletes the given quote command.", options=[create_option(name="command", description="Command that's associated with the quote.", option_type=3, required=True)])
     async def quote_delete(self, ctx: SlashContext, command : str):
         await self.quotes[command].remove(self.bot, ctx)

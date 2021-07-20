@@ -8,3 +8,7 @@ def init():
 	global cfg
 	with open("misc/config.cfg", "r", encoding="utf-8") as f:
 		cfg = json.load(f)
+
+def set_bot_instance(bot_instance):
+	global bot
+	bot = bot_instance
