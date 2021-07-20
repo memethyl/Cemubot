@@ -19,7 +19,7 @@
             {
                 "property": "specs.ram",
                 "type": "int_lt",
-                "value": 8000
+                "value": 7900
             },
             "⚠️ Less than 8 GB of RAM"
         ],

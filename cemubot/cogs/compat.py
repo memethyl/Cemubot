@@ -4,6 +4,9 @@ import discord
 import urllib.parse
 import re
 
+from discord_slash import cog_ext, SlashContext
+from discord_slash.utils.manage_commands import create_option
+
 class Compat(commands.Cog, name="Compatibility Wiki"):
     def __init__(self, bot):
         self.bot = bot
@@ -19,9 +22,11 @@ class Compat(commands.Cog, name="Compatibility Wiki"):
                 else:
                     self.search_dict[simple_name] = self.bot.title_ids[ent]["game_id"]
 
-    @commands.command(name="compat", help="Search for the game's compatibility wiki page.")
-    async def compatibility(self, ctx, *, hint: str):
-        simple_hint = re.sub(r"[^a-z0-9 ]+", '', hint.lower())
+    @cog_ext.cog_slash(name="search", description="Search the Cemu compat wiki for the given game's compatibility page.", options=[
+        create_option(name="game", description="The name of the game that you want to search for", option_type=3, required=True)
+    ])
+    async def compatibility(self, ctx : SlashContext, game: str):
+        simple_hint = re.sub(r"[^a-z0-9 ]+", '', game.lower())
         guess = process.extractOne(simple_hint, list(self.search_dict.keys()), score_cutoff=60)
         if guess is not None:
             await ctx.send(content=f"The game's compatibility information can be found <https://wiki.cemu.info/wiki/{self.search_dict[guess[0]]}>")

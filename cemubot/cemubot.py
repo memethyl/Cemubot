@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord_slash import SlashCommand, SlashContext
 import json
 import requests
 import traceback
@@ -18,7 +19,7 @@ parse_log = Parser().parse_log
 
 # if you want to add any cogs, put them here
 # example: ["cogs.foo", "cogs.bar", ...]
-startup_extensions = ["cogs.utility", "cogs.compat", "cogs.site"]
+startup_extensions = ["cogs.utility", "cogs.compat", "cogs.site", "cogs.quotes"]
 
 class Cemubot(commands.Bot):
 	def __init__(self, *args, **kwargs):
@@ -26,13 +27,6 @@ class Cemubot(commands.Bot):
 
 		with open("misc/title_ids.json", "r", encoding="utf-8") as f:
 			self.title_ids = json.load(f)
-		# load the specified cogs
-		for extension in startup_extensions:
-			try:
-				self.load_extension(extension)
-			except Exception as e:
-				exc = f"{type(e).__name__}: {e}"
-				print(f"Failed to load extension {extension}\n{exc}")
 	async def on_ready(self):
 		import _version as v
 		print(
@@ -46,6 +40,15 @@ f"""
 |  \_____\___|_| |_| |_|\__,_|_.__/ \___/ \__| |
 +==============================================+
 """)
+	def load_cogs(self):
+		# load the specified cogs
+		for extension in startup_extensions:
+			try:
+				self.load_extension(extension)
+			except Exception as e:
+				exc = f"{type(e).__name__}: {e}"
+				print(f"Failed to load extension {extension}\n{exc}")
+				traceback.print_exc()
 	async def on_message(self, message):
 		if message.author.id == self.user.id:
 			return
@@ -84,5 +87,11 @@ f"""
 intents = discord.Intents.none()
 intents.guilds = True
 intents.messages = True
-bot = Cemubot(command_prefix=config.cfg["command_prefix"], intents=intents)
-bot.run(config.cfg["bot_token"])
+intents.dm_messages = True
+
+if __name__ == '__main__':
+	bot = Cemubot(command_prefix=config.cfg["command_prefix"], intents=intents)
+	config.set_bot_instance(bot)
+	bot.slash = SlashCommand(client=bot, sync_commands=True, sync_on_cog_reload=True, override_type=True)
+	bot.load_cogs()
+	bot.run(config.cfg["bot_token"])
