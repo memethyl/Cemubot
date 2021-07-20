@@ -10,6 +10,7 @@ import aiohttp
 from cogs import config
 
 class Site(commands.Cog):
+    bot : discord.Client = None
     version_list = []
     public_release_date = datetime.utcfromtimestamp(0)
     patreon_release = None
@@ -22,7 +23,7 @@ class Site(commands.Cog):
         self.updatePatreonStatus.start()
 
     @cog_ext.cog_slash(name="download", description="Gives a link to download a specific (older) version of Cemu.", options=[
-        create_option(name="version", description="Type the Cemu version you want a download link of", option_type=3, required=False)
+        create_option(name="version", description="Type the Cemu version you want a download link", option_type=3, required=True)
     ])
     async def downloadLink(self, ctx: SlashContext, version: str):
         if version.lower() == "latest":
@@ -42,7 +43,7 @@ class Site(commands.Cog):
                 if len(corrected_versions) > 1:
                     await ctx.send(content=f"That version never existed, but did you mean Cemu {corrected_versions[0]}? The download link is <http://cemu.info/releases/cemu_{corrected_versions[0]}.zip>")
                 else:
-                    await ctx.send(content="Are you from the future, or does this version just not exist yet!")
+                    await ctx.send(content="Are you from the future, or does this version just not exist yet?!")
 
     async def update_activity(self):
         if len(self.version_list) == 0:
