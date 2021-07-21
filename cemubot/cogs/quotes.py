@@ -81,6 +81,7 @@ class Quotes(commands.Cog):
         # Load previous commands
         if os.path.isfile("misc/quotes.json"):
             self.load_quotes_from_file()
+        await self.bot.slash.sync_all_commands()
 
         # Make list of roles for each guild that should be able to manage quotes
         guild_ids = []
@@ -102,14 +103,13 @@ class Quotes(commands.Cog):
                 create_option(name="parent", description="Name of the parent command where this command name will be nested under.", option_type=3, required=False),
                 create_option(name="addressable", description="Should the command have an optional user specifier which when used will mention the given user.", option_type=5, required=False)
             ])
+        await self.bot.slash.sync_all_commands()
         
         self.slash_command = self.bot.slash.add_subcommand(
             base="quote", base_description="Manages the quotes on this server", guild_ids=guild_ids, base_default_permission=False, base_permissions=permissions_per_guild,
             cmd=self.quote_delete, name="delete", options=[
                 create_option(name="command", description="Command that's associated with the quote. Don't include the name of the parent command.", option_type=3, required=True)
             ])
-        
-        # Sync all the loaded quotes and management commands
         await self.bot.slash.sync_all_commands()
     
     def load_quotes_from_file(self):
