@@ -19,7 +19,7 @@ parse_log = Parser().parse_log
 
 # if you want to add any cogs, put them here
 # example: ["cogs.foo", "cogs.bar", ...]
-startup_extensions = ["cogs.utility", "cogs.compat", "cogs.site", "cogs.quotes"]
+startup_extensions = ["cogs.permissions", "cogs.utility", "cogs.compat", "cogs.site", "cogs.quotes"]
 
 class Cemubot(commands.Bot):
 	def __init__(self, *args, **kwargs):
