@@ -5,21 +5,13 @@ import json
 import requests
 import traceback
 
-from cogs import config
-
-try:
-	config.init()
-except FileNotFoundError:
-	print("Error: config.cfg not found; run setup.py and try again!")
-	exit()
-
 # parser isn't a cog but it's in the cogs folder if you want to add commands to it
 from cogs.parser import Parser
 parse_log = Parser().parse_log
 
 # if you want to add any cogs, put them here
 # example: ["cogs.foo", "cogs.bar", ...]
-startup_extensions = ["cogs.permissions", "cogs.utility", "cogs.compat", "cogs.site", "cogs.quotes"]
+startup_extensions = ["cogs.permissions", "cogs.utility", "cogs.compat", "cogs.site", "cogs.quotes", "cogs.rules"]
 
 class Cemubot(commands.Bot):
 	def __init__(self, *args, **kwargs):
@@ -85,6 +77,15 @@ f"""
 		await self.process_commands(message)
 
 if __name__ == '__main__':
+	# initialize config
+	from cogs import config
+	try:
+		config.init()
+	except FileNotFoundError:
+		print("Error: config.cfg not found; run setup.py and try again!")
+		exit()
+
+	# initialize discord and slash commands instances
 	intents = discord.Intents.none()
 	intents.guilds = True
 	intents.messages = True
