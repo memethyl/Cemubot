@@ -149,7 +149,7 @@ class Quotes(commands.Cog):
 
     async def quote_add(self, ctx: SlashContext, name : str, title: str, description : str, type : str, parent : str = "", addressable : bool = False):
         if " " in name:
-            await ctx.send("You can't use spaces in the command names!")
+            await ctx.send("You can't use spaces in the command names!", hidden=True)
             return
         if title.lower() == "none":
             title = ""
@@ -157,6 +157,20 @@ class Quotes(commands.Cog):
         self.save_quotes_to_file()
         await self.bot.slash.sync_all_commands()
         await self.quotes[name].respond(ctx)
+    
+    # Could make this command visible once Discord's command system actually hides commands properly
+    async def quote_edit(self, ctx: SlashContext, name : str = None, title : str = None, description : str = None, type : str = None):
+        if name not in self.quotes:
+            await ctx.send(f"Couldn't edit {name} command since it doesn't exist!", hidden=True)
+            return
+        if title is not None:
+            self.quotes[name].title = name if name == "None" else ""
+        if description is not None:
+            self.quotes[name].content = description
+        if type is not None and (type == "embed" or type == "text"):
+            self.quotes[name].type = type
+        self.save_quotes_to_file()
+        
 
     async def quote_delete(self, ctx: SlashContext, command : str):
         has_parent = False
@@ -174,12 +188,12 @@ class Quotes(commands.Cog):
         
         # Check for some edge cases
         if not matched_command and not matched_parent:
-            await ctx.send(content="Couldn't find a quote with that name.")
+            await ctx.send(content="Couldn't find a quote with that name.", hidden=True)
         if matched_command and matched_parent:
-            await ctx.send(content="It seems like there's both a parent and a command with the same name. Deleting the command with no parents.")
+            await ctx.send(content="It seems like there's both a parent and a command with the same name. Deleting the command with no parents.", hidden=True)
             matched_parent = False
         if has_parent:
-            await ctx.send(content="You can't delete a command that is under a parent. Deleting the parent will delete all it's children")
+            await ctx.send(content="You can't delete a command that is under a parent. Deleting the parent will delete all it's children", hidden=True)
             return
         
         # Delete (parent) command
