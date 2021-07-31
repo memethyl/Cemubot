@@ -1,12 +1,11 @@
 import discord
 from discord.ext import commands, tasks
-from discord_slash import SlashContext
+from discord_slash import SlashContext, cog_ext
 from discord_slash.context import ComponentContext
-from discord_slash.model import ButtonStyle
+from discord_slash.model import BaseCommandObject, ButtonStyle
 from discord_slash.utils.manage_components import create_button, create_actionrow
 from discord_slash.utils.manage_commands import get_all_commands, create_permission, create_option, update_guild_commands_permissions
 
-import os
 from cemubot import Cemubot
 
 from cogs import config
@@ -20,46 +19,35 @@ class Rules(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        guild_ids = []
-        async for guild in self.bot.fetch_guilds():
-            guild_ids.append(guild.id)
-
-        # Add the rules command
-        self.bot.slash.add_slash_command(cmd=self.change_rules, name="rules", description="Sets the rules in the server and lists the new rules greeting.", guild_ids=guild_ids, default_permission=False, options=[
-                create_option(name="rule1", description="Text for rule 1", option_type=3, required=True),
-                create_option(name="rule2", description="Text for rule 2", option_type=3, required=True),
-                create_option(name="rule3", description="Text for rule 3", option_type=3, required=True),
-                create_option(name="rule4", description="Text for rule 4", option_type=3, required=True),
-                create_option(name="rule5", description="Text for rule 5", option_type=3, required=True),
-                create_option(name="rule6", description="Text for rule 6", option_type=3, required=True)
-            ])
-        await self.bot.slash.sync_all_commands()
-
+        # Change the rules command permissions
         await self.set_rules_permissions()
+        self.bot.rules_ready = True
+        await self.bot.sync_commands_when_finished()
         permissions.register_update_handler(self.set_rules_permissions)
     
     async def set_rules_permissions(self):
-        # Make and set list of permissions set for each guild, then update the permissions of the roles command
-        async for guild in self.bot.fetch_guilds():
-            guild_permissions = []
+        rules_permissions = {}
+        for guild in self.bot.guilds:
+            rules_permissions[guild.id] = []
 
             if guild.id in permissions.role_permissions:
                 for role_id in permissions.role_permissions[guild.id]:
-                    guild_permissions.append(create_permission(role_id, 1, True))
+                    rules_permissions[guild.id].append(create_permission(role_id, 1, True))
             if guild.id in permissions.user_permissions:
                 for user_id in permissions.user_permissions[guild.id]:
-                    guild_permissions.append(create_permission(user_id, 2, True))
-
-            # Manual requests to update the permissions for the already synced commands
-            command_permissions = []
-            syncedCommands = await get_all_commands(self.bot.user.id, config.cfg["bot_token"], guild.id)
-            for command in syncedCommands:
-                if command["name"] == "rules":
-                    command_permissions.append({"id": command["id"], "permissions": guild_permissions})
-                    break
-            await update_guild_commands_permissions(self.bot.user.id, config.cfg["bot_token"], guild.id, command_permissions)
-
+                    rules_permissions[guild.id].append(create_permission(user_id, 2, True))
+        self.bot.slash.commands["rules"].permissions = rules_permissions
+    
+    @cog_ext.cog_slash(name="rules", description="Sets the rules in the server and lists the new rules greeting.", default_permission=False, options=[
+            create_option(name="rule1", description="Text for rule 1", option_type=3, required=True),
+            create_option(name="rule2", description="Text for rule 2", option_type=3, required=True),
+            create_option(name="rule3", description="Text for rule 3", option_type=3, required=True),
+            create_option(name="rule4", description="Text for rule 4", option_type=3, required=True),
+            create_option(name="rule5", description="Text for rule 5", option_type=3, required=True),
+            create_option(name="rule6", description="Text for rule 6", option_type=3, required=True)
+        ])
     async def change_rules(self, ctx: SlashContext, rule1, rule2, rule3, rule4, rule5, rule6):
+        ctx.defer()
         quotes_cog = self.bot.get_cog("Quotes")
         if quotes_cog:
             await quotes_cog.quote_edit(ctx, name="r1", description=rule1)
@@ -85,7 +73,8 @@ class Rules(commands.Cog):
             create_actionrow(*[
                 create_button(style=ButtonStyle.URL, label="Cemu.info Website", url="https://cemu.info/"),
                 create_button(style=ButtonStyle.URL, label="Compatibility Wiki", url="https://wiki.cemu.info/wiki/Main_Page"),
-                create_button(style=ButtonStyle.URL, label="Cemu Setup Guide", url="https://cemu.cfw.guide/"),
+                create_button(style=ButtonStyle.URL, label="Patreon", url="https://www.patreon.com/cemu"),
+                create_button(style=ButtonStyle.URL, label="Setup Guide", url="https://cemu.cfw.guide/"),
                 create_button(style=ButtonStyle.URL, label="Discord Invite Link", url="https://discord.gg/5psYsup")
             ])
         ])

@@ -3,11 +3,13 @@ from discord.ext import commands, tasks
 from discord.mentions import AllowedMentions
 from discord_slash import cog_ext, SlashContext
 from discord_slash.client import SlashCommand
+from discord_slash.model import SubcommandObject
 from discord_slash.utils.manage_commands import get_all_commands, remove_slash_command, create_permission, create_option, create_choice, update_guild_commands_permissions
 
 import json
 import os
 from typing import Dict
+from cemubot import Cemubot
 
 from cogs import config
 from cogs import permissions
@@ -76,7 +78,7 @@ class Quote:
 
 class Quotes(commands.Cog):
     quotes : Dict[str, Quote] = {}
-    bot : discord.Client = None
+    bot : Cemubot = None
 
     def __init__(self, bot):
         self.bot = bot
@@ -87,51 +89,24 @@ class Quotes(commands.Cog):
         if os.path.isfile("misc/quotes.json"):
             self.load_quotes_from_file()
 
-        guild_ids = []
-        async for guild in self.bot.fetch_guilds():
-            guild_ids.append(guild.id)
-
-        # Add the manage commands
-        self.bot.slash.add_subcommand(base="quote", base_description="Manages the quotes on this server", guild_ids=guild_ids, base_default_permission=False,
-            cmd=self.quote_add, name="add", description="Adds a new quote command.", options=[
-                create_option(name="name", description="Name of the new command that you want to add. Can't include any spaces!", option_type=3, required=True),
-                create_option(name="title", description="Title of the quote. Use \"None\" if you want to have no title.", option_type=3, required=True),
-                create_option(name="description", description="Description of the quote. Supports markdown!", option_type=3, required=True),
-                create_option(name="type", description="Type of the response", option_type=3, required=True, choices=[create_choice(name="Embed Response", value="embed"), create_choice(name="Text Response", value="text")]),
-                create_option(name="parent", description="Name of the parent command where this command name will be nested under.", option_type=3, required=False),
-                create_option(name="addressable", description="Should the command have an optional user specifier which when used will mention the given user.", option_type=5, required=False)
-            ])
-        
-        self.bot.slash.add_subcommand(
-            base="quote", base_description="Manages the quotes on this server", guild_ids=guild_ids, base_default_permission=False,
-            cmd=self.quote_delete, name="delete", description="Deletes an existing quote command.", options=[
-                create_option(name="command", description="Deletes a parent command.", option_type=3, required=True)
-            ])
-        await self.bot.slash.sync_all_commands()
-
+        # Set the manage commands permissions and sync if it's fully done
         await self.set_quote_permissions()
+        self.bot.quotes_ready = True
+        await self.bot.sync_commands_when_finished()
         permissions.register_update_handler(self.set_quote_permissions)
-    
+
     async def set_quote_permissions(self):
-        # Make list of roles for each guild that should be able to manage quotes
-        async for guild in self.bot.fetch_guilds():
-            guild_permissions = []
+        quote_permissions = {}
+        for guild in self.bot.guilds:
+            quote_permissions[guild.id] = []
 
             if guild.id in permissions.role_permissions:
                 for role_id in permissions.role_permissions[guild.id]:
-                    guild_permissions.append(create_permission(role_id, 1, True))
+                    quote_permissions[guild.id].append(create_permission(role_id, 1, True))
             if guild.id in permissions.user_permissions:
                 for user_id in permissions.user_permissions[guild.id]:
-                    guild_permissions.append(create_permission(user_id, 2, True))
-
-            # Manual requests to update the permissions for the already synced commands
-            command_permissions = []
-            syncedCommands = await get_all_commands(self.bot.user.id, config.cfg["bot_token"], guild.id)
-            for command in syncedCommands:
-                # Change the permission of the quote "parent", since that's the actual command.
-                if command["name"] == "quote":
-                    command_permissions.append({"id": command["id"], "permissions": guild_permissions})
-            await update_guild_commands_permissions(self.bot.user.id, config.cfg["bot_token"], guild.id, command_permissions)
+                    quote_permissions[guild.id].append(create_permission(user_id, 2, True))
+        self.bot.slash.commands["quote"].permissions = quote_permissions
 
     def load_quotes_from_file(self):
         self.quotes = {}
@@ -146,13 +121,23 @@ class Quotes(commands.Cog):
             for quote in self.quotes.values():
                 storeCommands.append(quote.save())
             json.dump(storeCommands, f, indent="\t")
-
+    
+    @cog_ext.cog_subcommand(base="quote", base_description="Manages the quotes on this server", base_default_permission=False,
+        name="add", description="Adds a new quote command.", options=[
+            create_option(name="name", description="Name of the new command that you want to add. Can't include any spaces!", option_type=3, required=True),
+            create_option(name="title", description="Title of the quote. Use \"None\" if you want to have no title.", option_type=3, required=True),
+            create_option(name="description", description="Description of the quote. Supports markdown!", option_type=3, required=True),
+            create_option(name="type", description="Type of the response", option_type=3, required=True, choices=[create_choice(name="Embed Response", value="embed"), create_choice(name="Text Response", value="text")]),
+            create_option(name="parent", description="Name of the parent command where this command name will be nested under.", option_type=3, required=False),
+            create_option(name="addressable", description="Should the command have an optional user specifier which when used will mention the given user.", option_type=5, required=False)
+        ])
     async def quote_add(self, ctx: SlashContext, name : str, title: str, description : str, type : str, parent : str = "", addressable : bool = False):
         if " " in name:
             await ctx.send("You can't use spaces in the command names!", hidden=True)
             return
         if title.lower() == "none":
             title = ""
+        await ctx.defer()
         self.quotes[name] = Quote(self.bot.slash, name.lower(), parent, ctx.guild.id, title, description, type, addressable)
         self.save_quotes_to_file()
         await self.bot.slash.sync_all_commands()
@@ -170,8 +155,11 @@ class Quotes(commands.Cog):
         if type is not None and (type == "embed" or type == "text"):
             self.quotes[name].type = type
         self.save_quotes_to_file()
-        
-
+    
+    @cog_ext.cog_subcommand(base="quote", base_description="Manages the quotes on this server", base_default_permission=False,
+        name="delete", description="Deletes an existing quote command.", options=[
+            create_option(name="command", description="Deletes a parent command.", option_type=3, required=True)
+        ])
     async def quote_delete(self, ctx: SlashContext, command : str):
         has_parent = False
         matched_command = False
@@ -197,6 +185,7 @@ class Quotes(commands.Cog):
             return
         
         # Delete (parent) command
+        await ctx.defer()
         if matched_parent and not matched_command:
             # Delete single command
             await self.quotes[parent_children[0]].remove(self.bot, ctx)
@@ -205,7 +194,6 @@ class Quotes(commands.Cog):
         else:
             await self.quotes[command].remove(self.bot, ctx)
             del self.quotes[command]
-            del self.bot.slash.commands[command]
         await ctx.send(content="Successfully deleted the command!")
         self.save_quotes_to_file()
         await self.bot.slash.sync_all_commands()
