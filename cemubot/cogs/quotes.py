@@ -137,6 +137,7 @@ class Quotes(commands.Cog):
             return
         if title.lower() == "none":
             title = ""
+        await ctx.defer()
         self.quotes[name] = Quote(self.bot.slash, name.lower(), parent, ctx.guild.id, title, description, type, addressable)
         self.save_quotes_to_file()
         await self.bot.slash.sync_all_commands()
@@ -184,6 +185,7 @@ class Quotes(commands.Cog):
             return
         
         # Delete (parent) command
+        await ctx.defer()
         if matched_parent and not matched_command:
             # Delete single command
             await self.quotes[parent_children[0]].remove(self.bot, ctx)
@@ -192,7 +194,6 @@ class Quotes(commands.Cog):
         else:
             await self.quotes[command].remove(self.bot, ctx)
             del self.quotes[command]
-            del self.bot.slash.commands[command]
         await ctx.send(content="Successfully deleted the command!")
         self.save_quotes_to_file()
         await self.bot.slash.sync_all_commands()

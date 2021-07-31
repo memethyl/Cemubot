@@ -47,6 +47,7 @@ class Rules(commands.Cog):
             create_option(name="rule6", description="Text for rule 6", option_type=3, required=True)
         ])
     async def change_rules(self, ctx: SlashContext, rule1, rule2, rule3, rule4, rule5, rule6):
+        ctx.defer()
         quotes_cog = self.bot.get_cog("Quotes")
         if quotes_cog:
             await quotes_cog.quote_edit(ctx, name="r1", description=rule1)
