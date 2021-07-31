@@ -41,6 +41,11 @@ f"""
 				exc = f"{type(e).__name__}: {e}"
 				print(f"Failed to load extension {extension}\n{exc}")
 				traceback.print_exc()
+	quotes_ready = False
+	rules_ready = False
+	async def sync_commands_when_finished(self):
+		if self.quotes_ready and self.rules_ready:
+			await self.slash.sync_all_commands()
 	async def on_message(self, message):
 		if message.author.id == self.user.id:
 			return
@@ -92,6 +97,6 @@ if __name__ == '__main__':
 	intents.dm_messages = True
 
 	bot = Cemubot(command_prefix=config.cfg["command_prefix"], intents=intents)
-	bot.slash = SlashCommand(client=bot, sync_commands=True, sync_on_cog_reload=True, override_type=True)
+	bot.slash = SlashCommand(client=bot)
 	bot.load_cogs()
 	bot.run(config.cfg["bot_token"])
