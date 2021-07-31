@@ -89,23 +89,7 @@ class Quotes(commands.Cog):
         if os.path.isfile("misc/quotes.json"):
             self.load_quotes_from_file()
 
-        # Add the manage commands
-        self.bot.slash.add_subcommand(base="quote", base_description="Manages the quotes on this server", base_default_permission=False,
-            cmd=self.quote_add, name="add", description="Adds a new quote command.", options=[
-                create_option(name="name", description="Name of the new command that you want to add. Can't include any spaces!", option_type=3, required=True),
-                create_option(name="title", description="Title of the quote. Use \"None\" if you want to have no title.", option_type=3, required=True),
-                create_option(name="description", description="Description of the quote. Supports markdown!", option_type=3, required=True),
-                create_option(name="type", description="Type of the response", option_type=3, required=True, choices=[create_choice(name="Embed Response", value="embed"), create_choice(name="Text Response", value="text")]),
-                create_option(name="parent", description="Name of the parent command where this command name will be nested under.", option_type=3, required=False),
-                create_option(name="addressable", description="Should the command have an optional user specifier which when used will mention the given user.", option_type=5, required=False)
-            ])
-        
-        self.bot.slash.add_subcommand(
-            base="quote", base_description="Manages the quotes on this server", base_default_permission=False,
-            cmd=self.quote_delete, name="delete", description="Deletes an existing quote command.", options=[
-                create_option(name="command", description="Deletes a parent command.", option_type=3, required=True)
-            ])
-
+        # Set the manage commands permissions and sync if it's fully done
         await self.set_quote_permissions()
         self.bot.quotes_ready = True
         await self.bot.sync_commands_when_finished()
@@ -137,7 +121,16 @@ class Quotes(commands.Cog):
             for quote in self.quotes.values():
                 storeCommands.append(quote.save())
             json.dump(storeCommands, f, indent="\t")
-
+    
+    @cog_ext.cog_subcommand(base="quote", base_description="Manages the quotes on this server", base_default_permission=False,
+        name="add", description="Adds a new quote command.", options=[
+            create_option(name="name", description="Name of the new command that you want to add. Can't include any spaces!", option_type=3, required=True),
+            create_option(name="title", description="Title of the quote. Use \"None\" if you want to have no title.", option_type=3, required=True),
+            create_option(name="description", description="Description of the quote. Supports markdown!", option_type=3, required=True),
+            create_option(name="type", description="Type of the response", option_type=3, required=True, choices=[create_choice(name="Embed Response", value="embed"), create_choice(name="Text Response", value="text")]),
+            create_option(name="parent", description="Name of the parent command where this command name will be nested under.", option_type=3, required=False),
+            create_option(name="addressable", description="Should the command have an optional user specifier which when used will mention the given user.", option_type=5, required=False)
+        ])
     async def quote_add(self, ctx: SlashContext, name : str, title: str, description : str, type : str, parent : str = "", addressable : bool = False):
         if " " in name:
             await ctx.send("You can't use spaces in the command names!", hidden=True)
@@ -161,7 +154,11 @@ class Quotes(commands.Cog):
         if type is not None and (type == "embed" or type == "text"):
             self.quotes[name].type = type
         self.save_quotes_to_file()
-
+    
+    @cog_ext.cog_subcommand(base="quote", base_description="Manages the quotes on this server", base_default_permission=False,
+        name="delete", description="Deletes an existing quote command.", options=[
+            create_option(name="command", description="Deletes a parent command.", option_type=3, required=True)
+        ])
     async def quote_delete(self, ctx: SlashContext, command : str):
         has_parent = False
         matched_command = False

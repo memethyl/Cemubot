@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands, tasks
-from discord_slash import SlashContext
+from discord_slash import SlashContext, cog_ext
 from discord_slash.context import ComponentContext
 from discord_slash.model import BaseCommandObject, ButtonStyle
 from discord_slash.utils.manage_components import create_button, create_actionrow
@@ -13,23 +13,13 @@ from cogs import permissions
 
 class Rules(commands.Cog):
     bot : Cemubot = None
-    rules_command : BaseCommandObject = None
 
     def __init__(self, bot):
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_ready(self):
-        # Add the rules command
-        self.rules_command = self.bot.slash.add_slash_command(cmd=self.change_rules, name="rules", description="Sets the rules in the server and lists the new rules greeting.", default_permission=False, options=[
-                create_option(name="rule1", description="Text for rule 1", option_type=3, required=True),
-                create_option(name="rule2", description="Text for rule 2", option_type=3, required=True),
-                create_option(name="rule3", description="Text for rule 3", option_type=3, required=True),
-                create_option(name="rule4", description="Text for rule 4", option_type=3, required=True),
-                create_option(name="rule5", description="Text for rule 5", option_type=3, required=True),
-                create_option(name="rule6", description="Text for rule 6", option_type=3, required=True)
-            ])
-
+        # Change the rules command permissions
         await self.set_rules_permissions()
         self.bot.rules_ready = True
         await self.bot.sync_commands_when_finished()
@@ -46,8 +36,16 @@ class Rules(commands.Cog):
             if guild.id in permissions.user_permissions:
                 for user_id in permissions.user_permissions[guild.id]:
                     rules_permissions[guild.id].append(create_permission(user_id, 2, True))
-        self.rules_command.permissions = rules_permissions
-
+        self.bot.slash.commands["rules"].permissions = rules_permissions
+    
+    @cog_ext.cog_slash(name="rules", description="Sets the rules in the server and lists the new rules greeting.", default_permission=False, options=[
+            create_option(name="rule1", description="Text for rule 1", option_type=3, required=True),
+            create_option(name="rule2", description="Text for rule 2", option_type=3, required=True),
+            create_option(name="rule3", description="Text for rule 3", option_type=3, required=True),
+            create_option(name="rule4", description="Text for rule 4", option_type=3, required=True),
+            create_option(name="rule5", description="Text for rule 5", option_type=3, required=True),
+            create_option(name="rule6", description="Text for rule 6", option_type=3, required=True)
+        ])
     async def change_rules(self, ctx: SlashContext, rule1, rule2, rule3, rule4, rule5, rule6):
         quotes_cog = self.bot.get_cog("Quotes")
         if quotes_cog:
@@ -77,9 +75,6 @@ class Rules(commands.Cog):
                 create_button(style=ButtonStyle.URL, label="Patreon", url="https://www.patreon.com/cemu"),
                 create_button(style=ButtonStyle.URL, label="Setup Guide", url="https://cemu.cfw.guide/"),
                 create_button(style=ButtonStyle.URL, label="Discord Invite Link", url="https://discord.gg/5psYsup")
-            ]),
-            create_actionrow(*[
-                create_button(style=ButtonStyle.secondary, label="How To Get Patreon Role?")
             ])
         ])
 
