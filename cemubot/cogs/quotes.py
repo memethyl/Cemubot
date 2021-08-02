@@ -156,7 +156,6 @@ class Quotes(commands.Cog):
         if field.lower() == "title":
             self.quotes[name].title = new_value if new_value != "None" else ""
         elif field.lower() == "description":
-            print(new_value.replace("\\n", '\n'))
             self.quotes[name].content = new_value.replace("\\n", '\n')
         elif field.lower() == "type":
             if new_value != "embed" or new_value != "text":
