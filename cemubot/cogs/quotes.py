@@ -29,7 +29,7 @@ class Quote:
         self.base_command = base_command
         self.guild = guild
         self.title = title
-        self.content = content
+        self.content = content.replace("\\\\n", "\n")
         self.response_type = response_type
         self.addressable = addressable
 
