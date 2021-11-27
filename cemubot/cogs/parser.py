@@ -72,6 +72,8 @@ class Parser():
 			if re.search(r"Stack trace", self.file, re.M):
 				if re.search(r"\+0x001d9be4", self.file, re.M): # Check for known giveaway caused by acquiring a game copy via a specific tool.
 					await self.reply_msg.edit(content="Error: Cemu crashed before loading the game. This was caused by bad game files.")
+				elif re.search(r"ow-graphics-vulkan\.dll", self.file, re.M):
+					await self.reply_msg.edit(content="Error: Cemu crashed before loading the game. This was caused by Overwolf.")
 				else:
 					await self.reply_msg.edit(content="Error: Cemu crashed before loading the game. Try making sure that you're using the latest GPU drivers.")
 			else:
