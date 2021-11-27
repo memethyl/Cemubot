@@ -229,7 +229,12 @@
                 "type": "ver_gt",
                 "value": "1.22.7"
             },
-            "⚠️ This game will sometimes crash in loading zones on 1.22.8 or higher; use 1.22.7 to avoid this"
+            {
+                "property": "emu_info.cemu_version",
+                "type": "ver_lt",
+                "value": "1.22.13"
+            },
+            "⚠️ This game will sometimes crash in loading zones between 1.22.8 and 1.22.12; use 1.22.13+ to avoid this"
         ]
     ]
 }
