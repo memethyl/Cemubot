@@ -29,7 +29,7 @@ class Quote:
         self.base_command = base_command
         self.guild = guild
         self.title = title
-        self.content = content
+        self.content = content.replace("\\n", '\n')
         self.response_type = response_type
         self.addressable = addressable
 
@@ -143,17 +143,29 @@ class Quotes(commands.Cog):
         await self.bot.slash.sync_all_commands()
         await self.quotes[name].respond(ctx)
     
-    # Could make this command visible once Discord's command system actually hides commands properly
-    async def quote_edit(self, ctx: SlashContext, name : str = None, title : str = None, description : str = None, type : str = None):
+    @commands.command(help="Hidden command that edits the varioustext of a quote. You must have the \"Manage Roles\" permission to run this command.")
+    @commands.has_guild_permissions(manage_roles=True)
+    async def quote_edit(self, ctx, name : str, field : str, new_value : str):
         if name not in self.quotes:
-            await ctx.send(f"Couldn't edit {name} command since it doesn't exist!", hidden=True)
+            await ctx.channel.send(f"Couldn't edit {name} command since it doesn't exist!")
             return
-        if title is not None:
-            self.quotes[name].title = name if name == "None" else ""
-        if description is not None:
-            self.quotes[name].content = description
-        if type is not None and (type == "embed" or type == "text"):
-            self.quotes[name].type = type
+        if not new_value:
+            await ctx.channel.send(f"You need to set this {field} field to something at least.")
+            return
+
+        if field.lower() == "title":
+            self.quotes[name].title = new_value if new_value != "None" else ""
+        elif field.lower() == "description":
+            self.quotes[name].content = new_value.replace("\\n", '\n')
+        elif field.lower() == "type":
+            if new_value != "embed" or new_value != "text":
+                await ctx.channel.send("You can only set the quote type to either 'embed' or 'text'.")
+            else:
+                self.quotes[name].response_type = new_value
+        else:
+            await ctx.channel.send("That's not a valid thing you can edit. You can only edit 'title', 'description' or 'type'.")
+            return
+        await ctx.channel.send("Successfully edited the quote!")
         self.save_quotes_to_file()
     
     @cog_ext.cog_subcommand(base="quote", base_description="Manages the quotes on this server", base_default_permission=False,

@@ -60,12 +60,12 @@ class Rules(commands.Cog):
         rules_embed = discord.Embed(colour=discord.Colour.from_rgb(0, 162, 221), title="Welcome to the official Cemu Discord Server!", description="Please try to respect the following server rules, or you'll be warned or banned.",)
 
         rules_embed.set_author(name="Server Rules", icon_url=str(ctx.guild.icon_url_as(static_format="png")))
-        rules_embed.add_field(name="Rule 1", value=rule1, inline=False)
-        rules_embed.add_field(name="Rule 2", value=rule2, inline=False)
-        rules_embed.add_field(name="Rule 3", value=rule3, inline=False)
-        rules_embed.add_field(name="Rule 4", value=rule4, inline=False)
-        rules_embed.add_field(name="Rule 5", value=rule5, inline=False)
-        rules_embed.add_field(name="Rule 6", value=rule6, inline=False)
+        rules_embed.add_field(name="Rule #1", value=rule1, inline=False)
+        rules_embed.add_field(name="Rule #2", value=rule2, inline=False)
+        rules_embed.add_field(name="Rule #3", value=rule3, inline=False)
+        rules_embed.add_field(name="Rule #4", value=rule4, inline=False)
+        rules_embed.add_field(name="Rule #5", value=rule5, inline=False)
+        rules_embed.add_field(name="Rule #6", value=rule6, inline=False)
 
         resource_embed = discord.Embed(colour=discord.Colour.from_rgb(0, 162, 221), description="After reading our rules, check out these useful resources that'll help you to start playing your games using Cemu!")
 
