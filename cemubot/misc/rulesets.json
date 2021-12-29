@@ -1,240 +1,278 @@
 {
     "any": [
-        [
-            "all",
-            {
-                "property": "emu_info.cemuhook_version",
-                "type": "str_eq",
-                "value": "N/A"
-            },
-            {
-                "property": "emu_info.cemu_version",
-                "type": "ver_lt",
-                "value": "1.18.0"
-            },
-            "❓ Cemuhook is not installed"
-        ],
-        [
-            "any",
-            {
-                "property": "specs.ram",
-                "type": "int_lt",
-                "value": 7900
-            },
-            "⚠️ Less than 8 GB of RAM"
-        ],
-        [
-            "any",
-            {
-                "property": "settings.cpu_mode",
-                "type": "str_contains",
-                "value": "Single-core interpreter"
-            },
-            "⚠️ CPU mode is set to Single-core interpreter"
-        ],
-        [
-            "all",
-            {
-                "property": "settings.disabled_cpu_extensions",
-                "type": "str_ne",
-                "value": ""
-            },
-            {
-                "property": "emu_info.cemuhook_version",
-                "type": "str_ne",
-                "value": "N/A"
-            },
-            "❓ These CPU extensions are disabled: `{settings[disabled_cpu_extensions]}`"
-        ],
-        [
-            "any",
-            {
-                "property": "specs.gpu",
-                "type": "str_contains",
-                "value": "Intel"
-            },
-            "⚠️ Intel GPUs are not officially supported due to poor performance"
-        ],
-        [
-            "any",
-            {
-                "property": "settings.console_region",
-                "type": "str_ne",
-                "value": "Auto"
-            },
-            "🤔 Console region set to {settings[console_region]}"
-        ],
-        [
-            "any",
-            {
-                "property": "settings.thread_quantum",
-                "type": "str_ne",
-                "value": "Unknown"
-            },
-            "🤔 Thread quantum set to {settings[thread_quantum]} (non-default value)"
-        ],
-        [
-            "all",
-            {
-                "property": "specs.gpu",
-                "type": "str_contains",
-                "value": "Radeon"
-            },
-            {
-                "property": "settings.backend",
-                "type": "str_eq",
-                "value": "OpenGL"
-            },
-            "⚠️ AMD GPUs and OpenGL go together like oil and water; use Vulkan if possible"
-        ],
-        [
-            "any",
-            {
-                "property": "log",
-                "type": "rgx_matches",
-                "value": "GLDEBUG|GX2Init|[KV]PAD|AX(User|[GS]et)|FS(Read|[GS]et|Open|Close)|MEMAlloc|Validation layer is enabled|OSFastMutex|[nh]to[hn][ls]|H264D[eE][cC]"
-            },
-            "⚠️ Debug logging may affect performance and should remain disabled"
-        ],
-        [
-            "all",
-            {
-                "property": "specs.opengl",
-                "type": "str_ne",
-                "value": "Unknown"
-            },
-            {
-                "property": "specs.opengl",
-                "type": "int_lt",
-                "value": 4.1
-            },
-            "⚠️ This GPU does not support OpenGL 4.1"
-        ],
-        [
-            "any",
-            {
-                "property": "game_info.title_id",
-                "type": "rgx_matches",
-                "value": "FFFFFFFF-.{8}"
-            },
-            "⚠️ `meta.xml` is missing"
-        ],
-        [
-            "any",
-            {
-                "property": "settings.vulkan_async",
-                "type": "str_eq",
-                "value": "Disabled"
-            },
-            "❓ Async compile is disabled"
-        ]
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "emulator.cemuhook_version",
+                    "type": "str_eq",
+                    "value": "N/A"
+                },
+                {
+                    "property": "emulator.cemu_version",
+                    "type": "ver_lt",
+                    "value": "1.18.0"
+                }
+            ],
+            "message": "❓ Cemuhook is not installed"
+        },
+        {
+            "match": "any",
+            "rules": [
+                {
+                    "property": "specs.ram",
+                    "type": "int_lt",
+                    "value": 8000
+                }
+            ],
+            "message": "⚠️ Less than 8 GB of RAM"
+        },
+        {
+            "match": "any",
+            "rules": [
+                {
+                    "property": "settings.cpu_mode",
+                    "type": "str_contains",
+                    "value": "Single-core interpreter"
+                }
+            ],
+            "message": "⚠️ CPU mode is set to Single-core interpreter"
+        },
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "settings.disabled_cpu_extensions",
+                    "type": "str_ne",
+                    "value": ""
+                },
+                {
+                    "property": "emulator.cemuhook_version",
+                    "type": "str_ne",
+                    "value": "N/A"
+                }
+            ],
+            "message": "❓ These CPU extensions are disabled: `{0[settings.disabled_cpu_extensions]}`"
+        },
+        {
+            "match": "any",
+            "rules": [
+                {
+                    "property": "specs.gpu",
+                    "type": "str_contains",
+                    "value": "Intel"
+                }
+            ],
+            "message": "⚠️ Intel GPUs are not officially supported due to poor performance"
+        },
+        {
+            "match": "any",
+            "rules": [
+                {
+                    "property": "settings.console_region",
+                    "type": "str_ne",
+                    "value": "Auto"
+                }
+            ],
+            "message": "🤔 Console region set to {0[settings.console_region]}"
+        },
+        {
+            "match": "any",
+            "rules": [
+                {
+                    "property": "settings.thread_quantum",
+                    "type": "str_ne",
+                    "value": "Default"
+                }
+            ],
+            "message": "🤔 Thread quantum set to {0[settings.thread_quantum]} (non-default value)"
+        },
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "specs.gpu",
+                    "type": "str_contains",
+                    "value": "Radeon"
+                },
+                {
+                    "property": "settings.backend",
+                    "type": "str_eq",
+                    "value": "OpenGL"
+                }
+            ],
+            "message": "⚠️ AMD GPUs and OpenGL go together like oil and water; use Vulkan if possible"
+        },
+        {
+            "match": "any",
+            "rules": [
+                {
+                    "property": "log",
+                    "type": "rgx_matches",
+                    "value": "GLDEBUG|GX2Init|[KV]PAD|AX(User|[GS]et)|FS(Read|[GS]et|Open|Close)|MEMAlloc|Validation layer is enabled|OSFastMutex|[nh]to[hn][ls]|H264D[eE][cC]"
+                }
+            ],
+            "message": "⚠️ Debug logging may affect performance and should remain disabled"
+        },
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "specs.opengl",
+                    "type": "str_ne",
+                    "value": "Unknown"
+                },
+                {
+                    "property": "specs.opengl",
+                    "type": "int_lt",
+                    "value": 4.1
+                }
+            ],
+            "message": "⚠️ This GPU does not support OpenGL 4.1"
+        },
+        {
+            "match": "any",
+            "rules": [
+                {
+                    "property": "game.title_id",
+                    "type": "rgx_matches",
+                    "value": "FFFFFFFF-.{8}"
+                }
+            ],
+            "message": "⚠️ `meta.xml` is missing"
+        },
+        {
+            "match": "any",
+            "rules": [
+                {
+                    "property": "settings.vulkan_async",
+                    "type": "str_eq",
+                    "value": "Disabled"
+                }
+            ],
+            "message": "❓ Async compile is disabled"
+        }
     ],
     "00050000-10116100": "00050000-101C4D00",
     "00050000-101C4C00": "00050000-101C4D00",
     "00050000-101C4D00": [
-        [
-            "all",
-            {
-                "property": "settings.backend",
-                "type": "str_eq",
-                "value": "Vulkan"
-            },
-            {
-                "property": "emu_info.cemu_version",
-                "type": "ver_eq",
-                "value": "1.16.1"
-            },
-            "⚠️ This game does not work with Vulkan on 1.16.1"
-        ]
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "settings.backend",
+                    "type": "str_eq",
+                    "value": "Vulkan"
+                },
+                {
+                    "property": "emulator.cemu_version",
+                    "type": "ver_eq",
+                    "value": "1.16.1"
+                }
+            ],
+            "message": "⚠️ This game does not work with Vulkan on 1.16.1"
+        }
     ],
     "00050000-101C9300": "00050000-101C9400",
     "00050000-101C9500": "00050000-101C9400",
     "00050000-101C9400": [
-        [
-            "all",
-            {
-                "property": "log",
-                "type": "str_not_contains",
-                "value": "checksum 0x6267bfd0"
-            },
-            {
-                "property": "log",
-                "type": "str_contains",
-                "value": "The Legend of Zelda: Breath of the Wild/Mods/FPS++/"
-            },
-            "⚠️ FPS++ and static FPS aren't compatible with your outdated game version causing it to run at slow-motion. Update your game to the latest version."
-        ],
-        [
-            "all",
-            {
-                "property": "log",
-                "type": "str_contains",
-                "value": "The Legend of Zelda: Breath of the Wild/Mods/FPS++"
-            },
-            {
-                "property": "log",
-                "type": "str_contains",
-                "value": "The Legend of Zelda: Breath of the Wild/Mods/Static FPS"
-            },
-            "⚠️ Don't use FPS++ and Static FPS at the same time!"
-        ],
-        [
-            "all",
-            {
-                "property": "game_info.title_version",
-                "type": "str_eq",
-                "value": "v0"
-            },
-            "⚠️ This game will not run without updates"
-        ]
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "log",
+                    "type": "str_not_contains",
+                    "value": "checksum 0x6267bfd0"
+                },
+                {
+                    "property": "log",
+                    "type": "str_contains",
+                    "value": "The Legend of Zelda: Breath of the Wild/Mods/FPS++/"
+                }
+            ],
+            "message": "⚠️ FPS++ and static FPS aren't compatible with your outdated game version causing it to run at slow-motion. Update your game to the latest version."
+        },
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "log",
+                    "type": "str_contains",
+                    "value": "The Legend of Zelda: Breath of the Wild/Mods/FPS++"
+                },
+                {
+                    "property": "log",
+                    "type": "str_contains",
+                    "value": "The Legend of Zelda: Breath of the Wild/Mods/Static FPS"
+                }
+            ],
+            "message": "⚠️ Don't use FPS++ and Static FPS at the same time!"
+        },
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "game.title_version",
+                    "type": "str_eq",
+                    "value": "v0"
+                }
+            ],
+            "message": "⚠️ This game will not run without updates"
+        }
     ],
     "00050000-1010ED00": "00050000-1010EC00",
     "00050000-1010EB00": "00050000-1010EC00",
     "00050000-1010EC00": [
-        [
-            "all",
-            {
-                "property": "settings.cpu_mode",
-                "type": "str_not_contains",
-                "value": "Single-core"
-            },
-            {
-                "property": "emu_info.cemu_version",
-                "type": "ver_lt",
-                "value": "1.17.2"
-            },
-            "⚠️ Using a multi-core recompiler will cause crashes after/while racing; use 1.17.2 or higher to avoid this"
-        ],
-        [
-            "all",
-            {
-                "property": "settings.backend",
-                "type": "str_eq",
-                "value": "OpenGL"
-            },
-            {
-                "property": "settings.gx2drawdone",
-                "type": "str_eq",
-                "value": "Disabled"
-            },
-            "⚠️ This title requires `Full sync at GX2DrawDone` to be enabled to avoid random crashes"
-        ]
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "settings.cpu_mode",
+                    "type": "str_not_contains",
+                    "value": "Single-core"
+                },
+                {
+                    "property": "emulator.cemu_version",
+                    "type": "ver_lt",
+                    "value": "1.17.2"
+                }
+            ],
+            "message": "⚠️ Using a multi-core recompiler will cause crashes after/while racing; use 1.17.2 or higher to avoid this"
+        },
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "settings.backend",
+                    "type": "str_eq",
+                    "value": "OpenGL"
+                },
+                {
+                    "property": "settings.gx2drawdone",
+                    "type": "str_eq",
+                    "value": "Disabled"
+                }
+            ],
+            "message": "⚠️ This title requires `Full sync at GX2DrawDone` to be enabled to avoid random crashes"
+        }
     ],
     "00050000-1F600B00": "00050000-1F600A00",
     "00050000-1F600A00": [
-        [
-            "all",
-            {
-                "property": "emu_info.cemu_version",
-                "type": "ver_gt",
-                "value": "1.22.7"
-            },
-            {
-                "property": "emu_info.cemu_version",
-                "type": "ver_lt",
-                "value": "1.22.13"
-            },
-            "⚠️ This game will sometimes crash in loading zones between 1.22.8 and 1.22.12; use 1.22.13+ to avoid this"
-        ]
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "emulator.cemu_version",
+                    "type": "ver_gt",
+                    "value": "1.22.7"
+                },
+                {
+                    "property": "emulator.cemu_version",
+                    "type": "ver_lt",
+                    "value": "1.22.13"
+                }
+            ],
+            "message": "⚠️ This game will sometimes crash in loading zones between 1.22.8 and 1.22.12; use 1.22.13+ to avoid this"
+        }
     ]
 }
