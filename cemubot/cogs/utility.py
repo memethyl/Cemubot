@@ -87,6 +87,7 @@ class Utility(commands.Cog):
 		for key in game_info.copy().keys():
 			game_info[key]["wiki_has_game_id_redirect"] = (game_info[key]["game_id"] in wiki_game_ids)
 
+		self.bot.title_ids = game_info
 		try:
 			f = open("misc/title_ids.json", "w", encoding="utf-8")
 		except FileNotFoundError:
