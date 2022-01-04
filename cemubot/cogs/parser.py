@@ -125,12 +125,12 @@ class Parser:
     def cpu_affinity(self, file, info):
         result = regex_group(re.search(r"Set process CPU affinity to (.*?)$", file, re.M), 1)
         if result:
-            return list(
+            return " ".join(
                 map(
                     lambda x: f"CPU{ord(x[0]) - 0x30}",
                     result.split("CPU")[1:]
                 )
-            ).join(" ")
+            )
         return "All cores"
     @name("settings.cpu_mode")
     @default("Unknown")
