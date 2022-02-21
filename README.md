@@ -6,7 +6,7 @@ A custom bot for the [Cemu Discord server.](https://discord.gg/5psYsup)
 - [requests](https://docs.python-requests.org)
 - [discord.py](https://github.com/Rapptz/discord.py) 1.5.0+
 - [discord-py-slash-command](https://github.com/discord-py-slash-commands/discord-py-interactions)
-- [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy)
+- [thefuzz](https://github.com/seatgeek/thefuzz)
 
 # Installation
 1. Download this repository

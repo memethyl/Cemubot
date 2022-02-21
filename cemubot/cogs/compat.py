@@ -1,5 +1,5 @@
 from discord.ext import commands
-from fuzzywuzzy import process
+from thefuzz import process
 import discord
 import urllib.parse
 import re

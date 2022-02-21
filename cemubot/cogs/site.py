@@ -12,15 +12,12 @@ from cogs import config
 class Site(commands.Cog):
     bot : discord.Client = None
     version_list = []
-    public_release_date = datetime.utcfromtimestamp(0)
-    patreon_release = None
     previous_activity = ""
-    release_dates = ["is very soon™", "is later today", "is tomorrow", "in 3 days", "in 4 days", "in 5 days", "in 6 days", "in 7 days", "in a week"]
 
     def __init__(self, bot):
         self.bot = bot
-        self.updateVersions.start()
-        self.updatePatreonStatus.start()
+        self.getAllVersions.start()
+        self.getLatestVersion.start()
 
     @cog_ext.cog_slash(name="download", description="Gives a link to download a specific (older) version of Cemu.", options=[
         create_option(name="version", description="Type the Cemu version you want a download link", option_type=3, required=True)
@@ -45,46 +42,37 @@ class Site(commands.Cog):
                 else:
                     await ctx.send(content="Are you from the future, or does this version just not exist yet?!")
 
-    async def update_activity(self):
-        if len(self.version_list) == 0:
-            return
-
-        if self.version_list[0] is not self.patreon_release and datetime.utcnow() < self.public_release_date:
-            new_activity = f"Public release {self.release_dates[(self.public_release_date-datetime.utcnow()).days+1]}"
-        else:
-            new_activity = f"Cemu {self.version_list[0]}"
+    async def update_activity(self, version):
+        new_activity = f"Cemu {version}"
         if new_activity != self.previous_activity and self.bot.ws:
             await self.bot.change_presence(status=discord.Status.online, activity=discord.Game(name=new_activity))
             self.previous_activity = new_activity
 
     @tasks.loop(minutes=2)
-    async def updateVersions(self):
+    async def getLatestVersion(self):
+        async with aiohttp.ClientSession() as session:
+            async with session.get("http://cemu.info/api/cemu_version3.php") as res:
+                if res.status == 200:
+                    try:
+                        text = await res.text()
+                        for ver in re.finditer(r"cemu_(\d+\.\d+\.\d+).zip", text):
+                            await self.update_activity(ver.group(1))
+                    except Exception as err:
+                        print("Failed to parse the /api/cemu_version3.php page! Error:")
+                        print(str(err))
+
+    @tasks.loop(minutes=10)
+    async def getAllVersions(self):
         async with aiohttp.ClientSession() as session:
             async with session.get("http://cemu.info/changelog.html") as res:
                 if res.status == 200:
                     try:
-                        for ver in re.finditer(r"v(\d\.\d+\.\d+) +\|", await res.text()):
+                        text = await res.text()
+                        for ver in re.finditer(r"v(\d+\.\d+\.\d+) +\|", text):
                             self.version_list.append(ver.group(1))
-                        await self.update_activity()
-                    except:
-                        print("Failed to parse the changelog.html page!")
-
-    @tasks.loop(minutes=2)
-    async def updatePatreonStatus(self):
-        announcement_channel = self.bot.get_channel(
-            config.cfg["announcement_channel"])
-        if announcement_channel != None:
-            async for message in announcement_channel.history(limit=5):
-                if message != None:
-                    matches = re.search(
-                        r"Cemu (\d\.\d+\.\d+)", message.content)
-                    if matches:
-                        self.public_release_date = message.created_at + \
-                            timedelta(days=7)
-                        self.public_release_date.replace(tzinfo=timezone.utc)
-                        self.patreon_release = matches.group(1)
-                    break
-        await self.update_activity()
+                    except Exception as err:
+                        print("Failed to parse the changelog.html page! Error:")
+                        print(str(err))
 
 def setup(bot):
     bot.add_cog(Site(bot))

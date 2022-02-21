@@ -26,7 +26,6 @@ def configure():
         "unplayable": 0xBF3E32,
         "unknown": 0x858585
     }
-    config["announcement_channel"] = int(input("Put the channel ID of the announcement channel here (0 to not keep track of patreon releases): "))
     print(f"Your config file now looks like this:\n{json.dumps(config, indent=2)}")
     if input("Is this correct? (y/n) ").lower() == 'n':
         f.close()
