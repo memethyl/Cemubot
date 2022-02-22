@@ -157,9 +157,9 @@ class Parser:
             )
         return None
     @name("settings.backend")
-    @default("OpenGL")
+    @default("Unknown")
     def backend(self, file, info):
-        return regex_group(re.search(r"(Vulkan)", file), 1)
+        return regex_group(re.search(r"------- Init (OpenGL|Vulkan) graphics backend -------", file), 1)
     @name("settings.vulkan_async")
     @default("Unknown")
     def vulkan_async(self, file, info):
