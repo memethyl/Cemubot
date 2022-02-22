@@ -51,7 +51,7 @@ class Utility(commands.Cog):
 					break
 			return req_json
 
-		game_info = session.get("http://wiiubrew.org/w/api.php?action=parse&format=json&page=Title_database&section=6&prop=wikitext")
+		game_info = session.get("http://wiiubrew.org/w/api.php?action=parse&format=json&page=Title_database&section=5&prop=wikitext")
 		validate_req(game_info)
 		game_info = json.loads(game_info.text)
 		game_info = game_info["parse"]["wikitext"]["*"]

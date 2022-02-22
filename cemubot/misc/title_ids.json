@@ -27,7 +27,7 @@
         "product_code": "WUP-N-WAHJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v128",
+        "versions": "v0, v16, v32, v48, v49, v64, v80, v96, v112, v128",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -82,7 +82,7 @@
         "product_code": "WUP-P-ARPJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -115,7 +115,7 @@
         "product_code": "WUP-P-ALCJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -148,7 +148,7 @@
         "product_code": "WUP-P-ASTJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v32",
+        "versions": "v16, v32",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -181,7 +181,7 @@
         "product_code": "WUP-N-WAJJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v112",
+        "versions": "v32, v49, v65, v80, v96, v112",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -192,7 +192,7 @@
         "product_code": "WUP-N-WALJ",
         "company_code": "00SE",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v18, v32",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -203,7 +203,7 @@
         "product_code": "WUP-N-HNMJ",
         "company_code": "00SF",
         "notes": "",
-        "versions": "v19, v48",
+        "versions": "v0, v19, v32, v48",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -214,7 +214,7 @@
         "product_code": "WUP-N-HNPE",
         "company_code": "00XB",
         "notes": "",
-        "versions": "v48, v80",
+        "versions": "v0, v16, v32, v48, v64, v80",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -247,7 +247,7 @@
         "product_code": "WUP-N-HNPJ",
         "company_code": "00XB",
         "notes": "",
-        "versions": "v48",
+        "versions": "v0, v16, v33, v48, v65, v80, v96",
         "region": "JPN",
         "cdn_available": "removed on 24th July 2020",
         "wiki_has_game_id_redirect": false
@@ -270,7 +270,7 @@
         "company_code": "00WB",
         "notes": "",
         "versions": "v0, v16, v64, v80, v96, v112, v129, v144, v160, v176, v193",
-        "region": "all",
+        "region": "ALL",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -280,8 +280,8 @@
         "product_code": "WUP-N-HNNA",
         "company_code": "00XN",
         "notes": "",
-        "versions": "v96",
-        "region": "EUR",
+        "versions": "v0, v16, v32, v48, v64, v81, v96, v144, v160, v176, v192",
+        "region": "EUR/JAP/USA",
         "cdn_available": "removed on 30th June 2021",
         "wiki_has_game_id_redirect": false
     },
@@ -621,7 +621,7 @@
         "product_code": "WUP-N-FAJP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -984,7 +984,7 @@
         "product_code": "WUP-P-ABTE",
         "company_code": "00WR",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -1149,7 +1149,7 @@
         "product_code": "WUP-P-AECE",
         "company_code": "0052",
         "notes": "",
-        "versions": "v128",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": true
@@ -1160,7 +1160,7 @@
         "product_code": "WUP-P-ASLE",
         "company_code": "0052",
         "notes": "",
-        "versions": "v0, v32",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -1215,7 +1215,7 @@
         "product_code": "WUP-P-AMEE",
         "company_code": "0069",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -1255,14 +1255,14 @@
     },
     "00050000-1010E600": {
         "game_title": "007\u2122 Legends",
-        "game_id": "ASVE",
+        "game_id": "ASVE52",
         "product_code": "WUP-P-ASVE",
-        "company_code": "-",
+        "company_code": "0052",
         "notes": "",
         "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
-        "wiki_has_game_id_redirect": false
+        "wiki_has_game_id_redirect": true
     },
     "00050000-1010E700": {
         "game_title": "Cabela's\u00ae Dangerous Hunts 2013",
@@ -1441,7 +1441,7 @@
         "wiki_has_game_id_redirect": true
     },
     "00050000-1010F800": {
-        "game_title": "TEKKEN TAG TOURNAMENT Wii U EDITION",
+        "game_title": "TEKKEN TAG TOURNAMENT 2 Wii U EDITION",
         "game_id": "AKNPAF",
         "product_code": "WUP-P-AKNP",
         "company_code": "00AF",
@@ -1457,7 +1457,7 @@
         "product_code": "WUP-P-ASCP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -1585,14 +1585,14 @@
     },
     "00050000-10110700": {
         "game_title": "007\u2122 Legends",
-        "game_id": "-",
-        "product_code": "-",
-        "company_code": "-",
+        "game_id": "ASVP52",
+        "product_code": "WUP-P-ASVP",
+        "company_code": "0052",
         "notes": "",
         "versions": "v0",
         "region": "EUR",
         "cdn_available": "No TMD",
-        "wiki_has_game_id_redirect": false
+        "wiki_has_game_id_redirect": true
     },
     "00050000-10110800": {
         "game_title": "Marvel Avengers\u2122: Battle for Earth",
@@ -1655,7 +1655,7 @@
         "product_code": "WUP-P-AXFJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -1710,7 +1710,7 @@
         "product_code": "WUP-P-ABTP",
         "company_code": "00WR",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -1728,14 +1728,14 @@
     },
     "00050000-10111600": {
         "game_title": "Fast & Furious\u2122: Showdown",
-        "game_id": "AF6E",
+        "game_id": "AF6E52",
         "product_code": "WUP-P-AF6E",
-        "company_code": "-",
+        "company_code": "0052",
         "notes": "",
         "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
-        "wiki_has_game_id_redirect": false
+        "wiki_has_game_id_redirect": true
     },
     "00050000-10111700": {
         "game_title": "Injustice: Gods Among Us",
@@ -1765,7 +1765,7 @@
         "product_code": "WUP-P-WLYJ",
         "company_code": "0008",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -1969,12 +1969,12 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10113000": {
-        "game_title": "\u30de\u30b9\u30a8\u30d5\u30a7\u30af\u30c8 3 - \u7279\u5225\u7248 -",
+        "game_title": "\u30de\u30b9\u30a8\u30d5\u30a7\u30af\u30c8 3 - \u7279\u5225\u7248 - (Mass Effect 3 Special Edition)",
         "game_id": "AMEJ13",
         "product_code": "WUP-P-AMEJ",
         "company_code": "0013",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -1985,7 +1985,7 @@
         "product_code": "WUP-P-ABHJ",
         "company_code": "0008",
         "notes": "",
-        "versions": "v0",
+        "versions": "v0, v1",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -2026,10 +2026,10 @@
     "00050000-10113500": {
         "game_title": "Call of Duty: Black Ops II",
         "game_id": "AECI52",
-        "product_code": "WUP-U-AECI",
+        "product_code": "WUP-P-AECI",
         "company_code": "0052",
         "notes": "Spanish, Italian",
-        "versions": "v144",
+        "versions": "v0, v144",
         "region": "EUR",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -2048,10 +2048,10 @@
     "00050000-10113700": {
         "game_title": "Call of Duty: Black Ops II",
         "game_id": "AECD52",
-        "product_code": "WUP-U-AECD",
+        "product_code": "WUP-P-AECD",
         "company_code": "0052",
         "notes": "German",
-        "versions": "v144",
+        "versions": "v0, v144",
         "region": "EUR",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -2398,7 +2398,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10115E00": {
-        "game_title": "\u30c9\u30e9\u30b4\u30f3\u30af\u30a8\u30b9\u30c8\u2169 \u76ee\u899a\u3081\u3057\u4e94\u3064\u306e\u7a2e\u65cf \u30aa\u30f3\u30e9\u30a4\u30f3 (Dragon Quest X)",
+        "game_title": "\u30c9\u30e9\u30b4\u30f3\u30af\u30a8\u30b9\u30c8\u2169 \u76ee\u899a\u3081\u3057\u4e94\u3064\u306e\u7a2e\u65cf \u30aa\u30f3\u30e9\u30a4\u30f3 (Dragon Quest X Awakening of the Five Tribes)",
         "game_id": "ADQJGD",
         "product_code": "WUP-P-ADQJ",
         "company_code": "00GD",
@@ -2421,8 +2421,8 @@
     },
     "00050000-10116000": {
         "game_title": "Skylanders Giants",
-        "game_id": "-",
-        "product_code": "-",
+        "game_id": "ASLP",
+        "product_code": "WUP-P-ASLP",
         "company_code": "-",
         "notes": "",
         "versions": "v0",
@@ -2436,7 +2436,7 @@
         "product_code": "WUP-P-AX5J",
         "company_code": "0001",
         "notes": "",
-        "versions": "v00016",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -2458,7 +2458,7 @@
         "product_code": "WUP-N-HNAJ",
         "company_code": "00T2",
         "notes": "",
-        "versions": "v240",
+        "versions": "v0, v16, v32, v48, v64, v80, v96, v114, v128, v144, v160, v176, v192, v208, v224, v240",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -2806,8 +2806,8 @@
     },
     "00050000-1011A600": {
         "game_title": "Dangerous Hunts 2013",
-        "game_id": "-",
-        "product_code": "-",
+        "game_id": "ACAP",
+        "product_code": "WUP-P-ACAP",
         "company_code": "-",
         "notes": "",
         "versions": "v0",
@@ -2843,7 +2843,7 @@
         "product_code": "WUP-N-FASE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -2931,7 +2931,7 @@
         "product_code": "WUP-P-WHYE",
         "company_code": "00WY",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -2959,12 +2959,12 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-1011B400": {
-        "game_title": "\u30b3\u30fc\u30eb \u30aa\u30d6 \u30c7\u30e5\u30fc\u30c6\u30a3 \u30d6\u30e9\u30c3\u30af\u30aa\u30d7\u30b9II (Call of Duty: Black Ops 2)",
+        "game_title": "\u30b3\u30fc\u30eb \u30aa\u30d6 \u30c7\u30e5\u30fc\u30c6\u30a3 \u30d6\u30e9\u30c3\u30af\u30aa\u30d7\u30b9II (Call of Duty: Black Ops II)",
         "game_id": "AECJGD",
         "product_code": "WUP-P-AECJ",
         "company_code": "00GD",
         "notes": "",
-        "versions": "v96",
+        "versions": "v0, v96",
         "region": "JPN",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -3096,7 +3096,7 @@
         "product_code": "WUP-P-WHYP",
         "company_code": "00WY",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -3173,7 +3173,7 @@
         "product_code": "WUP-P-WBDE",
         "company_code": "00FZ",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -3224,8 +3224,8 @@
     },
     "00050000-10129400": {
         "game_title": "The Walking Dead: Survival Instinct",
-        "game_id": "-",
-        "product_code": "-",
+        "game_id": "AWDP",
+        "product_code": "WUP-P-AWDP",
         "company_code": "-",
         "notes": "",
         "versions": "v0",
@@ -3437,7 +3437,7 @@
         "product_code": "WUP-N-JA2J",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -3492,7 +3492,7 @@
         "product_code": "WUP-P-ABHP",
         "company_code": "0008",
         "notes": "",
-        "versions": "v0",
+        "versions": "v0, v1",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -3668,7 +3668,7 @@
         "product_code": "WUP-P-ABHE",
         "company_code": "0008",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -3690,7 +3690,7 @@
         "product_code": "WUP-P-WHXJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v144",
+        "versions": "v0, v16, v32, v48, v64, v80, v97, v114, v128, v144",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -3752,14 +3752,14 @@
     },
     "00050000-1012DA00": {
         "game_title": "Fast & Furious\u2122: Showdown",
-        "game_id": "-",
-        "product_code": "-",
-        "company_code": "-",
+        "game_id": "AF6P52",
+        "product_code": "WUP-P-AF6P",
+        "company_code": "0052",
         "notes": "",
         "versions": "v0",
         "region": "EUR",
         "cdn_available": "No TMD",
-        "wiki_has_game_id_redirect": false
+        "wiki_has_game_id_redirect": true
     },
     "00050000-1012DC00": {
         "game_title": "The Wonderful 101",
@@ -3954,7 +3954,7 @@
         "product_code": "WUP-P-AWSJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v0",
+        "versions": "v0, v96",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -4141,7 +4141,7 @@
         "product_code": "WUP-N-JA6J",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -4416,7 +4416,7 @@
         "product_code": "WUP-P-ASEJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -4438,7 +4438,7 @@
         "product_code": "WUP-P-AYCJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v32",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -4449,7 +4449,7 @@
         "product_code": "WUP-P-WHXE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v144",
+        "versions": "v0, v16, v32, v48, v64, v96, v112, v128, v144",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -4460,7 +4460,7 @@
         "product_code": "WUP-P-WHXP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v144",
+        "versions": "v0, v16, v32, v48, v64, v96, v112, v128, v144",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -4592,7 +4592,7 @@
         "product_code": "WUP-P-WLYP",
         "company_code": "0008",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -4669,7 +4669,7 @@
         "product_code": "WUP-P-WLYE",
         "company_code": "0008",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -4720,9 +4720,9 @@
     },
     "00050000-10133B00": {
         "game_title": "Sniper Elite V2",
-        "game_id": "-",
-        "product_code": "-",
-        "company_code": "-",
+        "game_id": "AS8PGT",
+        "product_code": "WUP-P-AS8P",
+        "company_code": "00GT",
         "notes": "",
         "versions": "v0",
         "region": "EUR",
@@ -4874,9 +4874,9 @@
     },
     "00050000-10134E00": {
         "game_title": "Sniper Elite V2",
-        "game_id": "AS8E",
+        "game_id": "AS8EGT",
         "product_code": "WUP-P-AS8E",
-        "company_code": "-",
+        "company_code": "00GT",
         "notes": "",
         "versions": "v1",
         "region": "USA",
@@ -4889,7 +4889,7 @@
         "product_code": "WUP-P-WABE",
         "company_code": "00JX",
         "notes": "",
-        "versions": "v16",
+        "versions": "v2, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -4999,7 +4999,7 @@
         "product_code": "WUP-N-HNBJ",
         "company_code": "00AF",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -5044,7 +5044,7 @@
         "company_code": "00AF",
         "notes": "",
         "versions": "v0",
-        "region": "EUR",
+        "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -5106,22 +5106,22 @@
     "00050000-10136F00": {
         "game_title": "Disney Infinity",
         "game_id": "ADSP4Q",
-        "product_code": "WUP-U-ADSP",
+        "product_code": "WUP-P-ADSP",
         "company_code": "004Q",
         "notes": "",
-        "versions": "v49",
-        "region": "EUR",
+        "versions": "v0, v49",
+        "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": true
     },
     "00050000-10137000": {
         "game_title": "Disney Infinity",
         "game_id": "ADSZ4Q",
-        "product_code": "WUP-U-ADSZ",
+        "product_code": "WUP-P-ADSZ",
         "company_code": "004Q",
         "notes": "",
-        "versions": "v49",
-        "region": "EUR",
+        "versions": "v0, v49",
+        "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": true
     },
@@ -5395,7 +5395,7 @@
         "product_code": "WUP-P-ADNJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -5489,12 +5489,12 @@
         "wiki_has_game_id_redirect": true
     },
     "00050000-10140300": {
-        "game_title": "Hunter's Trophy 2: Europa",
-        "game_id": "",
-        "product_code": "",
-        "company_code": "",
+        "game_title": "Hunter's Trophy 2 - Europa",
+        "game_id": "AH5PNK",
+        "product_code": "WUP-P-AH5P",
+        "company_code": "00NK",
         "notes": "",
-        "versions": "",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -5524,7 +5524,7 @@
     "00050000-10140600": {
         "game_title": "\u9280\u661f\u5c06\u68cb \u5f37\u5929\u6012\u95d8\u98a8\u96f7\u795e (Ginsei Shogi: Kyoutendo Toufuu Raijin)",
         "game_id": "AGZJME",
-        "product_code": "WUP-N-AGZJ",
+        "product_code": "WUP-P-AGZJ",
         "company_code": "00ME",
         "notes": "",
         "versions": "v3",
@@ -5544,9 +5544,9 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10140800": {
-        "game_title": "ARC STYLE\uff1a \u91ce\u7403\uff01\uff01SP (ARC STYLE: \u91ce\u7403!!SP)",
+        "game_title": "ARC STYLE\uff1a \u91ce\u7403\uff01\uff01SP (ARC STYLE\uff1a BASEBALL!!SP)",
         "game_id": "WBSJJF",
-        "product_code": "WUP-N-WBSJ",
+        "product_code": "WUP-P-WBSJ",
         "company_code": "00JF",
         "notes": "",
         "versions": "v0",
@@ -5843,7 +5843,7 @@
     "00050000-10142A00": {
         "game_title": "Zumba Fitness World Party",
         "game_id": "AZBE5G",
-        "product_code": "WUP-N-AZBE",
+        "product_code": "WUP-P-AZBE",
         "company_code": "005G",
         "notes": "",
         "versions": "v0",
@@ -5874,7 +5874,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10142D00": {
-        "game_title": "\u30b9\u30ab\u30a4\u30e9\u30f3\u30c0\u30fc\u30ba \u30b9\u30d1\u30a4\u30ed\u306e\u5927\u5192\u967a",
+        "game_title": "\u30b9\u30ab\u30a4\u30e9\u30f3\u30c0\u30fc\u30ba \u30b9\u30d1\u30a4\u30ed\u306e\u5927\u5192\u967a (Skylanders: Spyro's Adventure)",
         "game_id": "AS7J",
         "product_code": "WUP-P-AS7J",
         "company_code": "",
@@ -5896,15 +5896,15 @@
         "wiki_has_game_id_redirect": true
     },
     "00050000-10143200": {
-        "game_title": "Cabela's\u00ae Big Game Hunter\u00ae Pro Hunts",
-        "game_id": "ACEE",
+        "game_title": "Cabela's Big Game Hunter: Pro Hunts",
+        "game_id": "ACEE52",
         "product_code": "WUP-P-ACEE",
-        "company_code": "-",
+        "company_code": "0052",
         "notes": "",
         "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
-        "wiki_has_game_id_redirect": false
+        "wiki_has_game_id_redirect": true
     },
     "00050000-10143300": {
         "game_title": "Hot Wheels\u2122 World\u2019s Best Driver\u2122",
@@ -6011,7 +6011,7 @@
         "product_code": "WUP-P-AWSE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v0",
+        "versions": "v0, v96",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -6022,7 +6022,7 @@
         "product_code": "WUP-P-AWSP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v0",
+        "versions": "v0, v96",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -6033,7 +6033,7 @@
         "product_code": "WUP-P-AXFE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -6044,7 +6044,7 @@
         "product_code": "WUP-P-AXFP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -6100,7 +6100,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "all",
+        "region": "EUR/JAP/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -6132,7 +6132,7 @@
         "product_code": "WUP-P-WC9P",
         "company_code": "00CY",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -6242,7 +6242,7 @@
         "product_code": "WUP-P-ACPE",
         "company_code": "0052",
         "notes": "",
-        "versions": "v112",
+        "versions": "v0, v112",
         "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": true
@@ -6320,7 +6320,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -6484,7 +6484,7 @@
         "product_code": "WUP-P-WABP",
         "company_code": "00JX",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -6495,7 +6495,7 @@
         "product_code": "WUP-P-WKTE",
         "company_code": "00CS",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -6506,13 +6506,13 @@
         "product_code": "WUP-N-WAHP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v48",
+        "versions": "v0, v16, v32, v48",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
     "00050000-10149700": {
-        "game_title": "\u5f79\u6e80 \u9cf3\u51f0 (Yakuman Houou)",
+        "game_title": "\u5f79\u6e80 \u9cf3\u51f0 (Yakuman Houou Mahjong)",
         "game_id": "WAUJ01",
         "product_code": "WUP-P-WAUJ",
         "company_code": "0001",
@@ -6968,7 +6968,7 @@
         "product_code": "WUP-P-WKTP",
         "company_code": "00CS",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -7012,7 +7012,7 @@
         "product_code": "WUP-P-APTJ",
         "company_code": "008P",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -7108,10 +7108,10 @@
     "00050000-1014E300": {
         "game_title": "Zumba Fitness World Party",
         "game_id": "AZBPGT",
-        "product_code": "WUP-U-AZBP",
+        "product_code": "WUP-P-AZBP",
         "company_code": "00GT",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -7771,7 +7771,7 @@
         "product_code": "WUP-N-HNSP",
         "company_code": "006H",
         "notes": "",
-        "versions": "v33",
+        "versions": "v0, v33",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -7854,7 +7854,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10155F00": {
-        "game_title": "\u30c9\u30e9\u30b4\u30f3\u30af\u30a8\u30b9\u30c8\u2169 \u7720\u308c\u308b\u52c7\u8005\u3068\u5c0e\u304d\u306e\u76df\u53cb \u30aa\u30f3\u30e9\u30a4\u30f3",
+        "game_title": "\u30c9\u30e9\u30b4\u30f3\u30af\u30a8\u30b9\u30c8\u2169 \u7720\u308c\u308b\u52c7\u8005\u3068\u5c0e\u304d\u306e\u76df\u53cb \u30aa\u30f3\u30e9\u30a4\u30f3 (Dragon Quest X The Sleeping Hero and the Guided Allies)",
         "game_id": "ANYJ",
         "product_code": "WUP-P-ANYJ",
         "company_code": "",
@@ -7925,7 +7925,7 @@
         "product_code": "WUP-N-PAAE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -7958,7 +7958,7 @@
         "product_code": "WUP-N-PABE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -7991,7 +7991,7 @@
         "product_code": "WUP-N-PACE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -8002,7 +8002,7 @@
         "product_code": "WUP-N-PACP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -8024,7 +8024,7 @@
         "product_code": "WUP-N-PADE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -8057,7 +8057,7 @@
         "product_code": "WUP-N-PAEE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -8079,7 +8079,7 @@
         "product_code": "WUP-P-ACPI",
         "company_code": "0052",
         "notes": "Spanish, Italian",
-        "versions": "v112",
+        "versions": "v1, v112",
         "region": "EUR",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": true
@@ -8096,12 +8096,12 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10157900": {
-        "game_title": "\u30b3\u30fc\u30eb \u30aa\u30d6 \u30c7\u30e5\u30fc\u30c6\u30a3 \u30b4\u30fc\u30b9\u30c8",
+        "game_title": "\u30b3\u30fc\u30eb \u30aa\u30d6 \u30c7\u30e5\u30fc\u30c6\u30a3 \u30b4\u30fc\u30b9\u30c8 (Call of Duty\u00ae: Ghosts)",
         "game_id": "ACPJGD",
         "product_code": "WUP-P-ACPJ",
         "company_code": "00GD",
         "notes": "",
-        "versions": "v112",
+        "versions": "v0, v112",
         "region": "JPN",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -8200,7 +8200,7 @@
         "product_code": "WUP-N-FCAJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -8426,13 +8426,13 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-1015A300": {
-        "game_title": "\u30c7\u30a3\u30ba\u30cb\u30fc\u30a4\u30f3\u30d5\u30a3\u30cb\u30c6\u30a3",
+        "game_title": "\u30c7\u30a3\u30ba\u30cb\u30fc\u30a4\u30f3\u30d5\u30a3\u30cb\u30c6\u30a3 (Disney INFINITY)",
         "game_id": "ADSJAF",
         "product_code": "WUP-P-ADSJ",
         "company_code": "00AF",
         "notes": "",
-        "versions": "v17",
-        "region": "JPN",
+        "versions": "v0, v17",
+        "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": true
     },
@@ -8472,7 +8472,7 @@
     "00050000-1015B500": {
         "game_title": "\u30b0\u30e9\u30c7\u30a3\u30a6\u30b9 (GRADIUS)",
         "game_id": "PNAJJ8",
-        "product_code": "WUP-P-PNAJ",
+        "product_code": "WUP-N-PNAJ",
         "company_code": "00J8",
         "notes": "",
         "versions": "v0",
@@ -8486,7 +8486,7 @@
         "product_code": "WUP-N-PNBJ",
         "company_code": "00J8",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -8860,7 +8860,7 @@
         "product_code": "WUP-N-PAGE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -8959,7 +8959,7 @@
         "product_code": "WUP-N-PAKE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -9000,7 +9000,7 @@
     "00050000-1015ED00": {
         "game_title": "@SIMPLE DL\u30b7\u30ea\u30fc\u30ba for Wii U Vol.2 THE \u5bc6\u5ba4\u304b\u3089\u306e\u8131\u51fa\uff12 (@SIMPLE DLseries for Wii U Vol.2 THE Escape Trick2)",
         "game_id": "WE2JG9",
-        "product_code": "WUP-N-WE2J",
+        "product_code": "WUP-P-WE2J",
         "company_code": "00G9",
         "notes": "",
         "versions": "v4",
@@ -9476,7 +9476,7 @@
         "product_code": "WUP-P-WGDP",
         "company_code": "00AV",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -9487,7 +9487,7 @@
         "product_code": "WUP-P-ABAJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -9498,7 +9498,7 @@
         "product_code": "WUP-P-WMPP",
         "company_code": "00AW",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v2, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -9586,7 +9586,7 @@
         "product_code": "WUP-P-AGMJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -9597,7 +9597,7 @@
         "product_code": "WUP-P-ABAE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -10837,7 +10837,7 @@
     "00050000-1016A600": {
         "game_title": "\u308f\u3044\u308f\u3044\uff01\u307f\u3093\u306a\u3067\u30c1\u30e3\u30ec\u30f3\u30b8 (Spin the Bottle: Bumpie's Party)",
         "game_id": "WB6JTF",
-        "product_code": "WUP-N-WB6J",
+        "product_code": "WUP-P-WB6J",
         "company_code": "00TF",
         "notes": "",
         "versions": "v0",
@@ -11363,7 +11363,7 @@
         "wiki_has_game_id_redirect": true
     },
     "00050000-1016DD00": {
-        "game_title": "Mon Premier Karaok\u00e9",
+        "game_title": "Mon Premier Karaok\u00e9 (My First Songs)",
         "game_id": "WMKE7Y",
         "product_code": "WUP-P-WMKE",
         "company_code": "007Y",
@@ -11390,7 +11390,7 @@
         "product_code": "WUP-P-WBME",
         "company_code": "00WR",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -11423,7 +11423,7 @@
         "product_code": "WUP-P-WEXP",
         "company_code": "009X",
         "notes": "",
-        "versions": "v32",
+        "versions": "v1, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -11445,7 +11445,7 @@
         "product_code": "WUP-P-WBUE",
         "company_code": "008U",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -11456,7 +11456,7 @@
         "product_code": "WUP-P-WLSE",
         "company_code": "008V",
         "notes": "",
-        "versions": "v48",
+        "versions": "v1, v16, v33, v48",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -11467,7 +11467,7 @@
         "product_code": "WUP-P-WCQE",
         "company_code": "00UP",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -11643,7 +11643,7 @@
         "product_code": "WUP-P-WMTE",
         "company_code": "00ZR",
         "notes": "",
-        "versions": "v18",
+        "versions": "v1, v18",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -11676,7 +11676,7 @@
         "product_code": "WUP-P-WFWE",
         "company_code": "00NT",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -11687,7 +11687,7 @@
         "product_code": "WUP-P-WMPE",
         "company_code": "00AW",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -11709,7 +11709,7 @@
         "product_code": "WUP-P-WEXE",
         "company_code": "009X",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -11717,10 +11717,10 @@
     "00050000-10170600": {
         "game_title": "KAMEN RIDER BATTRIDE WAR \u2161PREMIUM TV&MOVIE SOUND ED.",
         "game_id": "APWJAF",
-        "product_code": "WUP-U-APWJ",
+        "product_code": "WUP-P-APWJ",
         "company_code": "00AF",
         "notes": "",
-        "versions": "v16",
+        "versions": "v3",
         "region": "JPN",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -11781,7 +11781,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10170C00": {
-        "game_title": "OUBLE DRAGON II: The Revenge",
+        "game_title": "DOUBLE DRAGON II: The Revenge",
         "game_id": "FC8E01",
         "product_code": "WUP-N-FC8E",
         "company_code": "0001",
@@ -11792,7 +11792,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10170D00": {
-        "game_title": "OUBLE DRAGON II: The Revenge",
+        "game_title": "DOUBLE DRAGON II: The Revenge",
         "game_id": "FC8P01",
         "product_code": "WUP-N-FC8P",
         "company_code": "0001",
@@ -12039,7 +12039,7 @@
         "product_code": "WUP-P-WMTP",
         "company_code": "00ZR",
         "notes": "",
-        "versions": "v17",
+        "versions": "v1, v17",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -12138,7 +12138,7 @@
         "product_code": "WUP-P-WEUP",
         "company_code": "00UC",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -12501,7 +12501,7 @@
         "product_code": "WUP-P-WM3E",
         "company_code": "00UE",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -12512,7 +12512,7 @@
         "product_code": "WUP-P-WEUE",
         "company_code": "00UC",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -12589,7 +12589,7 @@
         "product_code": "WUP-P-AUNP",
         "company_code": "00AF",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -12655,7 +12655,7 @@
         "product_code": "WUP-P-WLFJ",
         "company_code": "00V3",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -12666,7 +12666,7 @@
         "product_code": "WUP-P-WD9E",
         "company_code": "00V3",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -12721,7 +12721,7 @@
         "product_code": "WUP-P-AGME",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -12743,7 +12743,7 @@
         "product_code": "WUP-P-WM9E",
         "company_code": "00NV",
         "notes": "",
-        "versions": "v50",
+        "versions": "v0, v32, v50",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -12782,7 +12782,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10176F00": {
-        "game_title": "UST DANCE\u00ae 2015",
+        "game_title": "JUST DANCE\u00ae 2015",
         "game_id": "BJDP41",
         "product_code": "WUP-P-BJDP",
         "company_code": "0041",
@@ -12809,7 +12809,7 @@
         "product_code": "WUP-P-WCUE",
         "company_code": "00EB",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -12848,12 +12848,12 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10177600": {
-        "game_title": "Devil\u2019s Third",
+        "game_title": "Devil's Third",
         "game_id": "ADNE01",
         "product_code": "WUP-P-ADNE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -13136,7 +13136,7 @@
     "00050000-10179200": {
         "game_title": "\u30de\u30ea\u30aavs.\u30c9\u30f3\u30ad\u30fc\u30b3\u30f3\u30b0 \u307f\u3093\u306a\u3067\u30df\u30cb\u30e9\u30f3\u30c9 (Mario vs. Donkey Kong Tipping Stars)",
         "game_id": "WAFJ01",
-        "product_code": "WUP-N-WAFJ",
+        "product_code": "WUP-P-WAFJ",
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
@@ -13172,7 +13172,7 @@
         "product_code": "WUP-P-WFPE",
         "company_code": "00VA",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13216,7 +13216,7 @@
         "product_code": "WUP-N-DAAJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13224,7 +13224,7 @@
     "00050000-10179B00": {
         "game_title": "Brain Age: Train Your Brain in Minutes a Day",
         "game_id": "DAAE01",
-        "product_code": "WUP-P-DAAE",
+        "product_code": "WUP-N-DAAE",
         "company_code": "0001",
         "notes": "",
         "versions": "v16",
@@ -13235,10 +13235,10 @@
     "00050000-10179C00": {
         "game_title": "Dr Kawashima's Brain Training How Old Is Your Brain?",
         "game_id": "DAAP01",
-        "product_code": "WUP-P-DAAP",
+        "product_code": "WUP-N-DAAP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13271,7 +13271,7 @@
         "product_code": "WUP-N-DABP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13425,7 +13425,7 @@
         "product_code": "WUP-P-WK2E",
         "company_code": "00W0",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13436,7 +13436,7 @@
         "product_code": "WUP-P-WCJE",
         "company_code": "00VB",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13469,7 +13469,7 @@
         "product_code": "WUP-P-WKLE",
         "company_code": "00WH",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13568,7 +13568,7 @@
         "product_code": "WUP-P-BXAJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v48",
+        "versions": "v32, v48",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13579,7 +13579,7 @@
         "product_code": "WUP-P-BXAE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13612,7 +13612,7 @@
         "product_code": "WUP-P-BK7E",
         "company_code": "0052",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13678,7 +13678,7 @@
         "product_code": "WUP-P-BWPJ",
         "company_code": "00C8",
         "notes": "",
-        "versions": "v19",
+        "versions": "v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13788,7 +13788,7 @@
         "product_code": "WUP-P-BWPE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v48",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -13799,7 +13799,7 @@
         "product_code": "WUP-P-BWPP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v48",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -13810,7 +13810,7 @@
         "product_code": "WUP-P-ACQE",
         "company_code": "011S",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13821,7 +13821,7 @@
         "product_code": "WUP-P-WUPE",
         "company_code": "00W6",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13832,7 +13832,7 @@
         "product_code": "WUP-P-WFUE",
         "company_code": "00W7",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13854,7 +13854,7 @@
         "product_code": "WUP-P-WSFP",
         "company_code": "0103",
         "notes": "",
-        "versions": "v33",
+        "versions": "v0, v16, v33",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -13877,7 +13877,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "EUR",
+        "region": "EUR/JAP/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -13931,7 +13931,7 @@
         "product_code": "WUP-P-WSPE",
         "company_code": "00W8",
         "notes": "",
-        "versions": "v49",
+        "versions": "v0, v17, v32, v49",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14140,7 +14140,7 @@
         "product_code": "WUP-N-JCYJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14250,7 +14250,7 @@
         "product_code": "WUP-P-WCUP",
         "company_code": "00EB",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14327,7 +14327,7 @@
         "product_code": "WUP-P-ATLE",
         "company_code": "010E",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v17, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14415,7 +14415,7 @@
         "product_code": "WUP-P-WFUP",
         "company_code": "00W7",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v17, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14481,7 +14481,7 @@
         "product_code": "WUP-P-AGCE",
         "company_code": "010M",
         "notes": "",
-        "versions": "v48",
+        "versions": "v0, v16, v32, v48",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14503,7 +14503,7 @@
         "product_code": "WUP-P-ARNE",
         "company_code": "010P",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14533,7 +14533,7 @@
     "00050000-10183400": {
         "game_title": "U Host",
         "game_id": "AUHEV9",
-        "product_code": "WUP-N-AUHE",
+        "product_code": "WUP-P-AUHE",
         "company_code": "00V9",
         "notes": "",
         "versions": "v2",
@@ -14547,7 +14547,7 @@
         "product_code": "WUP-N-PBHJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14591,7 +14591,7 @@
         "product_code": "WUP-N-ACDJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v1, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14701,7 +14701,7 @@
         "product_code": "WUP-P-AYCE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -14723,7 +14723,7 @@
         "product_code": "WUP-P-BXBJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -14800,7 +14800,7 @@
         "product_code": "WUP-N-BGSS",
         "company_code": "010V",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -15009,7 +15009,7 @@
         "product_code": "WUP-P-WGAP",
         "company_code": "007Z",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -15108,7 +15108,7 @@
         "product_code": "WUP-N-PBPZ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -15185,7 +15185,7 @@
         "product_code": "WUP-P-AXYJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -15241,7 +15241,7 @@
         "company_code": "011C",
         "notes": "",
         "versions": "v0",
-        "region": "EUR",
+        "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -15251,7 +15251,7 @@
         "product_code": "WUP-P-BTFE",
         "company_code": "011D",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -15262,8 +15262,8 @@
         "product_code": "WUP-P-BCFA",
         "company_code": "0002",
         "notes": "CaffeineTestTool_For_Prod.rpx",
-        "versions": "v0, v0002",
-        "region": "all",
+        "versions": "v0, v1, v2",
+        "region": "EUR/JAP/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -15284,7 +15284,7 @@
         "product_code": "WUP-P-BTYE",
         "company_code": "011H",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -15339,7 +15339,7 @@
         "product_code": "WUP-P-BPTE",
         "company_code": "018G",
         "notes": "",
-        "versions": "v32",
+        "versions": "v1, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -15350,7 +15350,7 @@
         "product_code": "WUP-P-WGDE",
         "company_code": "00AV",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -15416,7 +15416,7 @@
         "product_code": "WUP-P-AFSE",
         "company_code": "00YV",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -15801,7 +15801,7 @@
         "product_code": "WUP-P-AMAJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -15812,7 +15812,7 @@
         "product_code": "WUP-P-AMAE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -15967,7 +15967,7 @@
         "company_code": "00NK",
         "notes": "",
         "versions": "v0",
-        "region": "EUR",
+        "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -16071,7 +16071,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-1018FD00": {
-        "game_title": "Penguins",
+        "game_title": "Penguins of Madagascar",
         "game_id": "APGEVZ",
         "product_code": "WUP-P-APGE",
         "company_code": "00VZ",
@@ -16087,7 +16087,7 @@
         "product_code": "WUP-N-BPLP",
         "company_code": "0127",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -16131,7 +16131,7 @@
         "product_code": "WUP-P-ABJJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v48",
+        "versions": "v32, v48",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -16142,7 +16142,7 @@
         "product_code": "WUP-P-ARHE",
         "company_code": "012F",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -16307,7 +16307,7 @@
         "product_code": "WUP-P-WAEP",
         "company_code": "00UP",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -16346,12 +16346,12 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10192200": {
-        "game_title": "\u4eee\u9762\u30e9\u30a4\u30c0\u30fc \u30b5\u30e2\u30f3\u30e9\u30a4\u30c9!",
+        "game_title": "\u4eee\u9762\u30e9\u30a4\u30c0\u30fc\u3000\u30b5\u30e2\u30f3\u30e9\u30a4\u30c9\uff01 (KAMEN RIDER SUMMON RIDE!)",
         "game_id": "BRSJAF",
         "product_code": "WUP-P-BRSJ",
         "company_code": "00AF",
         "notes": "",
-        "versions": "v18",
+        "versions": "v1",
         "region": "JPN",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -16566,7 +16566,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10193F00": {
-        "game_title": "Penguins",
+        "game_title": "Penguins of Madagascar",
         "game_id": "APGPVZ",
         "product_code": "WUP-P-APGP",
         "company_code": "00VZ",
@@ -16582,7 +16582,7 @@
         "product_code": "WUP-P-BFBE",
         "company_code": "011Y",
         "notes": "Removed from eShop on 2015-03-03 due to [https://web.archive.org/web/20190730102410/https://old.reddit.com/r/nintendo/comments/2xwbqw/regarding_meme_run_and_why_i_had_it_pulled_from/ copyright infringement]",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -16590,10 +16590,10 @@
     "00050000-10194200": {
         "game_title": "LEGO\u00ae Dimensions\u2122",
         "game_id": "APZEWR",
-        "product_code": "WUP-N-APZE",
+        "product_code": "WUP-P-APZE",
         "company_code": "00WR",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -16821,10 +16821,10 @@
     "00050000-10195D00": {
         "game_title": "LEGO\u00ae DIMENSIONS\u2122",
         "game_id": "APZPWR",
-        "product_code": "WUP-U-APZP",
+        "product_code": "WUP-P-APZP",
         "company_code": "00WR",
         "notes": "",
-        "versions": "v32",
+        "versions": "v16",
         "region": "EUR",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -16846,7 +16846,7 @@
         "product_code": "WUP-P-ARUE",
         "company_code": "012S",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -16989,7 +16989,7 @@
         "product_code": "WUP-P-BESE",
         "company_code": "012Y",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -17121,7 +17121,7 @@
         "product_code": "WUP-N-AWUE",
         "company_code": "0130",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -17209,7 +17209,7 @@
         "product_code": "WUP-P-AVXJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -17265,7 +17265,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -17440,7 +17440,7 @@
         "product_code": "WUP-P-WLKE",
         "company_code": "00JX",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -17536,10 +17536,10 @@
     "00050000-1019C300": {
         "game_title": "Terraria",
         "game_id": "BTXEGT",
-        "product_code": "WUP-N-BTXE",
+        "product_code": "WUP-P-BTXE",
         "company_code": "00GT",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -17550,7 +17550,7 @@
         "product_code": "WUP-P-AZAJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v82",
+        "versions": "v64, v82",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -17858,7 +17858,7 @@
         "product_code": "WUP-P-AZAE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v81",
+        "versions": "v64, v81",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -18150,11 +18150,11 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-101A0800": {
-        "game_title": "\u30b9\u30fc\u30d1\u30fc\u30de\u30ea\u30aa\u30b3\u30ec\u30af\u30b7\u30e7\u30f3 (??)",
-        "game_id": "ars)01",
-        "product_code": "doesthisexist??(SuperMarioAll-Stars)",
+        "game_title": "\u30b9\u30fc\u30d1\u30fc\u30de\u30ea\u30aa\u30b3\u30ec\u30af\u30b7\u30e7\u30f3 (???)",
+        "game_id": "01",
+        "product_code": "",
         "company_code": "0001",
-        "notes": "",
+        "notes": "does this exist?? (Super Mario All-Stars)",
         "versions": "v0",
         "region": "JPN",
         "cdn_available": "No TMD",
@@ -18200,7 +18200,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -18222,7 +18222,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -18232,7 +18232,7 @@
         "product_code": "WUP-P-AFSP",
         "company_code": "00YV",
         "notes": "",
-        "versions": "v18",
+        "versions": "v0, v18",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -18243,7 +18243,7 @@
         "product_code": "WUP-P-WM3P",
         "company_code": "00UE",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -18386,7 +18386,7 @@
         "product_code": "WUP-P-WDSJ",
         "company_code": "00W4",
         "notes": "",
-        "versions": "v0",
+        "versions": "v2",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -18394,7 +18394,7 @@
     "00050000-101A2600": {
         "game_title": "\u30ab\u30f3\u30d5\u30fc\u30e9\u30d3\u30c3\u30c8 (Kung Fu Rabbit)",
         "game_id": "WKFJW4",
-        "product_code": "WUP-N-WKFJ",
+        "product_code": "WUP-P-WKFJ",
         "company_code": "00W4",
         "notes": "",
         "versions": "v1",
@@ -18430,7 +18430,7 @@
         "product_code": "WUP-P-WLKP",
         "company_code": "00JX",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -18529,7 +18529,7 @@
         "product_code": "WUP-P-AVXE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -18595,7 +18595,7 @@
         "product_code": "WUP-P-BRXE",
         "company_code": "00NV",
         "notes": "",
-        "versions": "v32",
+        "versions": "v1, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -18606,7 +18606,7 @@
         "product_code": "WUP-P-BDFE",
         "company_code": "00W9",
         "notes": "",
-        "versions": "v32",
+        "versions": "v4, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -18725,7 +18725,7 @@
         "game_title": "Cube Life: Pixel Action Heroes",
         "game_id": "BZPEYR",
         "product_code": "WUP-P-BZPE",
-        "company_code": "00YR",
+        "company_code": "0YR",
         "notes": "",
         "versions": "v2",
         "region": "USA",
@@ -18816,7 +18816,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -18838,7 +18838,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -19145,7 +19145,7 @@
         "product_code": "WUP-P-AUWE",
         "company_code": "011H",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -19178,7 +19178,7 @@
         "product_code": "WUP-P-AJBE",
         "company_code": "010E",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -19222,7 +19222,7 @@
         "product_code": "WUP-N-BR9J",
         "company_code": "014L",
         "notes": "",
-        "versions": "v209",
+        "versions": "v2, v17, v32, v48, v64, v81, v96, v112, v128, v144, v160, v176, v192, v209",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -19289,7 +19289,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -19306,8 +19306,8 @@
     },
     "00050000-101A9A00": {
         "game_title": "\u30b7\u30e3\u30a4\u30cb\u30f3\u30b0\u30fb\u30d5\u30a9\u30fc\u30b9 \u9ed2\u304d\u7adc\u306e\u5fa9\u6d3b (Shining Force)",
-        "game_id": "000101",
-        "product_code": "0001",
+        "game_id": "PCMJ01",
+        "product_code": "WUP-N-PCMJ",
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
@@ -19365,7 +19365,7 @@
         "product_code": "WUP-P-BPPE",
         "company_code": "014J",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -19387,7 +19387,7 @@
         "product_code": "WUP-P-ASKE",
         "company_code": "00W8",
         "notes": "",
-        "versions": "v16",
+        "versions": "v2, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -19409,7 +19409,7 @@
         "product_code": "WUP-P-ARHP",
         "company_code": "012F",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -19453,7 +19453,7 @@
         "product_code": "WUP-P-AXYE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -19542,7 +19542,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -19564,7 +19564,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -19607,7 +19607,7 @@
         "product_code": "WUP-P-BPYE",
         "company_code": "014U",
         "notes": "",
-        "versions": "v16",
+        "versions": "v2, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -19860,7 +19860,7 @@
         "product_code": "WUP-P-WSPP",
         "company_code": "00W8",
         "notes": "",
-        "versions": "v48",
+        "versions": "v0, v16, v32, v48",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -19937,7 +19937,7 @@
         "product_code": "WUP-P-AFXJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -19959,7 +19959,7 @@
         "product_code": "WUP-P-BFSE",
         "company_code": "00UP",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -19981,7 +19981,7 @@
         "product_code": "WUP-P-AFXE",
         "company_code": "0001",
         "notes": "",
-        "versions": "1v6",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -20361,7 +20361,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-101B3400": {
-        "game_title": "\u30c9\u30e9\u30b4\u30f3\u30af\u30a8\u30b9\u30c8\u2169 \u3044\u306b\u3057\u3048\u306e\u7adc\u306e\u4f1d\u627f \u30aa\u30f3\u30e9\u30a4\u30f3",
+        "game_title": "\u30c9\u30e9\u30b4\u30f3\u30af\u30a8\u30b9\u30c8\u2169 \u3044\u306b\u3057\u3048\u306e\u7adc\u306e\u4f1d\u627f \u30aa\u30f3\u30e9\u30a4\u30f3 (Dragon Quest X Lore of the Ancient Dragon)",
         "game_id": "BDLJ",
         "product_code": "WUP-P-BDLJ",
         "company_code": "",
@@ -20473,7 +20473,7 @@
     "00050000-101B4100": {
         "game_title": "\u30bf\u30c3\u30c1!amiibo \u3044\u304d\u306a\u308a\u30d5\u30a1\u30df\u30b3\u30f3\u540d\u30b7\u30fc\u30f3 (amiibo tap Nintendo's Greatest Bits)",
         "game_id": "AAVJ01",
-        "product_code": "WUP-N-AAVJ",
+        "product_code": "WUP-P-AAVJ",
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
@@ -20532,7 +20532,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -20554,7 +20554,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -20575,7 +20575,7 @@
         "product_code": "WUP-P-BFSP",
         "company_code": "00UP",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -20739,7 +20739,7 @@
         "game_id": "ATYP8U",
         "product_code": "WUP-P-ATYP",
         "company_code": "008U",
-        "notes": "",
+        "notes": "Collection of 'Poker Dice Solitaire Future', 'Shut the Box' and 'Toss N Go'",
         "versions": "v0",
         "region": "EUR",
         "cdn_available": "Yes",
@@ -20916,7 +20916,7 @@
         "product_code": "WUP-N-DARP",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -20960,7 +20960,7 @@
         "product_code": "WUP-P-ASJE",
         "company_code": "013T",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -20971,7 +20971,7 @@
         "product_code": "WUP-P-ASKP",
         "company_code": "00W9",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -21081,7 +21081,7 @@
         "product_code": "WUP-P-AGNE",
         "company_code": "0052",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": true
@@ -21181,7 +21181,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -21268,7 +21268,7 @@
         "product_code": "WUP-P-BS6E",
         "company_code": "015U",
         "notes": "",
-        "versions": "v32",
+        "versions": "v2, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -21323,7 +21323,7 @@
         "product_code": "WUP-P-BS4E",
         "company_code": "015V",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -21367,7 +21367,7 @@
         "product_code": "WUP-P-AGNP",
         "company_code": "0052",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": true
@@ -22203,7 +22203,7 @@
         "product_code": "WUP-P-APQP",
         "company_code": "015S",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -22357,7 +22357,7 @@
         "product_code": "WUP-P-AX5E",
         "company_code": "0001",
         "notes": "",
-        "versions": "v00016",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -22379,7 +22379,7 @@
         "product_code": "WUP-P-AWPE",
         "company_code": "015G",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -22418,9 +22418,9 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-101C5900": {
-        "game_title": "\u30b5\u30a4\u30b3\u30ed\u306e\u68ee 3-in-1 (Dice Forest 3-in-1)",
+        "game_title": "\u30b5\u30a4\u30b3\u30ed\u306e\u68ee 3-in-1 (Tabletop Gallery)",
         "game_id": "ATYJTF",
-        "product_code": "WUP-N-ATYJ",
+        "product_code": "WUP-P-ATYJ",
         "company_code": "00TF",
         "notes": "",
         "versions": "v0",
@@ -22445,7 +22445,7 @@
         "product_code": "WUP-P-AFHP",
         "company_code": "00KM",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -22468,7 +22468,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -22489,7 +22489,7 @@
         "product_code": "WUP-P-AHSP",
         "company_code": "016G",
         "notes": "",
-        "versions": "v48",
+        "versions": "v0, v16, v32, v48",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -22539,18 +22539,18 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-101C6400": {
-        "game_title": "Animal Crossing amiibo Festival",
-        "game_id": "AALE",
+        "game_title": "Animal Crossing: amiibo Festival",
+        "game_id": "AALE01",
         "product_code": "WUP-P-AALE",
-        "company_code": "",
+        "company_code": "0001",
         "notes": "",
-        "versions": "v",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
-        "wiki_has_game_id_redirect": false
+        "wiki_has_game_id_redirect": true
     },
     "00050000-101C6500": {
-        "game_title": "Animal Crossing: amiibo festival",
+        "game_title": "Animal Crossing: amiibo Festival",
         "game_id": "AALP01",
         "product_code": "WUP-P-AALP",
         "company_code": "0001",
@@ -22565,7 +22565,7 @@
         "game_id": "AR2E8U",
         "product_code": "WUP-P-AR2E",
         "company_code": "008U",
-        "notes": "",
+        "notes": "Collection of 'Poker Dice Solitaire Future', 'Shut the Box' and 'Toss N Go'",
         "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
@@ -22599,7 +22599,7 @@
         "product_code": "WUP-P-ATVE",
         "company_code": "016J",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -22654,7 +22654,7 @@
         "product_code": "WUP-P-AMPP",
         "company_code": "0164",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -22671,12 +22671,12 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-101C7B00": {
-        "game_title": "Chronicles of Teddy: Harmony of Exidus",
+        "game_title": "Chronicles of Teddy Harmony of Exidus",
         "game_id": "AF2EXS",
         "product_code": "WUP-P-AF2E",
         "company_code": "00XS",
         "notes": "",
-        "versions": "v00016",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -22803,12 +22803,12 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-101C8900": {
-        "game_title": "\u5996\u602a\u30a6\u30a9\u30c3\u30c1\u30c0\u30f3\u30b9  JUST DANCE\u00ae \u30b9\u30da\u30b7\u30e3\u30eb\u30d0\u30fc\u30b8\u30e7\u30f3",
-        "game_id": "AVAJ",
+        "game_title": "\u5996\u602a\u30a6\u30a9\u30c3\u30c1\u30c0\u30f3\u30b9 JUST DANCE\u30b9\u30da\u30b7\u30e3\u30eb\u30d0\u30fc\u30b8\u30e7\u30f3 (Yo-kai Watch Dance: Just Dance Special Version)",
+        "game_id": "AVAJHF",
         "product_code": "WUP-P-AVAJ",
-        "company_code": "",
+        "company_code": "00HF",
         "notes": "",
-        "versions": "",
+        "versions": "v0",
         "region": "JPN",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -22838,7 +22838,7 @@
     "00050000-101C8D00": {
         "game_title": "Monster High New Ghoul in School",
         "game_id": "BMSEVZ",
-        "product_code": "WUP-N-BMSE",
+        "product_code": "WUP-P-BMSE",
         "company_code": "00VZ",
         "notes": "",
         "versions": "v0",
@@ -22893,7 +22893,7 @@
     "00050000-101C9600": {
         "game_title": "Mighty No. 9",
         "game_id": "AMQEJJ",
-        "product_code": "WUP-N-AMQE",
+        "product_code": "WUP-P-AMQE",
         "company_code": "00JJ",
         "notes": "",
         "versions": "v0",
@@ -22951,7 +22951,7 @@
         "product_code": "WUP-P-WM9P",
         "company_code": "00NV",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -22959,7 +22959,7 @@
     "00050000-101CA100": {
         "game_title": "Bigley's Revenge",
         "game_id": "AT3E1Y",
-        "product_code": "WUP-N-AT3E",
+        "product_code": "WUP-P-AT3E",
         "company_code": "011Y",
         "notes": "",
         "versions": "v0",
@@ -22973,7 +22973,7 @@
         "product_code": "WUP-P-ALUE",
         "company_code": "016Z",
         "notes": "",
-        "versions": "v0",
+        "versions": "v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -22984,7 +22984,7 @@
         "product_code": "WUP-P-ANLE",
         "company_code": "0128",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -23006,7 +23006,7 @@
         "product_code": "WUP-P-BP4P",
         "company_code": "0199",
         "notes": "",
-        "versions": "v6X",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -23182,7 +23182,7 @@
         "product_code": "WUP-P-BF8P",
         "company_code": "0170",
         "notes": "",
-        "versions": "v33",
+        "versions": "v0, v16, v33",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -23193,7 +23193,7 @@
         "product_code": "WUP-P-ABCP",
         "company_code": "016D",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -23325,7 +23325,7 @@
         "product_code": "WUP-P-BRAE",
         "company_code": "00DW",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -23480,7 +23480,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "all",
+        "region": "EUR/JAP/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -23501,7 +23501,7 @@
         "product_code": "WUP-P-ATVP",
         "company_code": "016J",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -23600,7 +23600,7 @@
         "product_code": "WUP-P-AN2E",
         "company_code": "010Z",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -23886,7 +23886,7 @@
         "product_code": "WUP-P-BDJE",
         "company_code": "0172",
         "notes": "",
-        "versions": "v32",
+        "versions": "v1, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -24095,7 +24095,7 @@
         "product_code": "WUP-P-ABKJ",
         "company_code": "00S6",
         "notes": "",
-        "versions": "v",
+        "versions": "v0",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -24139,7 +24139,7 @@
         "product_code": "WUP-P-WM6P",
         "company_code": "00V0",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -24348,7 +24348,7 @@
         "product_code": "WUP-P-ACKE",
         "company_code": "012Y",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -24458,7 +24458,7 @@
         "product_code": "WUP-P-AF4E",
         "company_code": "017T",
         "notes": "",
-        "versions": "32",
+        "versions": "v0, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -24601,7 +24601,7 @@
         "product_code": "WUP-P-AM5E",
         "company_code": "017W",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -24631,7 +24631,7 @@
     "00050000-101D7600": {
         "game_title": "Slots - Pharaoh's Riches",
         "game_id": "BP3E4T",
-        "product_code": "WUP-N-BP3E",
+        "product_code": "WUP-P-BP3E",
         "company_code": "014T",
         "notes": "",
         "versions": "v0",
@@ -24645,7 +24645,7 @@
         "product_code": "WUP-P-AEXE",
         "company_code": "017Y",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -24799,7 +24799,7 @@
         "product_code": "WUP-P-BRAP",
         "company_code": "00DW",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -24865,7 +24865,7 @@
         "product_code": "WUP-P-ADUE",
         "company_code": "0183",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25063,7 +25063,7 @@
         "product_code": "WUP-P-AF2P",
         "company_code": "00XS",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25085,7 +25085,7 @@
         "product_code": "WUP-P-APQE",
         "company_code": "015S",
         "notes": "",
-        "versions": "v34",
+        "versions": "v0, v18, v34",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25140,7 +25140,7 @@
         "product_code": "WUP-P-BD6P",
         "company_code": "0186",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25151,7 +25151,7 @@
         "product_code": "WUP-P-AUMJ",
         "company_code": "0188",
         "notes": "",
-        "versions": "v32",
+        "versions": "v4",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25272,7 +25272,7 @@
         "product_code": "WUP-P-BD6E",
         "company_code": "0186",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25355,7 +25355,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-101DDC00": {
-        "game_title": "\u30c7\u30a3\u30ba\u30cb\u30fc\u30a4\u30f3\u30d5\u30a3\u30cb\u30c6\u30a33.0",
+        "game_title": "\u30c7\u30a3\u30ba\u30cb\u30fc\u30a4\u30f3\u30d5\u30a3\u30cb\u30c6\u30a33.0 (DISNEY INFINITY 3.0)",
         "game_id": "BD3JAF",
         "product_code": "WUP-P-BD3J",
         "company_code": "00AF",
@@ -25437,7 +25437,7 @@
         "product_code": "WUP-P-AVRE",
         "company_code": "008U",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25514,7 +25514,7 @@
         "product_code": "WUP-P-AFSJ",
         "company_code": "00TF",
         "notes": "",
-        "versions": "v18",
+        "versions": "v1, v18",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25657,7 +25657,7 @@
         "product_code": "WUP-P-BFDD",
         "company_code": "018P",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25712,7 +25712,7 @@
         "product_code": "WUP-P-BPWP",
         "company_code": "018G",
         "notes": "",
-        "versions": "v48",
+        "versions": "v0, v16, v32, v48",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25723,7 +25723,7 @@
         "product_code": "WUP-P-BP8E",
         "company_code": "00W0",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25734,7 +25734,7 @@
         "product_code": "WUP-P-AB3E",
         "company_code": "0142",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25833,7 +25833,7 @@
         "product_code": "WUP-P-BDYP",
         "company_code": "0103",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v17, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25943,7 +25943,7 @@
         "product_code": "WUP-P-BD8E",
         "company_code": "018W",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -25973,7 +25973,7 @@
     "00050000-101E4200": {
         "game_title": "Master Reboot",
         "game_id": "WMRJ3P",
-        "product_code": "WUP-N-WMRJ",
+        "product_code": "WUP-P-WMRJ",
         "company_code": "0013P",
         "notes": "",
         "versions": "v0",
@@ -26042,7 +26042,7 @@
         "product_code": "WUP-P-ABJE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -26108,7 +26108,7 @@
         "product_code": "WUP-P-WZHP",
         "company_code": "008Z",
         "notes": "",
-        "versions": "v32",
+        "versions": "v1, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -26153,7 +26153,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -26175,7 +26175,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -26394,7 +26394,7 @@
         "product_code": "WUP-P-AF4P",
         "company_code": "017T",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -26405,7 +26405,7 @@
         "product_code": "WUP-P-ADUP",
         "company_code": "0183",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -26427,7 +26427,7 @@
         "product_code": "WUP-P-BTYP",
         "company_code": "011H",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -26537,7 +26537,7 @@
         "product_code": "WUP-P-AUHP",
         "company_code": "00V9",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -26768,19 +26768,19 @@
         "product_code": "WUP-N-NAWJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
     "00050000-101EBC00": {
         "game_title": "F-Zero X",
-        "game_id": "NAWP01",
-        "product_code": "WUP-N-NAWP",
+        "game_id": "NAWE01",
+        "product_code": "WUP-N-NAWE",
         "company_code": "0001",
         "notes": " ",
-        "versions": "v16",
-        "region": "USA+EUR",
+        "versions": "v0, v16",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -26952,7 +26952,7 @@
     "00050000-101ED000": {
         "game_title": "SpaceRoads",
         "game_id": "WSSE9Q",
-        "product_code": "WUP-N-WSSE",
+        "product_code": "WUP-P-WSSE",
         "company_code": "019Q",
         "notes": "",
         "versions": "v0",
@@ -27021,7 +27021,7 @@
         "product_code": "WUP-P-ASEE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -27098,7 +27098,7 @@
         "product_code": "WUP-P-BQDP",
         "company_code": "018Z",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27131,7 +27131,7 @@
         "product_code": "WUP-P-APRP",
         "company_code": "015J",
         "notes": "",
-        "versions": "v0",
+        "versions": "v1",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27164,7 +27164,7 @@
         "product_code": "WUP-P-BQDE",
         "company_code": "018Z",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27241,7 +27241,7 @@
         "product_code": "WUP-P-BRRE",
         "company_code": "00UP",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27373,7 +27373,7 @@
         "product_code": "WUP-P-BL6E",
         "company_code": "",
         "notes": "",
-        "versions": "v",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -27417,7 +27417,7 @@
         "product_code": "WUP-P-AG8E",
         "company_code": "015J",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27428,7 +27428,7 @@
         "product_code": "WUP-P-AJVE",
         "company_code": "020K",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27527,7 +27527,7 @@
         "product_code": "WUP-P-AG8P",
         "company_code": "015J",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27604,7 +27604,7 @@
         "product_code": "WUP-P-AJVP",
         "company_code": "020K",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27670,7 +27670,7 @@
         "product_code": "WUP-P-BD8P",
         "company_code": "018W",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27874,7 +27874,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-101F9400": {
-        "game_title": "Super Destonaut 2: Go Duck Yourself",
+        "game_title": "Super Destronaut 2: Go Duck Yourself",
         "game_id": "AJNE3T",
         "product_code": "WUP-P-AJNE",
         "company_code": "013T",
@@ -27890,7 +27890,7 @@
         "product_code": "WUP-P-BM5E",
         "company_code": "0215",
         "notes": "",
-        "versions": "v17",
+        "versions": "v0, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27912,7 +27912,7 @@
         "product_code": "WUP-P-AB3P",
         "company_code": "0142",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27956,7 +27956,7 @@
         "product_code": "WUP-P-BRJE",
         "company_code": "0198",
         "notes": "",
-        "versions": "v32",
+        "versions": "v2, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -27978,7 +27978,7 @@
         "product_code": "WUP-P-BF8E",
         "company_code": "0170",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28011,7 +28011,7 @@
         "product_code": "WUP-P-ABZP",
         "company_code": "016V",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28033,7 +28033,7 @@
         "product_code": "WUP-P-AJXE",
         "company_code": "021D",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28088,7 +28088,7 @@
         "product_code": "WUP-P-BL6P",
         "company_code": "",
         "notes": "",
-        "versions": "v",
+        "versions": "v1",
         "region": "EUR",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -28165,7 +28165,7 @@
         "product_code": "WUP-P-BGPE",
         "company_code": "013R",
         "notes": "",
-        "versions": "v17",
+        "versions": "v2, v17",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28220,7 +28220,7 @@
         "product_code": "WUP-P-AJ8P",
         "company_code": "00VW",
         "notes": "Nintendo eShop Selects",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -28275,7 +28275,7 @@
         "product_code": "WUP-P-AF4J",
         "company_code": "00W4",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28363,7 +28363,7 @@
         "product_code": "WUP-N-AKUJ",
         "company_code": "00WD",
         "notes": "",
-        "versions": "v",
+        "versions": "v2",
         "region": "JPN",
         "cdn_available": "removed on 26th September 2019",
         "wiki_has_game_id_redirect": false
@@ -28386,7 +28386,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -28408,7 +28408,7 @@
         "company_code": "0001",
         "notes": "",
         "versions": "v0",
-        "region": "USA+EUR",
+        "region": "EUR/USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
     },
@@ -28440,7 +28440,7 @@
         "product_code": "WUP-P-AVQP",
         "company_code": "021Q",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28448,7 +28448,7 @@
     "00050000-101FF200": {
         "game_title": "Exile's End",
         "game_id": "AE4E99",
-        "product_code": "WUP-N-AE4E",
+        "product_code": "WUP-P-AE4E",
         "company_code": "0099",
         "notes": "",
         "versions": "v0",
@@ -28528,7 +28528,7 @@
         "product_code": "WUP-P-BT7E",
         "company_code": "00SS",
         "notes": "",
-        "versions": "v1",
+        "versions": "v0, v1",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28539,7 +28539,7 @@
         "product_code": "WUP-P-BT7P",
         "company_code": "00SS",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28561,7 +28561,7 @@
         "product_code": "WUP-P-AKQP",
         "company_code": "021D",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28792,7 +28792,7 @@
         "product_code": "WUP-P-BZDP",
         "company_code": "017E",
         "notes": "",
-        "versions": "v00000",
+        "versions": "v0",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -28869,7 +28869,7 @@
         "product_code": "WUP-N-HAPE",
         "company_code": "00WD",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -29034,7 +29034,7 @@
         "product_code": "WUP-P-BAME",
         "company_code": "00UZ",
         "notes": "",
-        "versions": "v32",
+        "versions": "v0, v16, v32",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -29243,7 +29243,7 @@
         "product_code": "WUP-P-BAMP",
         "company_code": "00UZ",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -29474,7 +29474,7 @@
         "product_code": "WUP-P-BAKE",
         "company_code": "",
         "notes": "",
-        "versions": "v",
+        "versions": "v0",
         "region": "USA",
         "cdn_available": "No TMD",
         "wiki_has_game_id_redirect": false
@@ -30112,7 +30112,7 @@
         "product_code": "WUP-P-AUUP",
         "company_code": "024V",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -30448,7 +30448,7 @@
         "wiki_has_game_id_redirect": false
     },
     "00050000-10211F00": {
-        "game_title": "\u30c9\u30e9\u30b4\u30f3\u30af\u30a8\u30b9\u30c8\u2169 5000\u5e74\u306e\u65c5\u8def \u9059\u304b\u306a\u308b\u6545\u90f7\u3078 \u30aa\u30f3\u30e9\u30a4\u30f3",
+        "game_title": "\u30c9\u30e9\u30b4\u30f3\u30af\u30a8\u30b9\u30c8\u2169 5000\u5e74\u306e\u65c5\u8def \u9059\u304b\u306a\u308b\u6545\u90f7\u3078 \u30aa\u30f3\u30e9\u30a4\u30f3 (Dragon Quest X The 5000 Year Voyage to a Faraway Hometown)",
         "game_id": "AXTJ",
         "product_code": "WUP-P-AXTJ",
         "company_code": "",
@@ -30926,7 +30926,7 @@
         "product_code": "WUP-P-WZAE",
         "company_code": "026Y",
         "notes": "",
-        "versions": "v16",
+        "versions": "v7, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -30959,7 +30959,7 @@
         "product_code": "WUP-P-WUAP",
         "company_code": "026Y",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -30981,7 +30981,7 @@
         "product_code": "WUP-P-WUAE",
         "company_code": "026Y",
         "notes": "",
-        "versions": "v16",
+        "versions": "v1, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -31168,7 +31168,7 @@
         "product_code": "WUP-P-WSEP",
         "company_code": "0116",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -31212,7 +31212,7 @@
         "product_code": "WUP-P-ANDP",
         "company_code": "021F",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -31300,7 +31300,7 @@
         "product_code": "WUP-P-WZ9E",
         "company_code": "022P",
         "notes": "",
-        "versions": "v33",
+        "versions": "v2, v16, v33",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -31355,7 +31355,7 @@
         "product_code": "WUP-P-BZ5E",
         "company_code": "021F",
         "notes": "",
-        "versions": "v1",
+        "versions": "v1, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -31421,7 +31421,7 @@
         "product_code": "WUP-P-BZ5P",
         "company_code": "021F",
         "notes": "",
-        "versions": "v1",
+        "versions": "v1, v16",
         "region": "EUR",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
@@ -31487,7 +31487,7 @@
         "product_code": "WUP-P-CNFJ",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "JPN",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -31498,7 +31498,7 @@
         "product_code": "WUP-P-CNFE",
         "company_code": "0001",
         "notes": "",
-        "versions": "v16",
+        "versions": "v0, v16",
         "region": "USA",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": true
@@ -31520,7 +31520,7 @@
         "product_code": "WUP-P-ABCD",
         "company_code": "ZZ",
         "notes": "See system titles",
-        "versions": "v0, v32",
+        "versions": "v0",
         "region": "all",
         "cdn_available": "Yes",
         "wiki_has_game_id_redirect": false
