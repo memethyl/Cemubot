@@ -196,6 +196,16 @@ class Parser:
         if info["settings.backend"] == "OpenGL":
             return "N/A"
         return "Enabled" if result else "Disabled"
+    @name("specs.gfx_api_version")
+    @default("Unknown")
+    def gfx_api_version(self, file, info):
+        if info["settings.backend"] == "OpenGL":
+            # https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGetString.xhtml#description
+            # GL_VERSION string always starts with "major.minor " or "major.minor.release "
+            return regex_group(re.search(r"GL_VERSION: (.+?\..+?)(?:[. ].*?)?$", file, re.M), 1)
+        elif info["settings.backend"] == "Vulkan":
+            return regex_group(re.search(r"Vulkan instance version: (.+?)$", file, re.M), 1)
+        return None
     def __init__(self):
         self.embed = [
             self.loaded_title, self.game_crashed,
@@ -207,7 +217,8 @@ class Parser:
             self.cpu_affinity, self.cpu_mode, self.cpu_extensions,
             self.disabled_cpu_extensions, self.backend,
             self.vulkan_async, self.gx2drawdone, self.console_region,
-            self.thread_quantum, self.custom_timer_mode, self.accurate_barriers
+            self.thread_quantum, self.custom_timer_mode, self.accurate_barriers,
+            self.gfx_api_version
         ]
     def parse(self, file):
         info = {}

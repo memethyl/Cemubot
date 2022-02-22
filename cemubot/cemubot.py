@@ -133,6 +133,13 @@ f"""
 							  description=description,
 							  timestamp=datetime.datetime.utcfromtimestamp(time.time()))
 		# TODO: omit unknown info?
+		opengl_using = ""
+		vulkan_using = ""
+		if info["specs.gfx_api_version"] != "Unknown":
+			if info["settings.backend"] == "OpenGL":
+				opengl_using = f" (using {info['specs.gfx_api_version']})"
+			elif info["settings.backend"] == "Vulkan":
+				vulkan_using = f" (using {info['specs.gfx_api_version']})"
 		game_emu_info = ''.join((
 f"**Cemu:** {info['emulator.cemu_version']}\n",
 f"**Cemuhook:** {info['emulator.cemuhook_version']}\n",
@@ -144,7 +151,7 @@ f"**CPU:** {info['specs.cpu']}\n",
 f"**RAM:** {info['specs.ram']}MB\n",
 f"**GPU:** [{info['specs.gpu']}]({info['specs.gpu_specs.url']})\n",
 f"**GPU driver:** {info['specs.gpu_driver']}\n",
-f"**OpenGL:** {info['specs.opengl']} ║ **Vulkan:** {info['specs.vulkan']}"
+f"**OpenGL:** {info['specs.opengl']}{opengl_using} ║ **Vulkan:** {info['specs.vulkan']}{vulkan_using}"
 ))
 		settings = ''.join((
 f"**CPU mode:** {info['settings.cpu_mode']}\n",
