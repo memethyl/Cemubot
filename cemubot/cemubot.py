@@ -151,6 +151,7 @@ f"**CPU mode:** {info['settings.cpu_mode']}\n",
 f"**CPU affinity:** `{info['settings.cpu_affinity']}`\n",
 f"**Graphics backend:** {info['settings.backend']}\n",
 f"{('**Async compile:** '+info['settings.vulkan_async']+chr(10)) if info['settings.vulkan_async'] != 'N/A' else ''}",
+f"{('**Accurate barriers:** '+info['settings.accurate_barriers']+chr(10)) if info['settings.accurate_barriers'] != 'N/A' else ''}",
 f"**Full sync at GX2DrawDone:** {info['settings.gx2drawdone']}\n",
 f"**Custom timer mode:** {info['settings.custom_timer_mode']}"
 ))

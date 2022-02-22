@@ -189,6 +189,13 @@ class Parser:
         if result == "none":
             result = "Default"
         return result
+    @name("settings.accurate_barriers")
+    @default("Disabled")
+    def accurate_barriers(self, file, info):
+        result = re.search(r"Accurate barriers: Enabled", file)
+        if info["settings.backend"] == "OpenGL":
+            return "N/A"
+        return "Enabled" if result else "Disabled"
     def __init__(self):
         self.embed = [
             self.loaded_title, self.game_crashed,
@@ -200,7 +207,7 @@ class Parser:
             self.cpu_affinity, self.cpu_mode, self.cpu_extensions,
             self.disabled_cpu_extensions, self.backend,
             self.vulkan_async, self.gx2drawdone, self.console_region,
-            self.thread_quantum, self.custom_timer_mode
+            self.thread_quantum, self.custom_timer_mode, self.accurate_barriers
         ]
     def parse(self, file):
         info = {}
