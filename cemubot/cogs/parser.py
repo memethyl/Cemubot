@@ -151,7 +151,7 @@ class Parser:
         if used_extensions != ['']:
             return ', '.join(
                 list(filter(
-                    lambda x: used_extensions.index(x) == -1,
+                    lambda x: x not in used_extensions,
                     info["settings.cpu_extensions"]
                 ))
             )
