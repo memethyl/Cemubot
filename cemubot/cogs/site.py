@@ -1,7 +1,6 @@
 import discord
+from discord import app_commands
 from discord.ext import commands, tasks
-from discord_slash import cog_ext, SlashContext
-from discord_slash.utils.manage_commands import create_option, create_choice, add_slash_command
 
 import re
 from datetime import datetime, date, timedelta, timezone
@@ -16,13 +15,15 @@ class Site(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.getAllVersions.start()
-        self.getLatestVersion.start()
+    
+    @commands.Cog.listener()
+    async def on_ready(self):
+        await self.getAllVersions.start()
+        await self.getLatestVersion.start()
 
-    @cog_ext.cog_slash(name="download", description="Gives a link to download a specific (older) version of Cemu.", options=[
-        create_option(name="version", description="Type the Cemu version you want a download link", option_type=3, required=True)
-    ])
-    async def downloadLink(self, ctx: SlashContext, version: str):
+    @app_commands.command(name="download", description="Gives a link to download a specific (older) version of Cemu.")
+    @app_commands.describe(version="The Cemu version that you want to download.")
+    async def download(self, inter: discord.Interaction, version: str):
         if version.lower() == "latest":
             version = self.version_list[0]
         elif version.lower() == "previous":
@@ -33,14 +34,16 @@ class Site(commands.Cog):
                 version = matches.group(1)
         if version:
             if version in self.version_list:
-                await ctx.send(content=f"The download link for Cemu {version} is <http://cemu.info/releases/cemu_{version}.zip>")
+                await inter.response.send_message(content=f"The download link for Cemu {version} is <http://cemu.info/releases/cemu_{version}.zip>")
             else:
                 corrected_versions = [
                     ver for ver in self.version_list if ver.startswith(version.rsplit(".", 1)[0])]
                 if len(corrected_versions) > 1:
-                    await ctx.send(content=f"That version never existed, but did you mean Cemu {corrected_versions[0]}? The download link is <http://cemu.info/releases/cemu_{corrected_versions[0]}.zip>")
+                    await inter.response.send_message(
+                        content=f"That version never existed, but did you mean Cemu {corrected_versions[0]}? The download link is <http://cemu.info/releases/cemu_{corrected_versions[0]}.zip>")
                 else:
-                    await ctx.send(content="Are you from the future, or does this version just not exist yet?!")
+                    await inter.response.send_message(
+                        content="Are you from the future, or does this version just not exist yet?!")
 
     async def update_activity(self, version):
         new_activity = f"Cemu {version}"
@@ -48,7 +51,7 @@ class Site(commands.Cog):
             await self.bot.change_presence(status=discord.Status.online, activity=discord.Game(name=new_activity))
             self.previous_activity = new_activity
 
-    @tasks.loop(minutes=2)
+    @tasks.loop(minutes=2.0)
     async def getLatestVersion(self):
         async with aiohttp.ClientSession() as session:
             async with session.get("http://cemu.info/api/cemu_version3.php") as res:
@@ -61,7 +64,7 @@ class Site(commands.Cog):
                         print("Failed to parse the /api/cemu_version3.php page! Error:")
                         print(str(err))
 
-    @tasks.loop(minutes=10)
+    @tasks.loop(minutes=10.0)
     async def getAllVersions(self):
         async with aiohttp.ClientSession() as session:
             async with session.get("http://cemu.info/changelog.html") as res:
@@ -74,5 +77,5 @@ class Site(commands.Cog):
                         print("Failed to parse the changelog.html page! Error:")
                         print(str(err))
 
-def setup(bot):
-    bot.add_cog(Site(bot))
+async def setup(bot):
+    await bot.add_cog(Site(bot))

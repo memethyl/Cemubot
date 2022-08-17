@@ -95,5 +95,5 @@ class Utility(commands.Cog):
 		json.dump(game_info, f, indent=4)
 		f.close()
 
-def setup(bot):
-	bot.add_cog(Utility(bot))
+async def setup(bot):
+	await bot.add_cog(Utility(bot))

@@ -1,7 +1,7 @@
+import asyncio
 import datetime
 import discord
 from discord.ext import commands
-from discord_slash import SlashCommand, SlashContext
 import json
 import requests
 import time
@@ -12,10 +12,13 @@ from cogs.parser import ExtraParser, RulesetParser
 
 # if you want to add any cogs, put them here
 # example: ["cogs.foo", "cogs.bar", ...]
-startup_extensions = ["cogs.permissions", "cogs.utility", "cogs.compat", "cogs.site", "cogs.quotes", "cogs.rules"]
+startup_extensions = ["cogs.utility", "cogs.compat", "cogs.site", "cogs.quotes", "cogs.rules"]
 
 
 class Cemubot(commands.Bot):
+	quotes_ready: bool = False
+	rules_ready: bool = False
+
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		with open("misc/title_ids.json", "r", encoding="utf-8") as f:
@@ -35,20 +38,18 @@ f"""
 |  \_____\___|_| |_| |_|\__,_|_.__/ \___/ \__| |
 +==============================================+
 """)
-	def load_cogs(self):
+	async def load_cogs(self):
 		# load the specified cogs
 		for extension in startup_extensions:
 			try:
-				self.load_extension(extension)
+				await self.load_extension(extension)
 			except Exception as e:
 				exc = f"{type(e).__name__}: {e}"
 				print(f"Failed to load extension {extension}\n{exc}")
 				traceback.print_exc()
-	quotes_ready = False
-	rules_ready = False
 	async def sync_commands_when_finished(self):
 		if self.quotes_ready and self.rules_ready:
-			await self.slash.sync_all_commands()
+			await self.tree.sync()
 	async def on_message(self, message):
 		if message.author.id == self.user.id:
 			return
@@ -170,7 +171,6 @@ f"**Custom timer mode:** {info['settings.custom_timer_mode']}"
 
 
 if __name__ == '__main__':
-	# initialize config
 	from cogs import config
 	try:
 		config.init()
@@ -178,13 +178,11 @@ if __name__ == '__main__':
 		print("Error: config.cfg not found; run setup.py and try again!")
 		exit()
 
-	# initialize discord and slash commands instances
 	intents = discord.Intents.none()
 	intents.guilds = True
+	intents.message_content = True
 	intents.messages = True
-	intents.dm_messages = True
 
 	bot = Cemubot(command_prefix=config.cfg["command_prefix"], intents=intents)
-	bot.slash = SlashCommand(client=bot)
-	bot.load_cogs()
+	asyncio.run(bot.load_cogs())
 	bot.run(config.cfg["bot_token"])
