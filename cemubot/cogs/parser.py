@@ -347,10 +347,8 @@ class RulesetParser:
         self.rulesets = rulesets
     # determines if ver1 <=> ver2
     def version_check(self, ver1, ver2, operation):
-        ver1 = ver1.replace(" (Patreon release)", "")
-        ver2 = ver2.replace(" (Patreon release)", "")
-        ver1 = re.findall(r"(\d)\.(\d+)\.(\d+)([a-z]|$)", ver1, re.I)[0]
-        ver2 = re.findall(r"(\d)\.(\d+)\.(\d+)([a-z]|$)", ver2, re.I)[0]
+        ver1 = re.findall(r"(\d)\.(\d+)\.(\d+)([a-z])?.*?", ver1, re.I)[0]
+        ver2 = re.findall(r"(\d)\.(\d+)\.(\d+)([a-z])?.*?", ver2, re.I)[0]
         ver1 = (int(ver1[0]), int(ver1[1]), int(ver1[2]), ver1[3])
         ver2 = (int(ver2[0]), int(ver2[1]), int(ver2[2]), ver2[3])
         # hotfixes should be ignored if ver2 doesn't specify a hotfix letter
