@@ -85,6 +85,7 @@ f"""
 		await self.process_commands(message)
 	
 	async def parse_log(self, log_url, log, message, title_ids=None):
+		start_time = time.time()
 		if title_ids == None:
 			title_ids = self.title_ids
 		try:
@@ -111,7 +112,8 @@ f"""
 			f"ℹ RPX hash (updated): `{info['game.rpx_hash.updated']}` ║ RPX hash (base): `{info['game.rpx_hash.base']}`"
 		]
 		# TODO: reimplement "Some information was not found"
-		await message.edit(content=None, embed=self.create_embed(log_url, info, relevant_info))
+		await message.edit(content=None,
+			embed=self.create_embed(log_url, info, relevant_info).set_footer(text=f"Parsed in {round(time.time() - start_time, 3)}s"))
 	
 	def create_embed(self, log_url: str, info: dict, relevant_info: list=["N/A"]) -> discord.Embed:
 		try:
