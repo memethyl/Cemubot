@@ -118,12 +118,12 @@
             "match": "all",
             "rules": [
                 {
-                    "property": "specs.opengl",
+                    "property": "specs.opengl.version",
                     "type": "str_ne",
                     "value": "Unknown"
                 },
                 {
-                    "property": "specs.opengl",
+                    "property": "specs.opengl.version",
                     "type": "int_lt",
                     "value": 4.1
                 }

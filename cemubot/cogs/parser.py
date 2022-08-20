@@ -1,19 +1,9 @@
+from .gpusearch import GPUSearchModule, GPUInfoSearch, GPUSearchResult
+from .utility import regex_group, regex_match
 from difflib import get_close_matches
 import re
 import requests
 
-
-def regex_group(search, num, default=None):
-    try:
-        return search.group(num)
-    except (AttributeError, IndexError):
-        return default
-
-def regex_match(findall, num, default=None):
-    try:
-        return findall[num]
-    except (TypeError, IndexError):
-        return default
 
 def default(fallback):
     def decorator_func(func):
@@ -233,55 +223,31 @@ class ExtraParser(Parser):
     Same as Parser, with a few extra bits of info that must be fetched from
     external sources (GPU support and game compatibility).
     """
-    @name("specs.gpu_specs.url")
-    @default("")
-    def gpu_specs_url(self, file, info):
-        query = info["specs.gpu"]
-        revised_query = re.sub(
-            r"(?:[0-9]GB|)/?(?:PCIe|)/?SSE2|\(TM\)|\(R\)| Graphics$|GB$| Series$|(?<=Mobile )Graphics$",
-            "", query
-        )
-        try:
-            req = requests.get(f"https://www.techpowerup.com/gpu-specs/?ajaxsrch={revised_query}")
-        except requests.exceptions.RequestException:
-            return None
-        req = req.text
-        if "Nothing found." in req:
-            return None
-        req = req.replace("\n","")
-        req = req.replace("\t","")
-        results = re.findall(r"<tr><td.+?><a href=\"(/gpu-specs/.*?)\">(.*?)</a>", req)
-        results = [list(reversed(x)) for x in results]
-        results = dict(results)
-        try:
-            matches = [
-                x for x in get_close_matches(query, results.keys())
-                if not (bool(re.search(r"mobile|max-q", query, re.I)) ^ bool(re.search(r"mobile|max-q", x, re.I)))
-            ]
-            if results[matches[0]]:
-                return f"https://www.techpowerup.com{results[matches[0]]}"
-            return None
-        except (KeyError, IndexError):
-            return None
-    @name("specs.gpu_specs.html")
-    @default("")
-    def gpu_specs_html(self, file, info):
-        if info["specs.gpu_specs.url"]:
-            req = requests.get(info["specs.gpu_specs.url"])
-            if req.status_code == 200:
-                text = req.text
-                text = text.replace('\n','')
-                text = text.replace('\t','')
-                return text
-        return None
-    @name("specs.opengl")
+    search_module: GPUSearchModule = GPUInfoSearch(True)
+    @name("specs.gpu_search_result")
+    @default(GPUSearchResult())
+    def gpu_search_result(self, file, info):
+        return self.search_module.search(info["specs.gpu"])
+    @name("specs.opengl.version")
     @default("Unknown")
-    def opengl(self, file, info):
-        return regex_group(re.search(r"<dt>OpenGL</dt><dd>(.*?)</dd>", info["specs.gpu_specs.html"]), 1)
-    @name("specs.vulkan")
+    def opengl_version(self, file, info):
+        if (opengl := info["specs.gpu_search_result"].opengl):
+            return str(opengl.version)
+    @name("specs.opengl.url")
+    @default("")
+    def opengl_url(self, file, info):
+        if (opengl := info["specs.gpu_search_result"].opengl):
+            return opengl.url or ""
+    @name("specs.vulkan.version")
     @default("Unknown")
-    def vulkan(self, file, info):
-        return regex_group(re.search(r"<dt>Vulkan</dt><dd>(.*?)</dd>", info["specs.gpu_specs.html"]), 1)
+    def vulkan_version(self, file, info):
+        if (vulkan := info["specs.gpu_search_result"].vulkan):
+            return str(vulkan.version)
+    @name("specs.vulkan.url")
+    @default("")
+    def vulkan_url(self, file, info):
+        if (vulkan := info["specs.gpu_search_result"].vulkan):
+            return vulkan.url or ""
     @name("game.wiki_page.url")
     @default("")
     def wiki_page_url(self, file, info):
@@ -331,7 +297,8 @@ class ExtraParser(Parser):
         super().__init__()
         self.title_ids = title_ids
         self.embed += [
-            self.gpu_specs_url, self.gpu_specs_html, self.opengl, self.vulkan,
+            self.gpu_search_result, self.opengl_version, self.opengl_url,
+            self.vulkan_version, self.vulkan_url,
             self.wiki_page_url, self.wiki_page_html,
             self.compat_rating, self.compat_version
         ]

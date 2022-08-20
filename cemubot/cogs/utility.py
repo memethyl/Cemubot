@@ -5,6 +5,20 @@ import re
 import requests
 import traceback
 
+
+def regex_group(search, num, default=None):
+    try:
+        return search.group(num)
+    except (AttributeError, IndexError):
+        return default
+
+def regex_match(findall, num, default=None):
+    try:
+        return findall[num]
+    except (TypeError, IndexError):
+        return default
+
+
 class Utility(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot

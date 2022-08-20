@@ -150,9 +150,9 @@ f"[View full log](https://docs.google.com/a/cdn.discordapp.com/viewer?url={log_u
 		specs = ''.join((
 f"**CPU:** {info['specs.cpu']}\n",
 f"**RAM:** {info['specs.ram']}MB\n",
-f"**GPU:** [{info['specs.gpu']}]({info['specs.gpu_specs.url']})\n",
+f"**GPU:** {info['specs.gpu']}\n",
 f"**GPU driver:** {info['specs.gpu_driver']}\n",
-f"**OpenGL:** {info['specs.opengl']}{opengl_using} ║ **Vulkan:** {info['specs.vulkan']}{vulkan_using}"
+f"**OpenGL:** [{info['specs.opengl.version']}]({info['specs.opengl.url']}){opengl_using} ║ **Vulkan:** [{info['specs.vulkan.version']}]({info['specs.vulkan.url']}){vulkan_using}"
 ))
 		settings = ''.join((
 f"**CPU mode:** {info['settings.cpu_mode']}\n",
