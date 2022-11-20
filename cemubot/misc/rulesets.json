@@ -17,8 +17,13 @@
             "message": "❓ Cemuhook is not installed"
         },
         {
-            "match": "any",
+            "match": "all",
             "rules": [
+                {
+                    "property": "specs.ram",
+                    "type": "str_ne",
+                    "value": "Unknown"
+                },
                 {
                     "property": "specs.ram",
                     "type": "int_lt",
