@@ -118,17 +118,43 @@
             "match": "all",
             "rules": [
                 {
+                    "property": "settings.backend",
+                    "type": "str_eq",
+                    "value": "OpenGL"
+                },
+                {
                     "property": "specs.opengl.version",
                     "type": "str_ne",
                     "value": "Unknown"
                 },
                 {
                     "property": "specs.opengl.version",
-                    "type": "int_lt",
-                    "value": 4.1
+                    "type": "ver_lt",
+                    "value": "4.5"
                 }
             ],
-            "message": "⚠️ This GPU does not support OpenGL 4.1"
+            "message": "⚠️ This GPU does not support OpenGL 4.5"
+        },
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "settings.backend",
+                    "type": "str_eq",
+                    "value": "Vulkan"
+                },
+                {
+                    "property": "specs.vulkan.version",
+                    "type": "str_ne",
+                    "value": "Unknown"
+                },
+                {
+                    "property": "specs.vulkan.version",
+                    "type": "ver_lt",
+                    "value": "1.1"
+                }
+            ],
+            "message": "⚠️ This GPU does not support Vulkan 1.1"
         },
         {
             "match": "any",
