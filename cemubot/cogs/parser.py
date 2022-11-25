@@ -227,7 +227,8 @@ class ExtraParser(Parser):
     @name("specs.gpu_search_result")
     @default(GPUSearchResult())
     def gpu_search_result(self, file, info):
-        return self.search_module.search(info["specs.gpu"])
+        if info["specs.gpu"] != "Unknown":
+            return self.search_module.search(info["specs.gpu"])
     @name("specs.opengl.version")
     @default("Unknown")
     def opengl_version(self, file, info):
