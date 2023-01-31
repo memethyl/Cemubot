@@ -180,12 +180,18 @@ class Parser:
             result = "Default"
         return result
     @name("settings.accurate_barriers")
-    @default("Disabled")
+    @default("Unknown")
     def accurate_barriers(self, file, info):
-        result = re.search(r"Accurate barriers: Enabled", file)
-        if info["settings.backend"] == "OpenGL":
+        if RulesetParser.version_check(info["emulator.cemu_version"], "1.26.2", "lt") \
+        or (info["settings.backend"] == "OpenGL"):
             return "N/A"
-        return "Enabled" if result else "Disabled"
+        else:
+            if RulesetParser.version_check(info["emulator.cemu_version"], "1.27.1", "lt"):
+                result = re.search(r"Accurate barriers: Enabled", file)
+                return "Enabled" if result else "Disabled"
+            else:
+                result = re.search(r"Accurate barriers are disabled!", file)
+                return "Disabled" if result else "Enabled"
     @name("specs.gfx_api_version")
     @default("Unknown")
     def gfx_api_version(self, file, info):
@@ -314,7 +320,8 @@ class RulesetParser:
     def __init__(self, rulesets):
         self.rulesets = rulesets
     # determines if ver1 <=> ver2
-    def version_check(self, ver1, ver2, operation):
+    @staticmethod
+    def version_check(ver1, ver2, operation):
         if operation == "lt":
             return ver1 < ver2
         elif operation == "eq":
