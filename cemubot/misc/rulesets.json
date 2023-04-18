@@ -96,9 +96,9 @@
             "match": "all",
             "rules": [
                 {
-                    "property": "specs.gpu",
-                    "type": "str_contains",
-                    "value": "Radeon"
+                    "property": "emulator.cemu_version",
+                    "type": "ver_gt",
+                    "value": "1.24.0"
                 },
                 {
                     "property": "settings.backend",
@@ -106,7 +106,7 @@
                     "value": "OpenGL"
                 }
             ],
-            "message": "⚠️ AMD GPUs and OpenGL go together like oil and water; use Vulkan if possible"
+            "message": "❓ Backend set to OpenGL; use Vulkan if possible"
         },
         {
             "match": "any",
