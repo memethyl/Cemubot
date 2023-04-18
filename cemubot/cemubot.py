@@ -154,7 +154,7 @@ f"**CPU:** {info['specs.cpu']}\n",
 f"**RAM:** {info['specs.ram']}MB\n",
 f"**GPU:** {info['specs.gpu']}\n",
 f"**GPU driver:** {info['specs.gpu_driver']}\n",
-f"**OpenGL:** [{info['specs.opengl.version']}]({info['specs.opengl.url']}){opengl_using} ║ **Vulkan:** [{info['specs.vulkan.version']}]({info['specs.vulkan.url']}){vulkan_using}"
+f"**[OpenGL:]({info['specs.opengl.url']})** {info['specs.opengl.version']}{opengl_using} ║ **[Vulkan:]({info['specs.vulkan.url']})** {info['specs.vulkan.version']}{vulkan_using}"
 ))
 		settings = ''.join((
 f"**CPU mode:** {info['settings.cpu_mode']}\n",
