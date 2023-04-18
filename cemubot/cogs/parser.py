@@ -108,7 +108,7 @@ class Parser:
     def gpu_driver(self, file, info):
         result = regex_group(re.search(r"GL_VERSION: (.*?)$", file, re.M), 1)
         if not result:
-            result = regex_group(re.search(r"Driver version: (.*?)$", file, re.M), 1)
+            result = regex_group(re.search(r"Driver version(?: \(as stored in device info\))?: (.*?)$", file, re.M), 1)
         return result
     @name("settings.cpu_affinity")
     @default("Unknown")
