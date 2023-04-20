@@ -249,6 +249,17 @@
                 }
             ],
             "message": "⚠️ This game will not run without updates"
+        },
+        {
+            "match": "all",
+            "rules": [
+                {
+                    "property": "log",
+                    "type": "str_contains",
+                    "value": "The Legend of Zelda: Breath of the Wild/Mods/BCML"
+                }
+            ],
+            "message": "ℹ BCML is enabled"
         }
     ],
     "00050000-1010ED00": "00050000-1010EC00",
