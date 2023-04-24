@@ -259,7 +259,7 @@
                     "value": "The Legend of Zelda: Breath of the Wild/Mods/BCML"
                 }
             ],
-            "message": "ℹ BCML is enabled"
+            "message": "ℹ️ BCML is enabled"
         },
         {
             "match": "all",
@@ -270,7 +270,7 @@
                     "value": "The Legend of Zelda: Breath of the Wild/Mods/UKMM"
                 }
             ],
-            "message": "ℹ UKMM is enabled"
+            "message": "ℹ️ UKMM is enabled"
         }
     ],
     "00050000-1010ED00": "00050000-1010EC00",

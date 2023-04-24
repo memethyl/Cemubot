@@ -109,7 +109,7 @@ f"""
 		ruleset_parser = RulesetParser(self.rulesets)
 		relevant_info = ruleset_parser.parse(log, info)
 		relevant_info += [
-			f"ℹ RPX hash (updated): `{info['game.rpx_hash.updated']}` ║ RPX hash (base): `{info['game.rpx_hash.base']}`"
+			f"ℹ️ RPX hash (updated): `{info['game.rpx_hash.updated']}` ║ RPX hash (base): `{info['game.rpx_hash.base']}`"
 		]
 		# TODO: reimplement "Some information was not found"
 		await message.edit(content=None,
