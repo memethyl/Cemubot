@@ -26,7 +26,7 @@ class Cemubot(commands.Bot):
 			self.title_ids = json.load(f)
 		with open("misc/rulesets.json", "r", encoding="utf-8") as f:
 			self.rulesets = json.load(f)
-		self.search_module = GPUInfoSearch(True)
+		self.search_module = GPUInfoSearch()
 		self.parser = ExtraParser(self.title_ids, self.search_module)
 		self.ruleset_parser = RulesetParser(self.rulesets)
 	async def on_ready(self):

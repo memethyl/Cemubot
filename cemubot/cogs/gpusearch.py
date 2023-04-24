@@ -80,7 +80,7 @@ class GPUInfoSearch(GPUSearchModule):
     opengl_cache: Optional[Dict[str, APIResult]] = None
     vulkan_cache: Optional[Dict[str, APIResult]] = None
 
-    def __init__(self, init_cache: bool=False):
+    def __init__(self, init_cache: bool=True):
         if init_cache:
             self.init_cache()
 

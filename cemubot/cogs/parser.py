@@ -302,7 +302,7 @@ class ExtraParser(Parser):
     def __init__(self, title_ids, search_module=None):
         super().__init__()
         if search_module is None:
-            self.search_module = GPUInfoSearch(True)
+            self.search_module = GPUInfoSearch()
         else:
             self.search_module = search_module
         self.title_ids = title_ids
