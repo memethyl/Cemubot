@@ -139,14 +139,17 @@ f"""
 							  url=(info["game.wiki_page.url"] or log_url),
 							  description=description,
 							  timestamp=datetime.datetime.utcfromtimestamp(time.time()))
-		# TODO: omit unknown info?
-		opengl_using = ""
-		vulkan_using = ""
+		opengl_str = "**OpenGL:** Unknown"
+		vulkan_str = "**Vulkan:** Unknown"
+		if info["specs.opengl.version"] != "Unknown":
+			opengl_str = f"**[OpenGL:]({info['specs.opengl.url']})** {info['specs.opengl.version']}"
+		if info["specs.vulkan.version"] != "Unknown":
+			vulkan_str = f"**[Vulkan:]({info['specs.vulkan.url']})** {info['specs.vulkan.version']}"
 		if info["specs.gfx_api_version"] != "Unknown":
 			if info["settings.backend"] == "OpenGL":
-				opengl_using = f" (using {info['specs.gfx_api_version']})"
+				opengl_str += f" (using {info['specs.gfx_api_version']})"
 			elif info["settings.backend"] == "Vulkan":
-				vulkan_using = f" (using {info['specs.gfx_api_version']})"
+				vulkan_str += f" (using {info['specs.gfx_api_version']})"
 		game_emu_info = ''.join((
 f"**Cemu:** {info['emulator.cemu_version']}\n",
 f"**Cemuhook:** {info['emulator.cemuhook_version']}\n",
@@ -158,7 +161,7 @@ f"**CPU:** {info['specs.cpu']}\n",
 f"**RAM:** {info['specs.ram']}MB\n",
 f"**GPU:** {info['specs.gpu']}\n",
 f"**GPU driver:** {info['specs.gpu_driver']}\n",
-f"**[OpenGL:]({info['specs.opengl.url']})** {info['specs.opengl.version']}{opengl_using} ║ **[Vulkan:]({info['specs.vulkan.url']})** {info['specs.vulkan.version']}{vulkan_using}"
+f"{opengl_str} ║ {vulkan_str}"
 ))
 		settings = ''.join((
 f"**CPU mode:** {info['settings.cpu_mode']}\n",
