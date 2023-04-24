@@ -7,6 +7,7 @@ import requests
 import time
 import traceback
 
+from cogs.gpusearch import GPUInfoSearch
 # parser isn't a cog but it's in the cogs folder if you want to add commands to it
 from cogs.parser import ExtraParser, RulesetParser
 
@@ -25,6 +26,9 @@ class Cemubot(commands.Bot):
 			self.title_ids = json.load(f)
 		with open("misc/rulesets.json", "r", encoding="utf-8") as f:
 			self.rulesets = json.load(f)
+		self.search_module = GPUInfoSearch(True)
+		self.parser = ExtraParser(self.title_ids, self.search_module)
+		self.ruleset_parser = RulesetParser(self.rulesets)
 	async def on_ready(self):
 		import _version as v
 		print(
@@ -84,16 +88,17 @@ f"""
 					await message.channel.send(f"Log detected, please post logs in <#{config.cfg['parsing_channel']['preferred']}>.")
 		await self.process_commands(message)
 	
-	async def parse_log(self, log_url, log, message, title_ids=None):
+	async def parse_log(self, log_url, log, message, parser=None, ruleset_parser=None):
 		start_time = time.time()
-		if title_ids == None:
-			title_ids = self.title_ids
+		if parser is None:
+			parser = self.parser
+		if ruleset_parser is None:
+			ruleset_parser = self.ruleset_parser
 		try:
 			log = log.decode('utf-8').replace('\r', '')
 		except UnicodeDecodeError:
 			# brazilian portugese was causing problems
 			log = log.decode('latin-1').replace('\r', '')
-		parser = ExtraParser(title_ids)
 		info = parser.parse(log)
 		if not info["init.loaded_title"]:
 			if info["init.game_crashed"]:
@@ -106,7 +111,6 @@ f"""
 			else:
 				await message.edit(content="Error: No game detected. Submit a log during or after emulating a game. Reopening Cemu clears the log.")
 			return
-		ruleset_parser = RulesetParser(self.rulesets)
 		relevant_info = ruleset_parser.parse(log, info)
 		relevant_info += [
 			f"ℹ️ RPX hash (updated): `{info['game.rpx_hash.updated']}` ║ RPX hash (base): `{info['game.rpx_hash.base']}`"

@@ -229,7 +229,6 @@ class ExtraParser(Parser):
     Same as Parser, with a few extra bits of info that must be fetched from
     external sources (GPU support and game compatibility).
     """
-    search_module: GPUSearchModule = GPUInfoSearch(True)
     @name("specs.gpu_search_result")
     @default(GPUSearchResult())
     def gpu_search_result(self, file, info):
@@ -300,8 +299,12 @@ class ExtraParser(Parser):
             re.search(r"<a href=\"(?:/wiki/|/index\.php\?title=)Release.*? title=\".*?\">(.*?)</a>", compat),
             1
         )
-    def __init__(self, title_ids):
+    def __init__(self, title_ids, search_module=None):
         super().__init__()
+        if search_module is None:
+            self.search_module = GPUInfoSearch(True)
+        else:
+            self.search_module = search_module
         self.title_ids = title_ids
         self.embed += [
             self.gpu_search_result, self.opengl_version, self.opengl_url,
