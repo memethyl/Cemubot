@@ -112,7 +112,10 @@ class GPUInfoSearch(GPUSearchModule):
     @staticmethod
     def cache_opengl() -> Optional[Dict[str, APIResult]]:
         """Returns a cache of the OpenGL version database for offline usage."""
-        req = requests.get("https://opengl.gpuinfo.org/versionsupport.php")
+        try:
+            req = requests.get("https://opengl.gpuinfo.org/versionsupport.php")
+        except requests.exceptions.RequestException:
+            return None
         if req.status_code != 200:
             return None
         # (url, name, gl_version)
@@ -148,7 +151,10 @@ class GPUInfoSearch(GPUSearchModule):
             ]
         }
         query_str = GPUInfoSearch.jsonToQueryString(query)
-        req = requests.get(f"https://vulkan.gpuinfo.org/api/internal/devices.php{query_str}")
+        try:
+            req = requests.get(f"https://vulkan.gpuinfo.org/api/internal/devices.php{query_str}")
+        except requests.exceptions.RequestException:
+            return None
         if req.status_code != 200:
             return None
         devices = json.loads(req.text)["data"]
@@ -164,7 +170,10 @@ class GPUInfoSearch(GPUSearchModule):
 
     @staticmethod
     def search_opengl_nocache(gpu: str) -> Optional[APIResult]:
-        req = requests.get("https://opengl.gpuinfo.org/versionsupport.php")
+        try:
+            req = requests.get("https://opengl.gpuinfo.org/versionsupport.php")
+        except requests.exceptions.RequestException:
+            return None
         if req.status_code != 200:
             return None
         # (url, name, gl_version)
@@ -212,7 +221,10 @@ class GPUInfoSearch(GPUSearchModule):
         }
         query_str = GPUInfoSearch.jsonToQueryString(query)
         url = f"https://vulkan.gpuinfo.org/api/internal/devices.php{query_str}"
-        req = requests.get(url)
+        try:
+            req = requests.get(url)
+        except requests.exceptions.RequestException:
+            return None
         if req.status_code != 200:
             return None
         result = json.loads(req.text)
@@ -314,7 +326,10 @@ class TechPowerUpSearch(GPUSearchModule):
     @staticmethod
     def get_html(url: str) -> Optional[str]:
         if url:
-            req = requests.get(url)
+            try:
+                req = requests.get(url)
+            except requests.exceptions.RequestException:
+                return None
             if req.status_code == 200:
                 text = req.text
                 text = text.replace('\n','')
@@ -328,6 +343,8 @@ class TechPowerUpSearch(GPUSearchModule):
         if not url:
             return result
         html = TechPowerUpSearch.get_html(url)
+        if not html:
+            return result
         if api & GPUAPI.OpenGL:
             if (gl := regex_group(re.search(r"<dt>OpenGL</dt><dd>(.*?)</dd>", html), 1)):
                 gl = gl.split(".")
